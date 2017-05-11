@@ -289,7 +289,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <ol class="breadcrumb">
-					  <li><a href="#">管理员管理</a></li>
+					  <li><a href="#">导航管理</a></li>
 					  <li class="active">{$title}</li>
 					</ol>
                 </div>
@@ -300,10 +300,10 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-						<a href="manager.php?action=list" class="btn btn-primary btn-sm {if $list}active{/if}" role="button">管理员列表</a>
-						<a href="manager.php?action=add" class="btn btn-primary btn-sm {if $add}active{/if}" role="button">新增管理员</a>
+						<a href="nav.php?action=list" class="btn btn-primary btn-sm {if $list}active{/if}" role="button">导航列表</a>
+						<a href="nav.php?action=add" class="btn btn-primary btn-sm {if $add}active{/if}" role="button">新增导航</a>
 						{if $update}
-						<a href="mananger.php?action=update&id={id}" class="btn btn-primary btn-sm {if $update}active{/if}" role="button">修改管理员</a>
+						<a href="nav.php?action=update&id={id}" class="btn btn-primary btn-sm {if $update}active{/if}" role="button">修改导航</a>
 						{/if}
                         </div>
                         <!-- /.panel-heading -->
@@ -318,7 +318,7 @@
                                         <th>导航名称</th>
                                         <th>导航描述</th>
                                         <th>排序</th>
-                                        <th>子类管理</th>
+                                        <th>子导航管理</th>
                                         <th>操作</th>
                                     </tr>
                                 </thead>
@@ -339,17 +339,17 @@
 										</button>
                                         </td>
                                         <td>
-										<button id="btnEdit" onclick="editManager({@value->id})" type="button" class="btn btn-warning btn-xs"> 
+										<button id="btnEdit" onclick="editNav({@value->id})" type="button" class="btn btn-warning btn-xs"> 
 										<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>修改 
 										</button> 
-										<button id="btnDel" type="button" onclick="deleteManager({@value->id})" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#DeleteForm" onclick=""> 
+										<button id="btnDel" type="button" onclick="deleteNav({@value->id})" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#DeleteForm" onclick=""> 
 										<span class="glyphicon glyphicon-minus" aria-hidden="true"></span>删除 
 										</button>
                                         </td>
                                     </tr>
                                     {/foreach}
                                     {else}
-                                    <tr><td colspan="7">对不起，还没有数据!</td></tr>
+                                    <tr><td colspan="6">对不起，还没有数据!</td></tr>
                                     {/if}
                                     
                                 </tbody>
@@ -370,36 +370,21 @@
                         {if $add}
                         <div class="panel-body">
 							<form data-toggle="validator" role="form" id="add" name="add">
-								  <input type="hidden" id="level" value=""/>
+								  <input type="hidden" id="id" value="0"/>								  
 								  <div class="form-group">
-								    <label for="admin_user" class="control-label">管理员名称</label>
-								    <input type="text" class="form-control" id="admin_user" name="admin_user" placeholder="输入管理员名称" required>
+								    <label for="nav_name" class="control-label">导航名称</label>
+								    <input type="text" class="form-control" id="nav_name" name="nav_name" placeholder="输入导航名称" required>
 								  </div>
 								  
 								  <div class="form-group">
-								    <label for="admin_pass1" class="control-label">管理员密码</label>		
-								        <input type="password" data-minlength="6" class="form-control" id="admin_pass1" name="admin_pass1" placeholder="输入管理员密码" required>
-								  </div>
+								    <label for="nav_info" class="control-label">等级描述</label>		
+								    <textarea class="form-control" id="nav_info" name="nav_info" rows="3" placeholder="输入导航描述"></textarea>
+								  </div>							  
 								  
 								  <div class="form-group">
-								    <label for="admin_pass" class="control-label">确认管理员密码</label>		
-								        <input type="password" data-minlength="6" class="form-control" id="admin_pass" name="admin_pass" placeholder="再次输入管理员密码" required>
-								  </div>
-								  
-								  <div class="form-group">
-                                   <label class="control-label">权限</label>
-	                               <select class="form-control" name="admin_level" id="admin_level">
-	                                 <option value="">---请选择管理员等级---</option>
-                                     {foreach $levels(key,value)}
-						              <option value="{@value->level}">{@value->level_name}</option>
-						             {/foreach}
-									</select>
-								  </div>
-								  
-								  <div class="form-group">
-								    <button  class="btn btn-primary btn-sm" id="btnSave">新增管理员</button>
+								    <button  class="btn btn-primary btn-sm" id="btnSave">新增导航</button>
 								    <button  class="btn btn-primary btn-sm" id="btnSet">重置</button>
-								    <a href="manager.php?action=list" class="btn btn-primary btn-sm active" role="button">返回列表</a>
+								    <a href="nav.php?action=list" class="btn btn-primary btn-sm active" role="button">返回列表</a>
 								  </div>
 							</form>
                         </div>
@@ -410,41 +395,25 @@
                         {if $update}
                         <div class="panel-body">
 							<form data-toggle="validator" role="form" id="update" name="update">
-								<input type="hidden" id="level" value="{$level}" />
-								<input type="hidden" name="id" id="id" value="{$id}" />
+								  <input type="hidden" id="id" value="{$id}"/>								  
 								  <div class="form-group">
-								    <label for="admin_user"  class="control-label">管理员名称</label>
-								    <input type="text" readonly="readonly" value="{$admin_user}" class="form-control" id="admin_user" name="admin_user" placeholder="输入管理员名称" required>
+								    <label for="nav_name" class="control-label">导航名称</label>
+								    <input type="text" class="form-control" id="nav_name" name="nav_name" value="{$nav_name}" placeholder="输入导航名称" required>
 								  </div>
 								  
 								  <div class="form-group">
-								    <label for="admin_pass1" class="control-label">管理员密码</label>		
-								        <input type="password" value="" data-minlength="6" class="form-control" id="admin_pass1" name="admin_pass1" placeholder="输入管理员密码" required>
-								  </div>
+								    <label for="nav_info" class="control-label">等级描述</label>		
+								    <textarea class="form-control" id="nav_info" name="nav_info" rows="3" placeholder="输入导航描述">{$nav_info}</textarea>
+								  </div>							  
 								  
 								  <div class="form-group">
-								    <label for="admin_pass" class="control-label">确认管理员密码</label>		
-								        <input type="password" value="" data-minlength="6" class="form-control" id="admin_pass" name="admin_pass" placeholder="再次输入管理员密码" required>
-								  </div>
-								  				  
-								  <div class="form-group">
-                                   <label class="control-label">权限</label>
-	                               <select class="form-control" name="admin_level" id="admin_level">
-	                                 <option value="">---请选择管理员等级---</option>
-                                     {foreach $levels(key,value)}
-						               <option value="{@value->level}">{@value->level_name}</option>
-						             {/foreach}
-									</select>
-								  </div>
-								  
-								  <div class="form-group">
-								    <button  class="btn btn-primary btn-sm" id="btnUpdate">修改管理员</button>
+								    <button  class="btn btn-primary btn-sm" id="btnUpdate">修改导航</button>
 								    <button  class="btn btn-primary btn-sm" id="btnSet">重置</button>
-								    <a href="manager.php?action=list" class="btn btn-primary btn-sm active" role="button">返回列表</a>
+								    <a href="nav.php?action=list" class="btn btn-primary btn-sm active" role="button">返回列表</a>
 								  </div>
 							</form>
                         </div>
-                        <!-- update end -->
+                        <!-- add update -->
                         {/if}
                         
                         
@@ -527,87 +496,31 @@
     	             validating: 'glyphicon glyphicon-refresh'
     	         },
     	         fields:{
-        	         admin_user:{
-        	               message:'管理员没有验证!',
+        	         nav_name:{
+        	               message:'导航没有验证!',
         	               validators:{
 	                       notEmpty:{
-	                           message:'管理员名称不能为空!'
+	                           message:'导航名称不能为空!'
 	                       },
 	                       stringLength:{
-	                            min:3,
+	                            min:2,
 	                            max:30,
-	                            message:'管理员名称长度在3-30位之间!'
+	                            message:'管理员名称长度在2-30位之间!'
 	                         },
 	                         threshold:3,
 	                         remote:{    //ajax验证 server result:{"valid",true or false}
-                               url:'manager.php?action=checkManagerName', //验证地址
-                               message:'管理名称已经存在!',//提示信息
+                               url:'nav.php?action=checkNavName', //验证地址
+                               message:'导航名称已经存在!',//提示信息
                                delay:2000,//设置2秒发送一次ajax（每秒发送，服务器压力太大）
                                type:'POST',
                                dataType:'json'
 		                     },
 		                     regexp:{
-                                regexp:/^[a-zA-Z0-9_]+$/,
-                                message:'管理员名称由字母数字下划线组成!'
+                                regexp:/^[a-zA-Z0-9_\u4e00-\u9fa5]+$/,
+                                message:'导航名称由字母数字下划线或汉字组成!'
 			                 }   
     	                  } 
-    	               },
-    	               admin_pass1:{
-                           message:'管理员密码无效',
-                           validators:{
-                                notEmpty:{
-                                    message:'管理员密码不能为空!'
-                                },
-                                stringLength:{
-                                    min:6,
-                                    max:30,
-                                    message:'管理员密码长度必须在6-30之间!'
-                                },
-                                different:{
-                                    field:'admin_user',
-                                    message:'密码不能和管理员名称相同!'
-                                },
-                                regexp:{
-                                    regexp:/^[a-zA-Z0-9_]+$/,
-                                    message:'管理员密码由字母数字或下划线组成!'                  
-                                }
-                                
-                            }
-         	           },
-    	               admin_pass:{
-                          message:'管理员密码无效',
-                          validators:{
-                               notEmpty:{
-                                   message:'管理员密码不能为空!'
-                               },
-                               stringLength:{
-                                   min:6,
-                                   max:30,
-                                   message:'管理员密码长度必须在6-30之间!'
-                               },
-                               identical:{
-                                   field:'admin_pass1',
-                                   message:'两次密码不一致!'
-                               },
-                               different:{
-                                   field:'admin_user',
-                                   message:'密码不能和管理员名称相同!'
-                               },
-                               regexp:{
-                                   regexp:/^[a-zA-Z0-9_]+$/,
-                                   message:'管理员密码由字母数字或下划线组成!'                  
-                               }
-                               
-                           }
-        	           },
-        	           admin_level:{
-                          message:'请选择权限!',
-                          validators:{
-                              notEmpty:{
-                                 message:'请选择管理员权限!'
-                              }
-                           }
-            	       }            
+    	               }
         	      }
 	         });
 
@@ -619,71 +532,40 @@
   	             validating: 'glyphicon glyphicon-refresh'
   	         },
   	         fields:{
-  	               admin_pass1:{
-                         message:'管理员密码无效',
-                         validators:{
-                              notEmpty:{
-                                  message:'管理员密码不能为空!'
-                              },
-                              stringLength:{
-                                  min:6,
-                                  max:30,
-                                  message:'管理员密码长度必须在6-30之间!'
-                              },
-                              different:{
-                                  field:'admin_user',
-                                  message:'密码不能和管理员名称相同!'
-                              },
-                              regexp:{
-                                  regexp:/^[a-zA-Z0-9_]+$/,
-                                  message:'管理员密码由字母数字或下划线组成!'                  
-                              }
-                              
-                          }
-       	           },
-  	               admin_pass:{
-                        message:'管理员密码无效',
-                        validators:{
-                             notEmpty:{
-                                 message:'管理员密码不能为空!'
-                             },
-                             stringLength:{
-                                 min:6,
-                                 max:30,
-                                 message:'管理员密码长度必须在6-30之间!'
-                             },
-                             identical:{
-                                 field:'admin_pass1',
-                                 message:'两次密码不一致!'
-                             },
-                             different:{
-                                 field:'admin_user',
-                                 message:'密码不能和管理员名称相同!'
-                             },
-                             regexp:{
-                                 regexp:/^[a-zA-Z0-9_]+$/,
-                                 message:'管理员密码由字母数字或下划线组成!'                  
-                             }
-                             
-                         }
-      	           },
-      	           admin_level:{
-                        message:'请选择权限!',
-                        validators:{
-                            notEmpty:{
-                               message:'请选择管理员权限!'
-                            }
-                         }
-          	       }            
+      	         nav_name:{
+      	               message:'导航没有验证!',
+      	               validators:{
+	                       notEmpty:{
+	                           message:'导航名称不能为空!'
+	                       },
+	                       stringLength:{
+	                            min:2,
+	                            max:30,
+	                            message:'导航名称长度在2-30位之间!'
+	                         },
+	                         threshold:3,
+	                         remote:{    //ajax验证 server result:{"valid",true or false}
+                             url:'nav.php?action=checkNavName', //验证地址
+                             message:'导航名称已经存在!',//提示信息
+                             delay:2000,//设置2秒发送一次ajax（每秒发送，服务器压力太大）
+                             type:'POST',
+                             dataType:'json'
+		                     },
+		                     regexp:{
+                              regexp:/^[a-zA-Z0-9_\u4e00-\u9fa5]+$/,
+                              message:'导航名称由字母数字下划线或汉字组成!'
+			                 }   
+  	                  } 
+  	               }
       	      }
 	         });
 	         //提交表单
-    		$("#btnSave").click(addManager);
+    		$("#btnSave").click(addNav);
     		//重置
     		$("#btnSet").click(resetFrom);
     		//编辑管理员
    
-    		$('#btnUpdate').click(updateManager);
+    		$('#btnUpdate').click(updateNav);
     
 
     });
@@ -693,7 +575,7 @@
      * 添加数据
      * @private
      */
-     function addManager() 
+     function addNav() 
      {
         $("#add").data('bootstrapValidator').validate();
         if(!$("#add").data('bootstrapValidator').isValid())
@@ -704,12 +586,12 @@
         {
         	var jsonData ={
         		  'submit':'true',
-  			      'admin_user':$.trim($("#admin_user").val()),
-  			      'admin_pass':$.trim($("#admin_pass").val()),
-  			      'admin_level':$.trim($("#admin_level").val()) 			      
+  			      'nav_name':$.trim($("#nav_name").val()),
+  			      'nav_info':$.trim($("#nav_info").val()),
+  			      'id':$.trim($("#id").val()) 			      
   	       };
 	  	  $.ajax({
-	  	      url: "manager.php?action=add",
+	  	      url: "nav.php?action=add",
 	  	      data: jsonData,
 	  	      type: "post",
 	  	      beforeSend:function(){
@@ -721,7 +603,7 @@
 	  	      success: function (backdata) {
 	  	          if (backdata == 1) {
 	  	              layer.msg('操作成功！', {icon: 1});
-	  	              location.href='manager.php?action=list';
+	  	              location.href='nav.php?action=list';
 	  	          } else if (backdata == 0) {
 	  	        	  layer.msg('操作失败！', {icon: 2});
 	  	          } else {
@@ -734,7 +616,7 @@
         }
      }
      //修改
-     function updateManager()
+     function updateNav()
      {
     	 $("#update").data('bootstrapValidator').validate();
          if(!$("#update").data('bootstrapValidator').isValid())
@@ -746,11 +628,11 @@
          	var jsonData ={
          		  'submit':'true',
          		  'id':$.trim($("#id").val()),
-   			      'admin_pass':$.trim($("#admin_pass").val()),
-   			   'admin_level':$.trim($("#admin_level").val()) 			      
+   			      'nav_name':$.trim($("#nav_name").val()),
+   			      'nav_info':$.trim($("#nav_info").val()) 			      
    	       };
  	  	  $.ajax({
- 	  	      url: "manager.php?action=update",
+ 	  	      url: "nav.php?action=update",
  	  	      data: jsonData,
  	  	      type: "post",
  	  	      beforeSend:function(){
@@ -762,7 +644,7 @@
  	  	      success: function (backdata) {
  	  	          if (backdata == 1) {
  	  	              layer.msg('操作成功！', {icon: 1});
- 	  	              location.href='manager.php?action=list';
+ 	  	              location.href='nav.php?action=list';
  	  	          } else if (backdata == 0) {
  	  	        	  layer.msg('操作失败！', {icon: 2});
  	  	          } else {
@@ -775,16 +657,16 @@
          }
      }
 
-     function editManager(mid)
+     function editNav(mid)
      {
-        var url="manager.php?action=update&id="+mid;
+        var url="nav.php?action=update&id="+mid;
         location.href=url;
      }
 
-     function deleteManager(mid)
+     function deleteNav(mid)
      {
           layer.confirm('你确定要删除吗?',{btn:['确定','取消']},function(){
-        	  var url="manager.php?action=delete&id="+mid;
+        	  var url="nav.php?action=delete&id="+mid;
        	  	  $.ajax({
        	  	      url: url,
        	  	      type: "get",
@@ -797,7 +679,7 @@
        	  	      success: function (backdata) {
        	  	          if (backdata == 1) {
        	  	              layer.msg('操作成功！', {icon: 1});
-       	  	              location.href='manager.php?action=list';
+       	  	              location.href='nav.php?action=list';
        	  	          } else if (backdata == 0) {
        	  	        	  layer.msg('操作失败！', {icon: 2});
        	  	          } else {

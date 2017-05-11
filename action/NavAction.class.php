@@ -1,7 +1,7 @@
 <?php
 
 /**
- * 管理员控制器层
+ * 导航控制器层
  * @author loach
  *
  */
@@ -17,7 +17,7 @@ class NavAction extends Action{
 	}
 	
 	/**
-	 * 管理员业务流程控制
+	 * 导航业务流程控制
 	 */
 	public function action()
 	{
@@ -45,7 +45,7 @@ class NavAction extends Action{
 	}
 	
 	/**
-	 * 显示管理员列表-控制器
+	 * 显示导航列表-控制器
 	 */
 	private function getList()
 	{
@@ -56,15 +56,15 @@ class NavAction extends Action{
 	}
 	
 	/**
-	 * 新增管理员-控制器
+	 * 新增导航-控制器
 	 */
 	private function add()
 	{
 	   if(isset($_POST['submit']))
 	   {
-	      $this->model->admin_user=trim($_POST['admin_user']);
-	      $this->model->admin_pass=sha1(trim($_POST['admin_pass']));
-	      $this->model->level=trim($_POST['admin_level']);
+	   	  $this->model->pid=$_POST['id'];
+	      $this->model->nav_name=trim($_POST['nav_name']);
+	      $this->model->nav_info=trim($_POST['nav_info']);
 	      if($this->model->addNav()>0)
 	      {
 	         echo 1;
@@ -77,22 +77,19 @@ class NavAction extends Action{
 	      }
 	   }
 	   $this->tpl->assign('add',true);
-	   $this->tpl->assign('title','新增管理员');
-	   $levelModel=new LevelModel();
-	   $this->tpl->assign('levels',$levelModel->getAllLevel(0));
+	   $this->tpl->assign('title','新增导航');
 	}
 	
 	/**
-	 * 修改管理员-控制器
+	 * 修改导航-控制器
 	 */
 	private function update()
 	{		   
 	   if(isset($_POST['submit']))
 	   {
 	   	  $this->model->id=trim($_POST['id']);
-	      $this->model->admin_pass=sha1(trim($_POST['admin_pass']));
-	      $this->model->level=trim($_POST['admin_level']);
-	      
+	      $this->model->nav_name=trim($_POST['nav_name']);
+	      $this->model->nav_info=trim($_POST['nav_info']);	      
 	      if($this->model->updateNav()>0)
 	      {
 	         echo 1;
@@ -107,19 +104,16 @@ class NavAction extends Action{
 	   if(isset($_GET['id']))
 	   {
 		   $this->tpl->assign('update',true);
-		   $this->tpl->assign('title','修改管理员');
+		   $this->tpl->assign('title','修改导航');
 		   $this->model->id=$_GET['id'];
-		   $Nav=$this->model->getOneNav();
-		   $levelModel=new LevelModel();
-		   $this->tpl->assign('levels',$levelModel->getAllLevel(0));
-		   $this->tpl->assign('id',$Nav->id);
-           $this->tpl->assign('admin_user',$Nav->admin_user);
-           $this->tpl->assign('admin_pass',$Nav->admin_pass);
-           $this->tpl->assign('level',$Nav->level);
+		   $nav=$this->model->getOneNav();
+		   $this->tpl->assign('id',$nav->id);
+           $this->tpl->assign('nav_name',$nav->nav_name);
+           $this->tpl->assign('nav_info',$nav->nav_info);
 	   }
 	}
 	/**
-	 * 删除管理员-控制器
+	 * 删除导航-控制器
 	 */
 	private function delete()
 	{
@@ -141,13 +135,13 @@ class NavAction extends Action{
 	}
 	
 	/**
-	 * 检查管理员名称是否存在-控制器
+	 * 检查导航名称是否存在-控制器
 	 */
 	public function checkNavName()
 	{
-       if(isset($_POST['admin_user']))
+       if(isset($_POST['nav_name']))
        {
-       	   $this->model->admin_user=$_POST['admin_user'];
+       	   $this->model->nav_name=$_POST['nav_name'];
 		   if(!is_object($this->model->getOneNav()))
 		   {
 		      Tool::jsonType();

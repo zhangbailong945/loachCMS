@@ -56,7 +56,7 @@ class NavModel extends Model{
      */
     public function getOneNav()
     {
-        $sql="select id,admin_user,admin_pass,level from cms_Nav where id='$this->id' or admin_user='$this->admin_user' or level='$this->level' limit 1";
+        $sql="select id,nav_name,nav_info from cms_nav where id='$this->id' or nav_name='$this->nav_name' limit 1";
         return parent::getOne($sql);
     }   
     
@@ -65,7 +65,7 @@ class NavModel extends Model{
      */
     public function addNav()
     {
-       $sql="insert into cms_Nav(admin_user,admin_pass,level,reg_time)values('$this->admin_user','$this->admin_pass','$this->level',NOW())";
+       $sql="insert into cms_nav(nav_name,nav_info,pid,sort)values('$this->nav_name','$this->nav_info','$this->pid',".parent::nextId('cms_nav').")";
        return parent::cud($sql);
     }
     /**
@@ -73,7 +73,7 @@ class NavModel extends Model{
      */
     public function updateNav()
     {
-       $sql="update cms_Nav set admin_pass='$this->admin_pass',level='$this->level' where id='$this->id'";
+       $sql="update cms_nav set nav_name='$this->nav_name',nav_info='$this->nav_info' where id='$this->id'";
        return parent::cud($sql);
     }
     /**
@@ -81,7 +81,7 @@ class NavModel extends Model{
      */
     public function deleteNav()
     {
-       $sql="delete from cms_Nav where id='$this->id' limit 1;";
+       $sql="delete from cms_nav where id='$this->id' limit 1;";
        return parent::cud($sql);
     }
 
