@@ -38,6 +38,12 @@ class NavAction extends Action{
 	   	case 'delete':
 	   		$this->delete();
 	   		break;
+	   	case 'lookSubNav':
+	   		$this->lookSubNav();
+	   		break;
+   		case 'addSubNav':
+   		    $this->addSubNav();
+   		    break;
 	   	default:
 	   		Tool::alertLocation('警告：','非法操作!',SITE_ADMIN_URL);
 	   		break;
@@ -78,6 +84,29 @@ class NavAction extends Action{
 	   }
 	   $this->tpl->assign('add',true);
 	   $this->tpl->assign('title','新增导航');
+	}
+	
+/**
+	 * 新增子导航-控制器
+	 */
+	private function addSubNav()
+	{
+	   if(isset($_POST['submit']))
+	   {
+	   	  $this->add();
+	   }
+	   
+	   if(isset($_GET['id']))
+	   {
+	      $this->model->id=$_GET['id'];
+	      $nav=$this->model->getOneNav();
+	      $this->tpl->assign('sub',true);
+	      $this->tpl->assign('addSub',true);
+	      $this->tpl->assign('id',$nav->id);
+	      $this->tpl->assign('parent_nav',$nav->nav_name);
+	      
+	   }
+	   
 	}
 	
 	/**
@@ -132,6 +161,29 @@ class NavAction extends Action{
 		      }
             
         }
+	}
+	
+	/**
+	 * 查看子导航列表
+	 */
+	private function lookSubNav()
+	{
+	  if(isset($_GET['id']))
+	  {
+		   $this->model->id=trim($_GET['id']);
+		   $nav=$this->model->getOneNav();
+		   $this->tpl->assign('sublist',true);
+		   $this->tpl->assign('sub',true);
+		   $this->tpl->assign('title','子导航列表');
+		   $this->tpl->assign('parent_nav',$nav->nav_name);
+		   $this->tpl->assign('id',$this->model->id);
+		   $this->tpl->assign('allSubNav',$this->model->getAllSubNav(0));
+		   
+	  }
+	  else
+	  {
+	       Tool::alertBack('提示','非法操作!');
+	  }
 	}
 	
 	/**

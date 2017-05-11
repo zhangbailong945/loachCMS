@@ -290,6 +290,7 @@
                 <div class="col-lg-12">
                     <ol class="breadcrumb">
 					  <li><a href="#">导航管理</a></li>
+					  <li><a href="#"><?php echo $this->vars['parent_nav']; ?></a></li>
 					  <li class="active"><?php echo $this->vars['title']; ?></li>
 					</ol>
                 </div>
@@ -300,10 +301,18 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-						<a href="nav.php?action=list" class="btn btn-primary btn-sm <?php if($this->vars['list']){ ?>active<?php } ?>" role="button">导航列表</a>
-						<a href="nav.php?action=add" class="btn btn-primary btn-sm <?php if($this->vars['add']){ ?>active<?php } ?>" role="button">新增导航</a>
+						<a href="nav.php?action=list" class="btn btn-primary btn-sm <?php if($this->vars['list']){ ?>active<?php } ?>" role="button">父导航列表</a>
+						<?php if($this->vars['sublist']){ ?>
+						<a href="nav.php?action=lookSubNav&id=<?php echo $this->vars['id']; ?>" class="btn btn-primary btn-sm <?php if($this->vars['sublist']){ ?>active<?php } ?>" role="button">子导航列表</a>
+						<?php } ?>
 						<?php if($this->vars['update']){ ?>
-						<a href="nav.php?action=update&id={id}" class="btn btn-primary btn-sm <?php if($this->vars['update']){ ?>active<?php } ?>" role="button">修改导航</a>
+						<a href="nav.php?action=update&id=<?php echo $this->vars['id']; ?>" class="btn btn-primary btn-sm <?php if($this->vars['update']){ ?>active<?php } ?>" role="button">修改导航</a>
+						<?php } ?>
+						<?php if($this->vars['list']){ ?>
+						<a href="nav.php?action=add" class="btn btn-primary btn-sm <?php if($this->vars['add']){ ?>active<?php } ?>" role="button">新增父导航</a>
+						<?php } ?>
+						<?php if($this->vars['sub']){ ?>
+						<a href="nav.php?action=addSubNav&id=<?php echo $this->vars['id']; ?>" class="btn btn-primary btn-sm <?php if($this->vars['addSub']){ ?>active<?php } ?>" role="button">新增子导航</a>
 						<?php } ?>
                         </div>
                         <!-- /.panel-heading -->
@@ -331,12 +340,9 @@
                                         <td class="center"><?php echo $value->nav_info; ?></td>
                                         <td class="center"><?php echo $value->sort; ?></td>
                                         <td>
-										<button id="btnLookSub" onclick="lookSubNav(<?php echo $value->id; ?>)" type="button" class="btn btn-info btn-xs"> 
+										<button onclick="lookSubNav(<?php echo $value->id; ?>)" type="button" class="btn btn-info btn-xs"> 
 										<span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>查看子类
 										</button> 
-										<button id="btnAddSub" type="button" onclick="addSubNav(<?php echo $value->id; ?>)" class="btn btn-info btn-xs" data-toggle="modal" data-target="#DeleteForm" onclick=""> 
-										<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增子类
-										</button>
                                         </td>
                                         <td>
 										<button id="btnEdit" onclick="editNav(<?php echo $value->id; ?>)" type="button" class="btn btn-warning btn-xs"> 
@@ -390,6 +396,34 @@
                         </div>
                         <!-- add end -->
                         <?php } ?>
+                        <!-- add sub start -->
+                        <?php if($this->vars['addSub']){ ?>
+                        <div class="panel-body">
+							<form data-toggle="validator" role="form" id="add" name="add">
+								  <input type="hidden" id="id" value="<?php echo $this->vars['id']; ?>"/>
+								   <div class="form-group">
+								    <label for="nav_name" class="control-label">父导航</label>
+								    <h3><?php echo $this->vars['parent_nav']; ?></h3>
+								  </div>								  
+								  <div class="form-group">
+								    <label for="nav_name" class="control-label">导航名称</label>
+								    <input type="text" class="form-control" id="nav_name" name="nav_name" placeholder="输入导航名称" required>
+								  </div>
+								  
+								  <div class="form-group">
+								    <label for="nav_info" class="control-label">等级描述</label>		
+								    <textarea class="form-control" id="nav_info" name="nav_info" rows="3" placeholder="输入导航描述"></textarea>
+								  </div>							  
+								  
+								  <div class="form-group">
+								    <button  class="btn btn-primary btn-sm" id="btnSubSave">新增子导航</button>
+								    <button  class="btn btn-primary btn-sm" id="btnSet">重置</button>
+								    <a href="nav.php?action=list" class="btn btn-primary btn-sm active" role="button">返回列表</a>
+								  </div>
+							</form>
+                        </div>
+                        <!-- add sub end -->
+                        <?php } ?>
                         
                         <!-- update start -->
                         <?php if($this->vars['update']){ ?>
@@ -415,6 +449,54 @@
                         </div>
                         <!-- add update -->
                         <?php } ?>
+                        
+                        <!-- sublist body start -->
+                        <?php if($this->vars['sublist']){ ?>
+                        <div class="panel-body">
+                            <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                <thead>
+                                    <tr>
+                                        <th>编号</th>
+                                        <th>导航名称</th>
+                                        <th>导航描述</th>
+                                        <th>排序</th>
+                                        <th>操作</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php if($this->vars['allSubNav']){ ?>
+                                    <?php foreach($this->vars['allSubNav'] as $key=>$value) {?>
+                                    <tr class="odd gradeX">
+                                        <td class="center"><?php echo $value->id; ?></script></td>
+                                        <td class="center"><?php echo $value->nav_name; ?></td>
+                                        <td class="center"><?php echo $value->nav_info; ?></td>
+                                        <td class="center"><?php echo $value->sort; ?></td>
+                                        <td>
+										<button id="btnEdit" onclick="editNav(<?php echo $value->id; ?>)" type="button" class="btn btn-warning btn-xs"> 
+										<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>修改 
+										</button> 
+										<button id="btnDel" type="button" onclick="deleteNav(<?php echo $value->id; ?>)" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#DeleteForm" onclick=""> 
+										<span class="glyphicon glyphicon-minus" aria-hidden="true"></span>删除 
+										</button>
+                                        </td>
+                                    </tr>
+                                    <?php } ?>
+                                    <?php }else{ ?>
+                                    <tr><td colspan="6">对不起，还没有数据!</td></tr>
+                                    <?php } ?>
+                                    
+                                </tbody>
+                            </table>
+                            <!-- /.table-responsive -->
+
+                        </div>
+                        <!--  
+	                    <div class="panel-footer">
+	                    
+	                    </div>
+	                    -->
+	                    <?php } ?>
+                        <!-- /.sublist-body end-->
                         
                         
                     </div>
@@ -564,9 +646,9 @@
     		//重置
     		$("#btnSet").click(resetFrom);
     		//编辑管理员
-   
+            //绑定修改操作
     		$('#btnUpdate').click(updateNav);
-    
+    		$('#btnSubSave').click(addSubNav);
 
     });
     
@@ -603,7 +685,7 @@
 	  	      success: function (backdata) {
 	  	          if (backdata == 1) {
 	  	              layer.msg('操作成功！', {icon: 1});
-	  	              location.href='nav.php?action=list';
+	  	              location.href='javascript:history.back();';
 	  	          } else if (backdata == 0) {
 	  	        	  layer.msg('操作失败！', {icon: 2});
 	  	          } else {
@@ -615,6 +697,51 @@
 	  	  });
         }
      }
+
+     /**
+      * 添加数据
+      * @private
+      */
+      function addSubNav() 
+      {
+         $("#add").data('bootstrapValidator').validate();
+         if(!$("#add").data('bootstrapValidator').isValid())
+         {
+              return ;
+         }
+         else
+         {
+         	var jsonData ={
+         		  'submit':'true',
+   			      'nav_name':$.trim($("#nav_name").val()),
+   			      'nav_info':$.trim($("#nav_info").val()),
+   			      'id':$.trim($("#id").val()) 			      
+   	       };
+ 	  	  $.ajax({
+ 	  	      url: "nav.php?action=addSubNav",
+ 	  	      data: jsonData,
+ 	  	      type: "post",
+ 	  	      beforeSend:function(){
+                    layer.load(2,{
+                         shade:[0.8,'#393D49'],
+                         shadeClose:true
+                     });
+               },
+ 	  	      success: function (backdata) {
+ 	  	          if (backdata == 1) {
+ 	  	              layer.msg('操作成功！', {icon: 1});
+ 	  	              location.href='javascript:history.back();';
+ 	  	          } else if (backdata == 0) {
+ 	  	        	  layer.msg('操作失败！', {icon: 2});
+ 	  	          } else {
+ 	  	        	  layer.msg('防止数据不断增长，会影响速度，请先删掉一些数据再做测试',{icon: 3});
+ 	  	          }
+ 	  	      },error: function (error) {
+ 	  	          console.log(error);
+ 	  	      }
+ 	  	  });
+         }
+      }
      //修改
      function updateNav()
      {
@@ -644,7 +771,7 @@
  	  	      success: function (backdata) {
  	  	          if (backdata == 1) {
  	  	              layer.msg('操作成功！', {icon: 1});
- 	  	              location.href='nav.php?action=list';
+ 	  	              location.href='javascript:history.back();';
  	  	          } else if (backdata == 0) {
  	  	        	  layer.msg('操作失败！', {icon: 2});
  	  	          } else {
@@ -660,6 +787,12 @@
      function editNav(mid)
      {
         var url="nav.php?action=update&id="+mid;
+        location.href=url;
+     }
+
+     function lookSubNav(mid)
+     {
+        var url="nav.php?action=lookSubNav&id="+mid;
         location.href=url;
      }
 
@@ -679,7 +812,7 @@
        	  	      success: function (backdata) {
        	  	          if (backdata == 1) {
        	  	              layer.msg('操作成功！', {icon: 1});
-       	  	              location.href='nav.php?action=list';
+       	  	              location.href='javascript:history.back();';
        	  	          } else if (backdata == 0) {
        	  	        	  layer.msg('操作失败！', {icon: 2});
        	  	          } else {

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * 管理员数据访问层 模型
+ * 导航数据访问层 模型
  * @author loach
  *
  */
@@ -24,8 +24,8 @@ class NavModel extends Model{
     }
     
     /**
-     * 获取管理员总记录数
-     * @return int count 管理员总记录
+     * 获取导航总记录数
+     * @return int count 导航总记录
      */
     public function getNavCount()
     {
@@ -34,8 +34,8 @@ class NavModel extends Model{
     }
     
     /**
-     * 获取所有的管理员-数据访问层
-     * @return array 管理员集合
+     * 获取所有的导航-数据访问层
+     * @return array 导航集合
      */
     public function getAllNav($flag)
     {
@@ -52,7 +52,25 @@ class NavModel extends Model{
     }
     
     /**
-     * 查找一个管理员-数据访问层
+     * 获取所有的子导航-数据访问层
+     * @return array 子导航集合
+     */
+    public function getAllSubNav($flag)
+    {
+      if($flag==true)
+      {
+        $sql="select id,nav_name,nav_info,sort from cms_nav where pid='$this->id' order by sort desc $this->limit";
+        return parent::getAll($sql);
+      }
+      else 
+      {
+      	$sql="select id,nav_name,nav_info,sort from cms_nav where pid='$this->id' order by sort desc";
+      	return parent::getAll($sql);
+      }
+    }
+    
+    /**
+     * 查找一个导航-数据访问层
      */
     public function getOneNav()
     {
@@ -61,7 +79,7 @@ class NavModel extends Model{
     }   
     
     /**
-     * 添加管理员-数据访问层
+     * 添加导航-数据访问层
      */
     public function addNav()
     {
@@ -69,7 +87,7 @@ class NavModel extends Model{
        return parent::cud($sql);
     }
     /**
-     * 修改管理员-数据访问层
+     * 修改导航-数据访问层
      */
     public function updateNav()
     {
@@ -77,7 +95,7 @@ class NavModel extends Model{
        return parent::cud($sql);
     }
     /**
-     * 删除管理员-数据访问层
+     * 删除导航-数据访问层
      */
     public function deleteNav()
     {
