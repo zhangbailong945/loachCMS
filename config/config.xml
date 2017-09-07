@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+  <site>
+    <name>sitename</name>
+    <value>loachCMS</value>
+  </site>
+  <site>
+    <name>author</name>
+    <value>zhangbailong</value>
+  </site>
+  <site>
+    <name>url</name>
+    <value>http://www.zhangbailong.com</value>
+  </site>
+</root>
