@@ -10,6 +10,11 @@ define('TPL_DIR',ROOT_PATH.'/templates/');
 define('TPL_C_DIR',ROOT_PATH.'/templates_c/');
 //缓存文件夹
 define('CACHE_DIR',ROOT_PATH.'/cache/');
+//插件地址
+define('PLU_DIR',ROOT_PATH.'/plugins/');
+//前提资源地址
+define('SITE_URL','http://localhost/loachCMS/');
+define('TEMP_URL',SITE_URL.'templates/');
 
 //缓存文件夹
 define('IS_CACHE',false);
@@ -27,8 +32,11 @@ $name='loachcms';
 $arr=array(1,2,3,4,5);
 $tpl->assign('name',$name);
 $tpl->assign('list',$arr);
+$tpl->assign('templates',TEMP_URL);
 //载入主页模板
+$tpl->noParse('header.tpl');
 $tpl->display('index.tpl');
+$tpl->noParse('footer.tpl');
 
 
 

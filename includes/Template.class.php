@@ -63,7 +63,7 @@ class Template{
        {
        	  //生成编译文件
        	  //引入模板解析类
-         require ROOT_PATH.'/includes/Parser.class.php';
+         require_once ROOT_PATH.'/includes/Parser.class.php';
          $parser=new Parser($tplFile);
          //生成编译文件
          $parser->compile($parFile);
@@ -89,6 +89,37 @@ class Template{
 			*/
 		}
        
+    }
+    
+    public function noParse($file)
+    {
+         //给includes进来的tpl传一个模板对象
+        $tpl=$this;
+         //设置模板路径
+         
+        $tplFile=TPL_DIR.$file;
+        //判断模板文件是否存在
+       if(!file_exists($tplFile))
+       {
+       	   exit('Error:模板文件不存在!');
+       }
+       
+              //设置编译文件的文件名
+       $parFile=TPL_C_DIR.md5($file).$file.'.php';
+       //缓存文件
+       //判断文件是否存在,模板文件是否修改过
+       if(!file_exists($parFile)||filemtime($parFile)<filemtime($tplFile))
+       {
+       	  //生成编译文件
+       	  //引入模板解析类
+         require_once ROOT_PATH.'/includes/Parser.class.php';
+         $parser=new Parser($tplFile);
+         //生成编译文件
+         $parser->compile($parFile);
+       }
+       //载入编译文件
+       include $parFile;
+               
     }
     
       /**
