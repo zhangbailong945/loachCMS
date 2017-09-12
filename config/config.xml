@@ -5,6 +5,10 @@
     <value>loachCMS</value>
   </site>
   <site>
+    <name>siteadmin</name>
+    <value>loachCMS管理中心</value>
+  </site>
+  <site>
     <name>author</name>
     <value>zhangbailong</value>
   </site>

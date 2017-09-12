@@ -54,6 +54,8 @@ class Template{
 	    {
 			$file_query.= $_SERVER["QUERY_STRING"];
 		}
+	   $file=str_replace('index/','index-',$file);
+	   $file=str_replace('admin/','admin-',$file);
        //设置编译文件的文件名
        $parFile=TPL_C_DIR.md5($file).$file.'.php';
        //缓存文件
@@ -103,7 +105,8 @@ class Template{
        {
        	   exit('Error:模板文件不存在!');
        }
-       
+       $file=str_replace('index/','index-',$file);
+       $file=str_replace('admin/','dmin-',$file);
               //设置编译文件的文件名
        $parFile=TPL_C_DIR.md5($file).$file.'.php';
        //缓存文件
