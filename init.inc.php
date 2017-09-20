@@ -9,6 +9,8 @@ require ROOT_PATH.'/config/config.inc.php';
 
 //引入模板类
 require ROOT_PATH.'/includes/Template.class.php';
+
+require ROOT_PATH.'/includes/Captcha.class.php';
 //缓存机制
 require 'cache.inc.php';
 
