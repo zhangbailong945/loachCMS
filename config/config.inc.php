@@ -14,4 +14,12 @@ define('SITE_URL','http://localhost/loachCMS/');
 define('TEMP_ADMIN_URL',SITE_URL.'templates/admin');
 define('TEMP_INDEX_URL',SITE_URL.'templates/index');
 
+//数据库配置文件
+define('DB_HOST','localhost');
+define('DB_USER','root');
+define('DB_PASS','root');
+define('DB_NAME','loachcms');
+define('DB_PORT',3306);
+define('DB_CHAR','utf8');
+
 ?>
