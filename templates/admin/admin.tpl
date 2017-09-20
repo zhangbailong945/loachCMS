@@ -22,6 +22,15 @@
 
     <!-- Morris Charts CSS -->
     <link href="{$template_admin}/vendor/morrisjs/morris.css" rel="stylesheet">
+    
+    <!-- MetisMenu CSS -->
+    <link href="{$template_admin}/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+        
+    <!-- DataTables CSS -->
+    <link href="{$template_admin}/vendor/datatables-plugins/dataTables.bootstrap.css" rel="stylesheet">
+
+    <!-- DataTables Responsive CSS -->
+    <link href="{$template_admin}/vendor/datatables-responsive/dataTables.responsive.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
     <link href="{$template_admin}/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -61,42 +70,42 @@
                         <li>
                             <a href="#">
                                 <div>
-                                    <strong>John Smith</strong>
+                                    <strong>张三</strong>
                                     <span class="pull-right text-muted">
-                                        <em>Yesterday</em>
+                                        <em>昨天</em>
                                     </span>
                                 </div>
-                                <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
+                                <div>你的快递到了！</div>
                             </a>
                         </li>
                         <li class="divider"></li>
                         <li>
                             <a href="#">
                                 <div>
-                                    <strong>John Smith</strong>
+                                    <strong>李四</strong>
                                     <span class="pull-right text-muted">
-                                        <em>Yesterday</em>
+                                        <em>昨天</em>
                                     </span>
                                 </div>
-                                <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
+                                <div>今晚加班！</div>
                             </a>
                         </li>
                         <li class="divider"></li>
                         <li>
                             <a href="#">
                                 <div>
-                                    <strong>John Smith</strong>
+                                    <strong>王二</strong>
                                     <span class="pull-right text-muted">
-                                        <em>Yesterday</em>
+                                        <em>昨天</em>
                                     </span>
                                 </div>
-                                <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
+                                <div>你的代码有bug!</div>
                             </a>
                         </li>
                         <li class="divider"></li>
                         <li>
                             <a class="text-center" href="#">
-                                <strong>Read All Messages</strong>
+                                <strong>阅读更多</strong>
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         </li>
@@ -113,12 +122,12 @@
                             <a href="#">
                                 <div>
                                     <p>
-                                        <strong>Task 1</strong>
-                                        <span class="pull-right text-muted">40% Complete</span>
+                                        <strong>任务1</strong>
+                                        <span class="pull-right text-muted">40% 完成</span>
                                     </p>
                                     <div class="progress progress-striped active">
                                         <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
-                                            <span class="sr-only">40% Complete (success)</span>
+                                            <span class="sr-only">40% 完成 </span>
                                         </div>
                                     </div>
                                 </div>
@@ -129,12 +138,12 @@
                             <a href="#">
                                 <div>
                                     <p>
-                                        <strong>Task 2</strong>
-                                        <span class="pull-right text-muted">20% Complete</span>
+                                        <strong>任务 2</strong>
+                                        <span class="pull-right text-muted">20% 完成</span>
                                     </p>
                                     <div class="progress progress-striped active">
                                         <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
-                                            <span class="sr-only">20% Complete</span>
+                                            <span class="sr-only">20% 完成</span>
                                         </div>
                                     </div>
                                 </div>
@@ -145,28 +154,12 @@
                             <a href="#">
                                 <div>
                                     <p>
-                                        <strong>Task 3</strong>
-                                        <span class="pull-right text-muted">60% Complete</span>
+                                        <strong>任务 3</strong>
+                                        <span class="pull-right text-muted">60% 完成</span>
                                     </p>
                                     <div class="progress progress-striped active">
                                         <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
-                                            <span class="sr-only">60% Complete (warning)</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <p>
-                                        <strong>Task 4</strong>
-                                        <span class="pull-right text-muted">80% Complete</span>
-                                    </p>
-                                    <div class="progress progress-striped active">
-                                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
-                                            <span class="sr-only">80% Complete (danger)</span>
+                                            <span class="sr-only">60% 完成 </span>
                                         </div>
                                     </div>
                                 </div>
@@ -175,7 +168,7 @@
                         <li class="divider"></li>
                         <li>
                             <a class="text-center" href="#">
-                                <strong>See All Tasks</strong>
+                                <strong>查看更多</strong>
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         </li>
@@ -191,8 +184,8 @@
                         <li>
                             <a href="#">
                                 <div>
-                                    <i class="fa fa-comment fa-fw"></i> New Comment
-                                    <span class="pull-right text-muted small">4 minutes ago</span>
+                                    <i class="fa fa-comment fa-fw"></i>最新评论
+                                    <span class="pull-right text-muted small">4分钟之前</span>
                                 </div>
                             </a>
                         </li>
@@ -200,8 +193,8 @@
                         <li>
                             <a href="#">
                                 <div>
-                                    <i class="fa fa-twitter fa-fw"></i> 3 New Followers
-                                    <span class="pull-right text-muted small">12 minutes ago</span>
+                                    <i class="fa fa-envelope fa-fw"></i> 最新消息
+                                    <span class="pull-right text-muted small">4分钟之前</span>
                                 </div>
                             </a>
                         </li>
@@ -209,33 +202,15 @@
                         <li>
                             <a href="#">
                                 <div>
-                                    <i class="fa fa-envelope fa-fw"></i> Message Sent
-                                    <span class="pull-right text-muted small">4 minutes ago</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <i class="fa fa-tasks fa-fw"></i> New Task
-                                    <span class="pull-right text-muted small">4 minutes ago</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <i class="fa fa-upload fa-fw"></i> Server Rebooted
-                                    <span class="pull-right text-muted small">4 minutes ago</span>
+                                    <i class="fa fa-tasks fa-fw"></i> 最新任务
+                                    <span class="pull-right text-muted small">4分钟之前</span>
                                 </div>
                             </a>
                         </li>
                         <li class="divider"></li>
                         <li>
                             <a class="text-center" href="#">
-                                <strong>See All Alerts</strong>
+                                <strong>S获取更多</strong>
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         </li>
@@ -248,12 +223,12 @@
                         <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                        <li><a href="#"><i class="fa fa-user fa-fw"></i>用户资料</a>
                         </li>
-                        <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                        <li><a href="#"><i class="fa fa-gear fa-fw"></i>系统设置</a>
                         </li>
                         <li class="divider"></li>
-                        <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i>推出系统</a>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->
@@ -265,33 +240,22 @@
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
-                        <li class="sidebar-search">
-                            <div class="input-group custom-search-form">
-                                <input type="text" class="form-control" placeholder="Search...">
-                                <span class="input-group-btn">
-                                <button class="btn btn-default" type="button">
-                                    <i class="fa fa-search"></i>
-                                </button>
-                            </span>
-                            </div>
-                            <!-- /input-group -->
-                        </li>
                         <li>
-                            <a href="index.html"><i class="fa fa-dashboard fa-fw"></i>首页</a>
+                            <a href="index.html"><i class="fa fa-home fa-fw"></i>首页</a>
                         </li>
                         
                         <li>
-                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>管理员管理<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-user fa-fw"></i>管理员管理<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="flot.html">管理员列表</a>
+                                    <a href="../admin/manager.php?action=list">管理员列表</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
                         
                        <li>
-                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>管理员管理<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-user fa-fw"></i>管理员管理<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
                                     <a href="flot.html">管理员列表</a>
@@ -301,7 +265,7 @@
                         </li>
                         
                         <li>
-                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>管理员管理<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-user fa-fw"></i>管理员管理<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
                                     <a href="flot.html">管理员列表</a>
@@ -321,542 +285,442 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Dashboard</h1>
+                    <h3 class="page-header">管理员管理</h3>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
-            <!-- /.row -->
+            
             <div class="row">
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-primary">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
                         <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-comments fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge">26</div>
-                                    <div>New Comments!</div>
-                                </div>
-                            </div>
+                                                                管理员列表
                         </div>
-                        <a href="#">
-                            <div class="panel-footer">
-                                <span class="pull-left">View Details</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-green">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-tasks fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge">12</div>
-                                    <div>New Tasks!</div>
-                                </div>
-                            </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                <thead>
+                                    <tr>
+                                        <th>编号</th>
+                                        <th>管理员名称</th>
+                                        <th>上次登陆地址</th>
+                                        <th>登陆时间</th>
+                                        <th>操作</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="odd gradeX">
+                                        <td>Trident</td>
+                                        <td>Internet Explorer 4.0</td>
+                                        <td>Win 95+</td>
+                                        <td class="center">4</td>
+                                        <td class="center">X</td>
+                                    </tr>
+                                    <tr class="even gradeC">
+                                        <td>Trident</td>
+                                        <td>Internet Explorer 5.0</td>
+                                        <td>Win 95+</td>
+                                        <td class="center">5</td>
+                                        <td class="center">C</td>
+                                    </tr>
+                                    <tr class="odd gradeA">
+                                        <td>Trident</td>
+                                        <td>Internet Explorer 5.5</td>
+                                        <td>Win 95+</td>
+                                        <td class="center">5.5</td>
+                                        <td class="center">A</td>
+                                    </tr>
+                                    <tr class="even gradeA">
+                                        <td>Trident</td>
+                                        <td>Internet Explorer 6</td>
+                                        <td>Win 98+</td>
+                                        <td class="center">6</td>
+                                        <td class="center">A</td>
+                                    </tr>
+                                    <tr class="odd gradeA">
+                                        <td>Trident</td>
+                                        <td>Internet Explorer 7</td>
+                                        <td>Win XP SP2+</td>
+                                        <td class="center">7</td>
+                                        <td class="center">A</td>
+                                    </tr>
+                                    <tr class="even gradeA">
+                                        <td>Trident</td>
+                                        <td>AOL browser (AOL desktop)</td>
+                                        <td>Win XP</td>
+                                        <td class="center">6</td>
+                                        <td class="center">A</td>
+                                    </tr>
+                                    <tr class="gradeA">
+                                        <td>Gecko</td>
+                                        <td>Firefox 1.0</td>
+                                        <td>Win 98+ / OSX.2+</td>
+                                        <td class="center">1.7</td>
+                                        <td class="center">A</td>
+                                    </tr>
+                                    <tr class="gradeA">
+                                        <td>Gecko</td>
+                                        <td>Firefox 1.5</td>
+                                        <td>Win 98+ / OSX.2+</td>
+                                        <td class="center">1.8</td>
+                                        <td class="center">A</td>
+                                    </tr>
+                                    <tr class="gradeA">
+                                        <td>Gecko</td>
+                                        <td>Firefox 2.0</td>
+                                        <td>Win 98+ / OSX.2+</td>
+                                        <td class="center">1.8</td>
+                                        <td class="center">A</td>
+                                    </tr>
+                                    <tr class="gradeA">
+                                        <td>Gecko</td>
+                                        <td>Firefox 3.0</td>
+                                        <td>Win 2k+ / OSX.3+</td>
+                                        <td class="center">1.9</td>
+                                        <td class="center">A</td>
+                                    </tr>
+                                    <tr class="gradeA">
+                                        <td>Gecko</td>
+                                        <td>Camino 1.0</td>
+                                        <td>OSX.2+</td>
+                                        <td class="center">1.8</td>
+                                        <td class="center">A</td>
+                                    </tr>
+                                    <tr class="gradeA">
+                                        <td>Gecko</td>
+                                        <td>Camino 1.5</td>
+                                        <td>OSX.3+</td>
+                                        <td class="center">1.8</td>
+                                        <td class="center">A</td>
+                                    </tr>
+                                    <tr class="gradeA">
+                                        <td>Gecko</td>
+                                        <td>Netscape 7.2</td>
+                                        <td>Win 95+ / Mac OS 8.6-9.2</td>
+                                        <td class="center">1.7</td>
+                                        <td class="center">A</td>
+                                    </tr>
+                                    <tr class="gradeA">
+                                        <td>Gecko</td>
+                                        <td>Netscape Browser 8</td>
+                                        <td>Win 98SE+</td>
+                                        <td class="center">1.7</td>
+                                        <td class="center">A</td>
+                                    </tr>
+                                    <tr class="gradeA">
+                                        <td>Gecko</td>
+                                        <td>Netscape Navigator 9</td>
+                                        <td>Win 98+ / OSX.2+</td>
+                                        <td class="center">1.8</td>
+                                        <td class="center">A</td>
+                                    </tr>
+                                    <tr class="gradeA">
+                                        <td>Gecko</td>
+                                        <td>Mozilla 1.0</td>
+                                        <td>Win 95+ / OSX.1+</td>
+                                        <td class="center">1</td>
+                                        <td class="center">A</td>
+                                    </tr>
+                                    <tr class="gradeA">
+                                        <td>Gecko</td>
+                                        <td>Mozilla 1.1</td>
+                                        <td>Win 95+ / OSX.1+</td>
+                                        <td class="center">1.1</td>
+                                        <td class="center">A</td>
+                                    </tr>
+                                    <tr class="gradeA">
+                                        <td>Gecko</td>
+                                        <td>Mozilla 1.2</td>
+                                        <td>Win 95+ / OSX.1+</td>
+                                        <td class="center">1.2</td>
+                                        <td class="center">A</td>
+                                    </tr>
+                                    <tr class="gradeA">
+                                        <td>Gecko</td>
+                                        <td>Mozilla 1.3</td>
+                                        <td>Win 95+ / OSX.1+</td>
+                                        <td class="center">1.3</td>
+                                        <td class="center">A</td>
+                                    </tr>
+                                    <tr class="gradeA">
+                                        <td>Gecko</td>
+                                        <td>Mozilla 1.4</td>
+                                        <td>Win 95+ / OSX.1+</td>
+                                        <td class="center">1.4</td>
+                                        <td class="center">A</td>
+                                    </tr>
+                                    <tr class="gradeA">
+                                        <td>Gecko</td>
+                                        <td>Mozilla 1.5</td>
+                                        <td>Win 95+ / OSX.1+</td>
+                                        <td class="center">1.5</td>
+                                        <td class="center">A</td>
+                                    </tr>
+                                    <tr class="gradeA">
+                                        <td>Gecko</td>
+                                        <td>Mozilla 1.6</td>
+                                        <td>Win 95+ / OSX.1+</td>
+                                        <td class="center">1.6</td>
+                                        <td class="center">A</td>
+                                    </tr>
+                                    <tr class="gradeA">
+                                        <td>Gecko</td>
+                                        <td>Mozilla 1.7</td>
+                                        <td>Win 98+ / OSX.1+</td>
+                                        <td class="center">1.7</td>
+                                        <td class="center">A</td>
+                                    </tr>
+                                    <tr class="gradeA">
+                                        <td>Gecko</td>
+                                        <td>Mozilla 1.8</td>
+                                        <td>Win 98+ / OSX.1+</td>
+                                        <td class="center">1.8</td>
+                                        <td class="center">A</td>
+                                    </tr>
+                                    <tr class="gradeA">
+                                        <td>Gecko</td>
+                                        <td>Seamonkey 1.1</td>
+                                        <td>Win 98+ / OSX.2+</td>
+                                        <td class="center">1.8</td>
+                                        <td class="center">A</td>
+                                    </tr>
+                                    <tr class="gradeA">
+                                        <td>Gecko</td>
+                                        <td>Epiphany 2.20</td>
+                                        <td>Gnome</td>
+                                        <td class="center">1.8</td>
+                                        <td class="center">A</td>
+                                    </tr>
+                                    <tr class="gradeA">
+                                        <td>Webkit</td>
+                                        <td>Safari 1.2</td>
+                                        <td>OSX.3</td>
+                                        <td class="center">125.5</td>
+                                        <td class="center">A</td>
+                                    </tr>
+                                    <tr class="gradeA">
+                                        <td>Webkit</td>
+                                        <td>Safari 1.3</td>
+                                        <td>OSX.3</td>
+                                        <td class="center">312.8</td>
+                                        <td class="center">A</td>
+                                    </tr>
+                                    <tr class="gradeA">
+                                        <td>Webkit</td>
+                                        <td>Safari 2.0</td>
+                                        <td>OSX.4+</td>
+                                        <td class="center">419.3</td>
+                                        <td class="center">A</td>
+                                    </tr>
+                                    <tr class="gradeA">
+                                        <td>Webkit</td>
+                                        <td>Safari 3.0</td>
+                                        <td>OSX.4+</td>
+                                        <td class="center">522.1</td>
+                                        <td class="center">A</td>
+                                    </tr>
+                                    <tr class="gradeA">
+                                        <td>Webkit</td>
+                                        <td>OmniWeb 5.5</td>
+                                        <td>OSX.4+</td>
+                                        <td class="center">420</td>
+                                        <td class="center">A</td>
+                                    </tr>
+                                    <tr class="gradeA">
+                                        <td>Webkit</td>
+                                        <td>iPod Touch / iPhone</td>
+                                        <td>iPod</td>
+                                        <td class="center">420.1</td>
+                                        <td class="center">A</td>
+                                    </tr>
+                                    <tr class="gradeA">
+                                        <td>Webkit</td>
+                                        <td>S60</td>
+                                        <td>S60</td>
+                                        <td class="center">413</td>
+                                        <td class="center">A</td>
+                                    </tr>
+                                    <tr class="gradeA">
+                                        <td>Presto</td>
+                                        <td>Opera 7.0</td>
+                                        <td>Win 95+ / OSX.1+</td>
+                                        <td class="center">-</td>
+                                        <td class="center">A</td>
+                                    </tr>
+                                    <tr class="gradeA">
+                                        <td>Presto</td>
+                                        <td>Opera 7.5</td>
+                                        <td>Win 95+ / OSX.2+</td>
+                                        <td class="center">-</td>
+                                        <td class="center">A</td>
+                                    </tr>
+                                    <tr class="gradeA">
+                                        <td>Presto</td>
+                                        <td>Opera 8.0</td>
+                                        <td>Win 95+ / OSX.2+</td>
+                                        <td class="center">-</td>
+                                        <td class="center">A</td>
+                                    </tr>
+                                    <tr class="gradeA">
+                                        <td>Presto</td>
+                                        <td>Opera 8.5</td>
+                                        <td>Win 95+ / OSX.2+</td>
+                                        <td class="center">-</td>
+                                        <td class="center">A</td>
+                                    </tr>
+                                    <tr class="gradeA">
+                                        <td>Presto</td>
+                                        <td>Opera 9.0</td>
+                                        <td>Win 95+ / OSX.3+</td>
+                                        <td class="center">-</td>
+                                        <td class="center">A</td>
+                                    </tr>
+                                    <tr class="gradeA">
+                                        <td>Presto</td>
+                                        <td>Opera 9.2</td>
+                                        <td>Win 88+ / OSX.3+</td>
+                                        <td class="center">-</td>
+                                        <td class="center">A</td>
+                                    </tr>
+                                    <tr class="gradeA">
+                                        <td>Presto</td>
+                                        <td>Opera 9.5</td>
+                                        <td>Win 88+ / OSX.3+</td>
+                                        <td class="center">-</td>
+                                        <td class="center">A</td>
+                                    </tr>
+                                    <tr class="gradeA">
+                                        <td>Presto</td>
+                                        <td>Opera for Wii</td>
+                                        <td>Wii</td>
+                                        <td class="center">-</td>
+                                        <td class="center">A</td>
+                                    </tr>
+                                    <tr class="gradeA">
+                                        <td>Presto</td>
+                                        <td>Nokia N800</td>
+                                        <td>N800</td>
+                                        <td class="center">-</td>
+                                        <td class="center">A</td>
+                                    </tr>
+                                    <tr class="gradeA">
+                                        <td>Presto</td>
+                                        <td>Nintendo DS browser</td>
+                                        <td>Nintendo DS</td>
+                                        <td class="center">8.5</td>
+                                        <td class="center">C/A<sup>1</sup>
+                                        </td>
+                                    </tr>
+                                    <tr class="gradeC">
+                                        <td>KHTML</td>
+                                        <td>Konqureror 3.1</td>
+                                        <td>KDE 3.1</td>
+                                        <td class="center">3.1</td>
+                                        <td class="center">C</td>
+                                    </tr>
+                                    <tr class="gradeA">
+                                        <td>KHTML</td>
+                                        <td>Konqureror 3.3</td>
+                                        <td>KDE 3.3</td>
+                                        <td class="center">3.3</td>
+                                        <td class="center">A</td>
+                                    </tr>
+                                    <tr class="gradeA">
+                                        <td>KHTML</td>
+                                        <td>Konqureror 3.5</td>
+                                        <td>KDE 3.5</td>
+                                        <td class="center">3.5</td>
+                                        <td class="center">A</td>
+                                    </tr>
+                                    <tr class="gradeX">
+                                        <td>Tasman</td>
+                                        <td>Internet Explorer 4.5</td>
+                                        <td>Mac OS 8-9</td>
+                                        <td class="center">-</td>
+                                        <td class="center">X</td>
+                                    </tr>
+                                    <tr class="gradeC">
+                                        <td>Tasman</td>
+                                        <td>Internet Explorer 5.1</td>
+                                        <td>Mac OS 7.6-9</td>
+                                        <td class="center">1</td>
+                                        <td class="center">C</td>
+                                    </tr>
+                                    <tr class="gradeC">
+                                        <td>Tasman</td>
+                                        <td>Internet Explorer 5.2</td>
+                                        <td>Mac OS 8-X</td>
+                                        <td class="center">1</td>
+                                        <td class="center">C</td>
+                                    </tr>
+                                    <tr class="gradeA">
+                                        <td>Misc</td>
+                                        <td>NetFront 3.1</td>
+                                        <td>Embedded devices</td>
+                                        <td class="center">-</td>
+                                        <td class="center">C</td>
+                                    </tr>
+                                    <tr class="gradeA">
+                                        <td>Misc</td>
+                                        <td>NetFront 3.4</td>
+                                        <td>Embedded devices</td>
+                                        <td class="center">-</td>
+                                        <td class="center">A</td>
+                                    </tr>
+                                    <tr class="gradeX">
+                                        <td>Misc</td>
+                                        <td>Dillo 0.8</td>
+                                        <td>Embedded devices</td>
+                                        <td class="center">-</td>
+                                        <td class="center">X</td>
+                                    </tr>
+                                    <tr class="gradeX">
+                                        <td>Misc</td>
+                                        <td>Links</td>
+                                        <td>Text only</td>
+                                        <td class="center">-</td>
+                                        <td class="center">X</td>
+                                    </tr>
+                                    <tr class="gradeX">
+                                        <td>Misc</td>
+                                        <td>Lynx</td>
+                                        <td>Text only</td>
+                                        <td class="center">-</td>
+                                        <td class="center">X</td>
+                                    </tr>
+                                    <tr class="gradeC">
+                                        <td>Misc</td>
+                                        <td>IE Mobile</td>
+                                        <td>Windows Mobile 6</td>
+                                        <td class="center">-</td>
+                                        <td class="center">C</td>
+                                    </tr>
+                                    <tr class="gradeC">
+                                        <td>Misc</td>
+                                        <td>PSP browser</td>
+                                        <td>PSP</td>
+                                        <td class="center">-</td>
+                                        <td class="center">C</td>
+                                    </tr>
+                                    <tr class="gradeU">
+                                        <td>Other browsers</td>
+                                        <td>All others</td>
+                                        <td>-</td>
+                                        <td class="center">-</td>
+                                        <td class="center">U</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <!-- /.table-responsive -->
+
                         </div>
-                        <a href="#">
-                            <div class="panel-footer">
-                                <span class="pull-left">View Details</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
+                        <!-- /.panel-body -->
                     </div>
+                    <!-- /.panel -->
                 </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-yellow">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-shopping-cart fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge">124</div>
-                                    <div>New Orders!</div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="#">
-                            <div class="panel-footer">
-                                <span class="pull-left">View Details</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-red">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-support fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge">13</div>
-                                    <div>Support Tickets!</div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="#">
-                            <div class="panel-footer">
-                                <span class="pull-left">View Details</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
+                <!-- /.col-lg-12 -->
             </div>
-            <!-- /.row -->
-            <div class="row">
-                <div class="col-lg-8">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <i class="fa fa-bar-chart-o fa-fw"></i> Area Chart Example
-                            <div class="pull-right">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
-                                        Actions
-                                        <span class="caret"></span>
-                                    </button>
-                                    <ul class="dropdown-menu pull-right" role="menu">
-                                        <li><a href="#">Action</a>
-                                        </li>
-                                        <li><a href="#">Another action</a>
-                                        </li>
-                                        <li><a href="#">Something else here</a>
-                                        </li>
-                                        <li class="divider"></li>
-                                        <li><a href="#">Separated link</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            <div id="morris-area-chart"></div>
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>
-                    <!-- /.panel -->
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <i class="fa fa-bar-chart-o fa-fw"></i> Bar Chart Example
-                            <div class="pull-right">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
-                                        Actions
-                                        <span class="caret"></span>
-                                    </button>
-                                    <ul class="dropdown-menu pull-right" role="menu">
-                                        <li><a href="#">Action</a>
-                                        </li>
-                                        <li><a href="#">Another action</a>
-                                        </li>
-                                        <li><a href="#">Something else here</a>
-                                        </li>
-                                        <li class="divider"></li>
-                                        <li><a href="#">Separated link</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            <div class="row">
-                                <div class="col-lg-4">
-                                    <div class="table-responsive">
-                                        <table class="table table-bordered table-hover table-striped">
-                                            <thead>
-                                                <tr>
-                                                    <th>#</th>
-                                                    <th>Date</th>
-                                                    <th>Time</th>
-                                                    <th>Amount</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>3326</td>
-                                                    <td>10/21/2013</td>
-                                                    <td>3:29 PM</td>
-                                                    <td>$321.33</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>3325</td>
-                                                    <td>10/21/2013</td>
-                                                    <td>3:20 PM</td>
-                                                    <td>$234.34</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>3324</td>
-                                                    <td>10/21/2013</td>
-                                                    <td>3:03 PM</td>
-                                                    <td>$724.17</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>3323</td>
-                                                    <td>10/21/2013</td>
-                                                    <td>3:00 PM</td>
-                                                    <td>$23.71</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>3322</td>
-                                                    <td>10/21/2013</td>
-                                                    <td>2:49 PM</td>
-                                                    <td>$8345.23</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>3321</td>
-                                                    <td>10/21/2013</td>
-                                                    <td>2:23 PM</td>
-                                                    <td>$245.12</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>3320</td>
-                                                    <td>10/21/2013</td>
-                                                    <td>2:15 PM</td>
-                                                    <td>$5663.54</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>3319</td>
-                                                    <td>10/21/2013</td>
-                                                    <td>2:13 PM</td>
-                                                    <td>$943.45</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    <!-- /.table-responsive -->
-                                </div>
-                                <!-- /.col-lg-4 (nested) -->
-                                <div class="col-lg-8">
-                                    <div id="morris-bar-chart"></div>
-                                </div>
-                                <!-- /.col-lg-8 (nested) -->
-                            </div>
-                            <!-- /.row -->
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>
-                    <!-- /.panel -->
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <i class="fa fa-clock-o fa-fw"></i> Responsive Timeline
-                        </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            <ul class="timeline">
-                                <li>
-                                    <div class="timeline-badge"><i class="fa fa-check"></i>
-                                    </div>
-                                    <div class="timeline-panel">
-                                        <div class="timeline-heading">
-                                            <h4 class="timeline-title">Lorem ipsum dolor</h4>
-                                            <p><small class="text-muted"><i class="fa fa-clock-o"></i> 11 hours ago via Twitter</small>
-                                            </p>
-                                        </div>
-                                        <div class="timeline-body">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero laboriosam dolor perspiciatis omnis exercitationem. Beatae, officia pariatur? Est cum veniam excepturi. Maiores praesentium, porro voluptas suscipit facere rem dicta, debitis.</p>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="timeline-inverted">
-                                    <div class="timeline-badge warning"><i class="fa fa-credit-card"></i>
-                                    </div>
-                                    <div class="timeline-panel">
-                                        <div class="timeline-heading">
-                                            <h4 class="timeline-title">Lorem ipsum dolor</h4>
-                                        </div>
-                                        <div class="timeline-body">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem dolorem quibusdam, tenetur commodi provident cumque magni voluptatem libero, quis rerum. Fugiat esse debitis optio, tempore. Animi officiis alias, officia repellendus.</p>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium maiores odit qui est tempora eos, nostrum provident explicabo dignissimos debitis vel! Adipisci eius voluptates, ad aut recusandae minus eaque facere.</p>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="timeline-badge danger"><i class="fa fa-bomb"></i>
-                                    </div>
-                                    <div class="timeline-panel">
-                                        <div class="timeline-heading">
-                                            <h4 class="timeline-title">Lorem ipsum dolor</h4>
-                                        </div>
-                                        <div class="timeline-body">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus numquam facilis enim eaque, tenetur nam id qui vel velit similique nihil iure molestias aliquam, voluptatem totam quaerat, magni commodi quisquam.</p>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="timeline-inverted">
-                                    <div class="timeline-panel">
-                                        <div class="timeline-heading">
-                                            <h4 class="timeline-title">Lorem ipsum dolor</h4>
-                                        </div>
-                                        <div class="timeline-body">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates est quaerat asperiores sapiente, eligendi, nihil. Itaque quos, alias sapiente rerum quas odit! Aperiam officiis quidem delectus libero, omnis ut debitis!</p>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="timeline-badge info"><i class="fa fa-save"></i>
-                                    </div>
-                                    <div class="timeline-panel">
-                                        <div class="timeline-heading">
-                                            <h4 class="timeline-title">Lorem ipsum dolor</h4>
-                                        </div>
-                                        <div class="timeline-body">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis minus modi quam ipsum alias at est molestiae excepturi delectus nesciunt, quibusdam debitis amet, beatae consequuntur impedit nulla qui! Laborum, atque.</p>
-                                            <hr>
-                                            <div class="btn-group">
-                                                <button type="button" class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown">
-                                                    <i class="fa fa-gear"></i> <span class="caret"></span>
-                                                </button>
-                                                <ul class="dropdown-menu" role="menu">
-                                                    <li><a href="#">Action</a>
-                                                    </li>
-                                                    <li><a href="#">Another action</a>
-                                                    </li>
-                                                    <li><a href="#">Something else here</a>
-                                                    </li>
-                                                    <li class="divider"></li>
-                                                    <li><a href="#">Separated link</a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="timeline-panel">
-                                        <div class="timeline-heading">
-                                            <h4 class="timeline-title">Lorem ipsum dolor</h4>
-                                        </div>
-                                        <div class="timeline-body">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi fuga odio quibusdam. Iure expedita, incidunt unde quis nam! Quod, quisquam. Officia quam qui adipisci quas consequuntur nostrum sequi. Consequuntur, commodi.</p>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="timeline-inverted">
-                                    <div class="timeline-badge success"><i class="fa fa-graduation-cap"></i>
-                                    </div>
-                                    <div class="timeline-panel">
-                                        <div class="timeline-heading">
-                                            <h4 class="timeline-title">Lorem ipsum dolor</h4>
-                                        </div>
-                                        <div class="timeline-body">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt obcaecati, quaerat tempore officia voluptas debitis consectetur culpa amet, accusamus dolorum fugiat, animi dicta aperiam, enim incidunt quisquam maxime neque eaque.</p>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>
-                    <!-- /.panel -->
-                </div>
-                <!-- /.col-lg-8 -->
-                <div class="col-lg-4">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <i class="fa fa-bell fa-fw"></i> Notifications Panel
-                        </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            <div class="list-group">
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-comment fa-fw"></i> New Comment
-                                    <span class="pull-right text-muted small"><em>4 minutes ago</em>
-                                    </span>
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-twitter fa-fw"></i> 3 New Followers
-                                    <span class="pull-right text-muted small"><em>12 minutes ago</em>
-                                    </span>
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-envelope fa-fw"></i> Message Sent
-                                    <span class="pull-right text-muted small"><em>27 minutes ago</em>
-                                    </span>
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-tasks fa-fw"></i> New Task
-                                    <span class="pull-right text-muted small"><em>43 minutes ago</em>
-                                    </span>
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-upload fa-fw"></i> Server Rebooted
-                                    <span class="pull-right text-muted small"><em>11:32 AM</em>
-                                    </span>
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-bolt fa-fw"></i> Server Crashed!
-                                    <span class="pull-right text-muted small"><em>11:13 AM</em>
-                                    </span>
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-warning fa-fw"></i> Server Not Responding
-                                    <span class="pull-right text-muted small"><em>10:57 AM</em>
-                                    </span>
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-shopping-cart fa-fw"></i> New Order Placed
-                                    <span class="pull-right text-muted small"><em>9:49 AM</em>
-                                    </span>
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-money fa-fw"></i> Payment Received
-                                    <span class="pull-right text-muted small"><em>Yesterday</em>
-                                    </span>
-                                </a>
-                            </div>
-                            <!-- /.list-group -->
-                            <a href="#" class="btn btn-default btn-block">View All Alerts</a>
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>
-                    <!-- /.panel -->
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <i class="fa fa-bar-chart-o fa-fw"></i> Donut Chart Example
-                        </div>
-                        <div class="panel-body">
-                            <div id="morris-donut-chart"></div>
-                            <a href="#" class="btn btn-default btn-block">View Details</a>
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>
-                    <!-- /.panel -->
-                    <div class="chat-panel panel panel-default">
-                        <div class="panel-heading">
-                            <i class="fa fa-comments fa-fw"></i> Chat
-                            <div class="btn-group pull-right">
-                                <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
-                                    <i class="fa fa-chevron-down"></i>
-                                </button>
-                                <ul class="dropdown-menu slidedown">
-                                    <li>
-                                        <a href="#">
-                                            <i class="fa fa-refresh fa-fw"></i> Refresh
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <i class="fa fa-check-circle fa-fw"></i> Available
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <i class="fa fa-times fa-fw"></i> Busy
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <i class="fa fa-clock-o fa-fw"></i> Away
-                                        </a>
-                                    </li>
-                                    <li class="divider"></li>
-                                    <li>
-                                        <a href="#">
-                                            <i class="fa fa-sign-out fa-fw"></i> Sign Out
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            <ul class="chat">
-                                <li class="left clearfix">
-                                    <span class="chat-img pull-left">
-                                        <img src="http://placehold.it/50/55C1E7/fff" alt="User Avatar" class="img-circle" />
-                                    </span>
-                                    <div class="chat-body clearfix">
-                                        <div class="header">
-                                            <strong class="primary-font">Jack Sparrow</strong>
-                                            <small class="pull-right text-muted">
-                                                <i class="fa fa-clock-o fa-fw"></i> 12 mins ago
-                                            </small>
-                                        </div>
-                                        <p>
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales.
-                                        </p>
-                                    </div>
-                                </li>
-                                <li class="right clearfix">
-                                    <span class="chat-img pull-right">
-                                        <img src="http://placehold.it/50/FA6F57/fff" alt="User Avatar" class="img-circle" />
-                                    </span>
-                                    <div class="chat-body clearfix">
-                                        <div class="header">
-                                            <small class=" text-muted">
-                                                <i class="fa fa-clock-o fa-fw"></i> 13 mins ago</small>
-                                            <strong class="pull-right primary-font">Bhaumik Patel</strong>
-                                        </div>
-                                        <p>
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales.
-                                        </p>
-                                    </div>
-                                </li>
-                                <li class="left clearfix">
-                                    <span class="chat-img pull-left">
-                                        <img src="http://placehold.it/50/55C1E7/fff" alt="User Avatar" class="img-circle" />
-                                    </span>
-                                    <div class="chat-body clearfix">
-                                        <div class="header">
-                                            <strong class="primary-font">Jack Sparrow</strong>
-                                            <small class="pull-right text-muted">
-                                                <i class="fa fa-clock-o fa-fw"></i> 14 mins ago</small>
-                                        </div>
-                                        <p>
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales.
-                                        </p>
-                                    </div>
-                                </li>
-                                <li class="right clearfix">
-                                    <span class="chat-img pull-right">
-                                        <img src="http://placehold.it/50/FA6F57/fff" alt="User Avatar" class="img-circle" />
-                                    </span>
-                                    <div class="chat-body clearfix">
-                                        <div class="header">
-                                            <small class=" text-muted">
-                                                <i class="fa fa-clock-o fa-fw"></i> 15 mins ago</small>
-                                            <strong class="pull-right primary-font">Bhaumik Patel</strong>
-                                        </div>
-                                        <p>
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales.
-                                        </p>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                        <!-- /.panel-body -->
-                        <div class="panel-footer">
-                            <div class="input-group">
-                                <input id="btn-input" type="text" class="form-control input-sm" placeholder="Type your message here..." />
-                                <span class="input-group-btn">
-                                    <button class="btn btn-warning btn-sm" id="btn-chat">
-                                        Send
-                                    </button>
-                                </span>
-                            </div>
-                        </div>
-                        <!-- /.panel-footer -->
-                    </div>
-                    <!-- /.panel .chat-panel -->
-                </div>
-                <!-- /.col-lg-4 -->
-            </div>
-            <!-- /.row -->
+            
         </div>
         <!-- /#page-wrapper -->
 
@@ -871,14 +735,23 @@
 
     <!-- Metis Menu Plugin JavaScript -->
     <script src="{$template_admin}/vendor/metisMenu/metisMenu.min.js"></script>
-
-    <!-- Morris Charts JavaScript -->
-    <script src="{$template_admin}/vendor/raphael/raphael.min.js"></script>
-    <script src="{$template_admin}/vendor/morrisjs/morris.min.js"></script>
-    <script src="../data/morris-data.js"></script>
+ 
+    <!-- DataTables JavaScript -->
+    <script src="{$template_admin}/vendor/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="{$template_admin}/vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
+    <script src="{$template_admin}/vendor/datatables-responsive/dataTables.responsive.js"></script>
 
     <!-- Custom Theme JavaScript -->
     <script src="{$template_admin}/js/sb-admin-2.js"></script>
+    
+        <!-- Page-Level Demo Scripts - Tables - Use for reference -->
+    <script>
+    $(document).ready(function() {
+        $('#dataTables-example').DataTable({
+            responsive: true
+        });
+    });
+    </script>
 
 </body>
 

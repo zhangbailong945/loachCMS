@@ -244,11 +244,11 @@
                             <a href="index.html"><i class="fa fa-home fa-fw"></i>首页</a>
                         </li>
                         
-                        <li>
+                        <li class="active">
                             <a href="#"><i class="fa fa-user fa-fw"></i>管理员管理<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="../admin/manager.php?action=list">管理员列表</a>
+                                <li class="active">
+                                    <a href="../admin/manage.php?action=list">管理员列表</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
