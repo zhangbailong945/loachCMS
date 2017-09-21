@@ -228,7 +228,7 @@
                         <li><a href="#"><i class="fa fa-gear fa-fw"></i>系统设置</a>
                         </li>
                         <li class="divider"></li>
-                        <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i>推出系统</a>
+                        <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i>退出系统</a>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->

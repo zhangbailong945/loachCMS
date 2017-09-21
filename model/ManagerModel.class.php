@@ -1,7 +1,46 @@
 <?php
 
+/**
+ * 管理员数据访问层 模型
+ * @author loach
+ *
+ */
 class ManagerModel extends Model{
-
-
+    private $id;
+    private $admin_user;
+    private $admin_pass;
+    private $level;
+    private $last_ip;
+    private $limit;
+    
+    public function __set($key,$value)
+    {
+       $this->$key=Tool::mysqlString($value);
+    }
+    
+    public function __get($key)
+    {
+       return $this->$key;
+    }
+    
+    /**
+     * 获取管理员总记录数
+     * @return int count 管理员总记录
+     */
+    public function getManagerCount()
+    {
+       $sql="select count(*) from cms_manager";
+       return parent::tableCount($sql);
+    }
+    
+    /**
+     * 获取所有的管理员
+     * @return array 管理员集合
+     */
+    public function getAllManager()
+    {
+      $sql="select m.id,m.admin_user,m.login_count,m.last_ip,m.last_time,l.level_name from cms_manager m,cms_level l where l.id=m.level order by m.id desc $this->limit";
+      return parent::getAll($sql);
+    }
 
 }

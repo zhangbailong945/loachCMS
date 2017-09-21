@@ -228,7 +228,7 @@
                         <li><a href="#"><i class="fa fa-gear fa-fw"></i>系统设置</a>
                         </li>
                         <li class="divider"></li>
-                        <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i>推出系统</a>
+                        <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i>退出系统</a>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->
@@ -248,7 +248,7 @@
                             <a href="#"><i class="fa fa-user fa-fw"></i>管理员管理<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="../admin/manage.php?action=list">管理员列表</a>
+                                    <a href="../admin/manager.php?action=list">管理员列表</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
