@@ -79,7 +79,7 @@ class Parser{
          //foreach模板变量结束标签格式：{/foreach}
          $patternEnd='/\{\/foreach\}/';
          //foreach模板变量中的循环变量@key,@value
-         $patternVar='/\{\@([\w]+)\}/';
+         $patternVar='/\{@([\w]+)([\w\-\>\+]*)\}/';
          //首先判断是否有foreach开头
          if(preg_match($patternStart,$this->tpl))
          {
@@ -91,7 +91,7 @@ class Parser{
                //替换模板变量{/foreach}
                $this->tpl=preg_replace($patternEnd,"<?php } ?>",$this->tpl);
                //替换变量@key,@value
-               $this->tpl=preg_replace($patternVar,"<?php echo \$$1; ?>",$this->tpl);
+               $this->tpl=preg_replace($patternVar,"<?php echo \$$1$2; ?>",$this->tpl);
             }
             else 
             {

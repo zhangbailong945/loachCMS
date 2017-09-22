@@ -31,9 +31,13 @@ class ManagerAction extends Action{
 	   }
 	}
 	
+	/**
+	 * 显示管理员列表
+	 */
 	private function getList()
 	{
-	   $this->tpl->assign('add',true);
+	   parent::page(SITE_URL.'/admin/manage.php?action=list',$this->model->getManagerCount());
+	   $this->tpl->assign('list',true);
 	   $this->tpl->assign('title','管理员列表');
 	   $this->tpl->assign('allManager',$this->model->getAllManager());
 	}

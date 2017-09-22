@@ -69,7 +69,7 @@ class Tool{
     public static function mysqlString($data)
     {
     	//如果PHP引擎有自动开启过滤功能，则直接返回数据
-       !GMQG?mysqli_real_escape_string($data):$data;
+       //!GMQG?mysqli_real_escape_string($data):$data;
     }
     
 /**
