@@ -26,6 +26,9 @@ class ManagerAction extends Action{
 	   	case 'list':
 	   		$this->getList();
 	   		break;
+	   	case 'add':
+	   		$this->add();
+	   		break;
 	   	default:
 	   		Tool::alertLocation('警告：','非法操作!',SITE_ADMIN_URL);
 	   		break;
@@ -33,7 +36,7 @@ class ManagerAction extends Action{
 	}
 	
 	/**
-	 * 显示管理员列表
+	 * 显示管理员列表-控制器
 	 */
 	private function getList()
 	{
@@ -41,6 +44,15 @@ class ManagerAction extends Action{
 	   $this->tpl->assign('list',true);
 	   $this->tpl->assign('title','管理员列表');
 	   $this->tpl->assign('allManager',$this->model->getAllManager());
+	}
+	
+	/**
+	 * 新增管理员-控制器
+	 */
+	public function add()
+	{
+	   $this->tpl->assign('add',true);
+	   $this->tpl->assign('title','新增管理员');
 	}
 
 }

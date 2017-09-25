@@ -299,11 +299,15 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-						<a href="#" class="btn btn-primary btn-sm active" role="button">管理员列表</a>
-						<a href="#" class="btn btn-primary btn-sm" role="button">新增管理员</a>
-						<a href="#" class="btn btn-primary btn-sm" role="button">修改管理员</a>
+						<a href="manager.php?action=list" class="btn btn-primary btn-sm active" role="button">管理员列表</a>
+						<a href="manager.php?action=add" class="btn btn-primary btn-sm" role="button">新增管理员</a>
+						{if $update}
+						<a href="mananger.php?action=update&id={id}" class="btn btn-primary btn-sm" role="button">修改管理员</a>
+						{/if}
                         </div>
                         <!-- /.panel-heading -->
+                        
+                        <!-- list body start -->
                         {if $list}
                         <div class="panel-body">
                             <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
@@ -347,11 +351,34 @@
                             <!-- /.table-responsive -->
 
                         </div>
-                        {/if}
 	                    <div class="panel-footer">
 	                     {$page}
 	                    </div>
-                        <!-- /.panel-body -->
+	                    {/if}
+                        <!-- /.list-body end-->
+                        
+                        
+                        <!-- add start -->
+                        {if $add}
+                        <div class="panel-body">
+                        	<form method="post" name="add">
+							   <table cellspacing="0" class="left">
+							     <tr><td class="left">管理员名称：</td><td><input type="text" name="admin_user" class="text"/>(*长度6-32之间*)</td></tr>
+							     <tr><td class="left">密码：</td><td><input type="password" name="admin_pass" class="text"/>(*长度6-32之间*)</td></tr>
+							     <tr><td class="left">确认密码：</td><td><input type="password" name="admin_pass1" class="text"/>(*确认密码必须一致*)</td></tr>
+							     <tr><td class="left">等级：</td><td><select name="level">
+						         {foreach $levels(key,value)}
+						         <option value="{@value->id}">{@value->level_name}</option>
+						         {/foreach}
+							     </select></td></tr>
+							     <tr><td colspan="2"><input type="submit" name="send" value="新增管理员" onclick="return checkAddForm();" class="submit"/> [<a href="manage.php?action=list">返回列表</a>] </td></tr>
+							   </table>
+							</form>
+                        </div>
+                        <!-- add end -->
+                        {/if}
+                        
+                        
                     </div>
                     <!-- /.panel -->
                 </div>
