@@ -7,16 +7,16 @@ class Tool{
 	 * @param string $message 消息
 	 * @param URL $url 跳转地址
 	 */
-    public static function alertLocation($message,$url)
+    public static function alertLocation($title,$message,$url)
     {
         if(!empty($message))
         {
-        	echo "<script type='text/javascript'>alert('$_info');location.href='$_url';</script>";
+        	echo "<script src='".TEMP_ADMIN_URL."/vendor/jquery/jquery.min.js'></script><script src='".TEMP_PLUGINS_URL."/layer/layer.js'></script><script type='text/javascript'>layer.open({title:'$title',content:'$message',btn:['确定'],yes:function(index,layero){location.href='$url';}});</script>";
 	        exit();
         }
         else
         {
-            header("Location:".$_url);
+            header("Location:".$url);
     		exit();
         }
     }
@@ -25,9 +25,9 @@ class Tool{
      * 操作失败
      * @param string $message
      */
-    public static function alertBack($message)
+    public static function alertBack($title,$message)
     {
-        echo "<script type='text/javascript'>alert('$_info');history.back();</script>";
+        echo "<script src='".TEMP_ADMIN_URL."/vendor/jquery/jquery.min.js'></script><script src='".TEMP_PLUGINS_URL."/layer/layer.js'></script><script type='text/javascript'>layer.open({title:'$title',content:'$message',btn:['确定'],yes:function(index,layero){history.back()}});";
         exit();
     }
     

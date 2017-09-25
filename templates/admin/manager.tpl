@@ -34,6 +34,8 @@
 
     <!-- Custom Fonts -->
     <link href="{$template_admin}/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <!-- layer alert -->
+
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -297,7 +299,9 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                        {$title}
+						<a href="#" class="btn btn-primary btn-sm active" role="button">管理员列表</a>
+						<a href="#" class="btn btn-primary btn-sm" role="button">新增管理员</a>
+						<a href="#" class="btn btn-primary btn-sm" role="button">修改管理员</a>
                         </div>
                         <!-- /.panel-heading -->
                         {if $list}
@@ -307,9 +311,10 @@
                                     <tr>
                                         <th>编号</th>
                                         <th>管理员名称</th>
-                                        <th>上次登陆地址</th>
-                                        <th>登陆时间</th>
                                         <th>等级</th>
+                                        <th>登录次数</th>
+                                        <th>IP地址</th>
+                                        <th>最近登录时间</th>
                                         <th>操作</th>
                                     </tr>
                                 </thead>
@@ -317,12 +322,20 @@
                                     {if $allManager}
                                     {foreach $allManager(key,value)}
                                     <tr class="odd gradeX">
-                                        <td>{@value->id}</script></td>
-                                        <td>{@value->admin_user}</td>
-                                        <td>{@value->level_name}</td>
-                                        <td class="center">4</td>
-                                        <td class="center">X</td>
-                                        <td class="center">X</td>
+                                        <td class="center">{@value->id}</script></td>
+                                        <td class="center">{@value->admin_user}</td>
+                                        <td class="center">{@value->level_name}</td>
+                                        <td class="center">{@value->login_count}</td>
+                                        <td class="center">{@value->last_ip}</td>
+                                        <td class="center">{@value->last_time}</td>
+                                        <td>
+										<button id="btnEdit" type="button" class="btn btn-warning btn-xs"> 
+										<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>修改 
+										</button> 
+										<button id="btnDel" type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#DeleteForm" onclick=""> 
+										<span class="glyphicon glyphicon-minus" aria-hidden="true"></span>删除 
+										</button>
+                                        </td>
                                     </tr>
                                     {/foreach}
                                     {else}
@@ -350,7 +363,6 @@
         
     </div>
     <!-- /#wrapper -->
-    {$page}
 
     <!-- jQuery -->
     <script src="{$template_admin}/vendor/jquery/jquery.min.js"></script>
@@ -368,12 +380,39 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="{$template_admin}/js/sb-admin-2.js"></script>
+    <!-- layer alert -->
+    <script src="{$template_plugins}/layer/layer.js"></script>
     
-        <!-- Page-Level Demo Scripts - Tables - Use for reference -->
+    <!-- Page-Level Demo Scripts - Tables - Use for reference -->
     <script>
     $(document).ready(function() {
         $('#dataTables-example').DataTable({
-            responsive: true
+            responsive: true,
+		    language:{
+		        	"sProcessing":   "处理中...",
+		            "sLengthMenu":   "显示 _MENU_ 项结果",
+		            "sZeroRecords":  "没有匹配结果",
+		            "sInfo":         "显示第 _START_ 至 _END_ 项结果，共 _TOTAL_ 项",
+		            "sInfoEmpty":    "显示第 0 至 0 项结果，共 0 项",
+		            "sInfoFiltered": "(由 _MAX_ 项结果过滤)",
+		            "sInfoPostFix":  "",
+		            "sSearch":       "搜索:",
+		            "sUrl":          "",
+		            "sEmptyTable":     "表中数据为空",
+		            "sLoadingRecords": "载入中...",
+		            "sInfoThousands":  ",",
+		            "oPaginate": {
+		                "sFirst":    "首页",
+		                "sPrevious": "上页",
+		                "sNext":     "下页",
+		                "sLast":     "末页"
+		            },
+		            "oAria": {
+		                "sSortAscending":  ": 以升序排列此列",
+		                "sSortDescending": ": 以降序排列此列"
+		            }
+            }
+            
         });
     });
     </script>

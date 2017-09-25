@@ -27,7 +27,8 @@ class ManagerAction extends Action{
 	   		$this->getList();
 	   		break;
 	   	default:
-	   		echo '非法操作!';
+	   		Tool::alertLocation('警告：','非法操作!',SITE_ADMIN_URL);
+	   		break;
 	   }
 	}
 	
