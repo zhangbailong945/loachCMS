@@ -482,7 +482,19 @@
 	                            min:3,
 	                            max:30,
 	                            message:'管理员名称长度在3-30位之间!'
-	                         }   
+	                         },
+	                         threshold:3,
+	                         remote:{    //ajax验证 server result:{"valid",true or false}
+                               url:'manager.php?action=checkManagerName', //验证地址
+                               message:'管理名称已经存在!',//提示信息
+                               delay:2000,//设置2秒发送一次ajax（每秒发送，服务器压力太大）
+                               type:'POST',
+                               dataType:'json'
+		                     },
+		                     regexp:{
+                                regexp:/^[a-zA-Z0-9_]+$/,
+                                message:'管理员名称由字母数字下划线组成!'
+			                 }   
     	                  } 
     	               }            
         	      }

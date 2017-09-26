@@ -29,6 +29,9 @@ class ManagerAction extends Action{
 	   	case 'add':
 	   		$this->add();
 	   		break;
+	   	case 'checkManagerName':
+	   	    $this->checkManagerName();
+	   	    break;
 	   	default:
 	   		Tool::alertLocation('警告：','非法操作!',SITE_ADMIN_URL);
 	   		break;
@@ -53,6 +56,30 @@ class ManagerAction extends Action{
 	{
 	   $this->tpl->assign('add',true);
 	   $this->tpl->assign('title','新增管理员');
+	}
+	
+	/**
+	 * 检查管理员名称是否存在-控制器
+	 */
+	public function checkManagerName()
+	{
+       if(isset($_POST['admin_user']))
+       {
+       	   $this->model->admin_user=$_POST['admin_user'];
+		   if(!is_object($this->model->getOneManager()))
+		   {
+		      Tool::jsonType();
+		      echo json_encode(array('valid'=>true));
+		      exit();
+		   }
+		   else
+		   {
+		   	  Tool::jsonType();
+		      echo json_encode(array('valid'=>false));
+		      exit();
+		   }
+       }
+
 	}
 	
 

@@ -15,7 +15,7 @@ class ManagerModel extends Model{
     
     public function __set($key,$value)
     {
-       $this->$key=Tool::mysqlString($value);
+       $this->$key=$value;
     }
     
     public function __get($key)
@@ -34,13 +34,22 @@ class ManagerModel extends Model{
     }
     
     /**
-     * 获取所有的管理员
+     * 获取所有的管理员-数据访问层
      * @return array 管理员集合
      */
     public function getAllManager()
     {
       $sql="select m.id,m.admin_user,m.login_count,m.last_ip,m.last_time,l.level_name from cms_manager m,cms_level l where l.id=m.level order by m.id desc $this->limit";
       return parent::getAll($sql);
+    }
+    
+    /**
+     * 查找一个管理员-数据访问层
+     */
+    public function getOneManager()
+    {
+        $sql="select id,admin_user,admin_pass,level from cms_manager where id='$this->id' or admin_user='$this->admin_user' or level='$this->level' limit 1";
+        return parent::getOne($sql);
     }
 
 }

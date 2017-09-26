@@ -101,6 +101,15 @@ class Tool{
     }
     
     /**
+     *json格式
+     * @return header('Content-Type:application/json');
+     */
+    public static function jsonType()
+    {
+       return header('Content-Type:application/json');
+    }
+    
+    /**
      * 清理session
      */
     public static function cleanSession()
