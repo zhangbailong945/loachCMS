@@ -35,7 +35,8 @@
     <!-- Custom Fonts -->
     <link href="<?php echo $this->vars['template_admin']; ?>/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <!-- layer alert -->
-
+    <!-- bootstrapValidator css -->
+    <link href="<?php echo $this->vars['template_plugins']; ?>/bootstrapValidator/bootstrapValidator.css" rel="stylesheet" type="text/css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -361,18 +362,36 @@
                         <!-- add start -->
                         <?php if($this->vars['add']){ ?>
                         <div class="panel-body">
-                        	<form method="post" name="add">
-							   <table cellspacing="0" class="left">
-							     <tr><td class="left">管理员名称：</td><td><input type="text" name="admin_user" class="text"/>(*长度6-32之间*)</td></tr>
-							     <tr><td class="left">密码：</td><td><input type="password" name="admin_pass" class="text"/>(*长度6-32之间*)</td></tr>
-							     <tr><td class="left">确认密码：</td><td><input type="password" name="admin_pass1" class="text"/>(*确认密码必须一致*)</td></tr>
-							     <tr><td class="left">等级：</td><td><select name="level">
-						         <?php foreach($this->vars['levels'] as $key=>$value) {?>
-						         <option value="<?php echo $value->id; ?>"><?php echo $value->level_name; ?></option>
-						         <?php } ?>
-							     </select></td></tr>
-							     <tr><td colspan="2"><input type="submit" name="send" value="新增管理员" onclick="return checkAddForm();" class="submit"/> [<a href="manage.php?action=list">返回列表</a>] </td></tr>
-							   </table>
+							<form data-toggle="validator" role="form" id="add" name="add">
+								  <div class="form-group">
+								    <label for="admin_user" class="control-label">管理名称</label>
+								    <input type="text" class="form-control" id="admin_user" name="admin_user" placeholder="输入管理员名称" required>
+								  </div>
+								  
+								  <div class="form-group">
+								    <label for="admin_pass" class="control-label">管理员密码</label>		
+								        <input type="password" data-minlength="6" class="form-control" id="admin_pass" name="admin_pass" placeholder="输入管理员密码" required>
+								  </div>
+								  
+								  <div class="form-group">
+								    <label for="admin_pass1" class="control-label">确认管理员密码</label>		
+								        <input type="password" data-minlength="6" class="form-control" id="admin_pass1" name="admin_pass1" placeholder="再次输入管理员密码" required>
+								  </div>
+								  
+								  <div class="form-group">
+                                   <label class="control-label">权限</label>
+	                               <select class="form-control" name="level" id="level">
+                                     <?php foreach($this->vars['levels'] as $key=>$value) {?>
+						              <option value="<?php echo $value->id; ?>"><?php echo $value->level_name; ?></option>
+						             <?php } ?>
+									</select>
+								  </div>
+								  
+								  <div class="form-group">
+								    <button  class="btn btn-primary btn-sm" id="btnSave">新增管理员</button>
+								    <button  class="btn btn-primary btn-sm" id="btnSet">重置</button>
+								    <a href="manager.php?action=list" class="btn btn-primary btn-sm active" role="button">返回列表</a>
+								  </div>
 							</form>
                         </div>
                         <!-- add end -->
@@ -409,7 +428,8 @@
     <script src="<?php echo $this->vars['template_admin']; ?>/js/sb-admin-2.js"></script>
     <!-- layer alert -->
     <script src="<?php echo $this->vars['template_plugins']; ?>/layer/layer.js"></script>
-    
+    <!-- bootstrapValidator js-->
+    <script src="<?php echo $this->vars['template_plugins']; ?>/bootstrapValidator/bootstrapValidator.js"></script>
     <!-- Page-Level Demo Scripts - Tables - Use for reference -->
     <script>
     $(document).ready(function() {
@@ -442,6 +462,53 @@
             
         });
     });
+
+    $(function(){
+    	   $('#add').bootstrapValidator({
+    	         message: 'This value is not valid',
+    	         feedbackIcons: {/*input状态样式图片*/
+    	             valid: 'glyphicon glyphicon-ok',
+    	             invalid: 'glyphicon glyphicon-remove',
+    	             validating: 'glyphicon glyphicon-refresh'
+    	         },
+    	         fields:{
+        	         admin_user:{
+        	               message:'管理员没有验证!',
+        	               validators:{
+	                       notEmpty:{
+	                           message:'管理员名称不能为空!'
+	                       },
+	                       stringLength:{
+	                            min:3,
+	                            max:30,
+	                            message:'管理员名称长度在3-30位之间!'
+	                         }   
+    	                  } 
+    	               }            
+        	      }
+	         });
+    });
+    
+
+    /**
+     * 添加数据
+     * @private
+     */
+     function _addFun() 
+     {
+   
+     }
+
+     /**
+      * 重置表单
+      */
+      function resetFrom() 
+      {
+	      $('#add').each(function (index) {
+	          $('#add')[index].reset();
+	          //ue.setContent('');
+	      });
+      }
     </script>
 
 </body>

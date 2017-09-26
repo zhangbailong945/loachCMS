@@ -54,5 +54,7 @@ class ManagerAction extends Action{
 	   $this->tpl->assign('add',true);
 	   $this->tpl->assign('title','新增管理员');
 	}
+	
+
 
 }
