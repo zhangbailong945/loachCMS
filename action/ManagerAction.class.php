@@ -32,6 +32,12 @@ class ManagerAction extends Action{
 	   	case 'checkManagerName':
 	   	    $this->checkManagerName();
 	   	    break;
+	   	case 'update':
+	   		$this->update();
+	   		break;
+	   	case 'delete':
+	   		$this->delete();
+	   		break;
 	   	default:
 	   		Tool::alertLocation('警告：','非法操作!',SITE_ADMIN_URL);
 	   		break;
@@ -43,10 +49,10 @@ class ManagerAction extends Action{
 	 */
 	private function getList()
 	{
-	   parent::page(SITE_URL.'/admin/manage.php?action=list',$this->model->getManagerCount());
+	   //parent::page(SITE_URL.'/admin/manager.php?action=list',$this->model->getManagerCount());
 	   $this->tpl->assign('list',true);
 	   $this->tpl->assign('title','管理员列表');
-	   $this->tpl->assign('allManager',$this->model->getAllManager());
+	   $this->tpl->assign('allManager',$this->model->getAllManager(0));
 	}
 	
 	/**
@@ -54,8 +60,44 @@ class ManagerAction extends Action{
 	 */
 	public function add()
 	{
+	   if(isset($_POST['submit']))
+	   {
+	      $this->model->admin_user=trim($_POST['admin_user']);
+	      $this->model->admin_pass=trim($_POST['admin_pass']);
+	      $this->model->level=trim($_POST['level']);
+	      if($this->model->addManager()>0)
+	      {
+	         echo 1;
+	         exit();
+	      }
+	      else 
+	      {
+	         echo 0;
+	         exit();
+	      }
+	   }
 	   $this->tpl->assign('add',true);
 	   $this->tpl->assign('title','新增管理员');
+	   $levelModel=new LevelModel();
+	   $this->tpl->assign('levels',$levelModel->getAllLevel());
+	}
+	
+	public function update()
+	{		   
+	   if(isset($_GET['id']))
+	   {
+		   $this->tpl->assign('update',true);
+		   $this->tpl->assign('title','修改管理员');
+		   $this->model->id=$_GET['id'];
+		   $manager=$this->model->getOneManager();
+		   echo $manager->id;
+		   $levelModel=new LevelModel();
+		   $this->tpl->assign('levels',$levelModel->getAllLevel());
+		   $this->tpl->assign('id',$manager->id);
+           $this->tpl->assign('admin_user',$manager->admin_user);
+           $this->tpl->assign('admin_pass',$manager->admin_pass);
+           $this->tpl->assign('level',$manager->level);
+	   }
 	}
 	
 	/**
