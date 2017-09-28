@@ -68,5 +68,19 @@ class ManagerModel extends Model{
        $sql="insert into cms_manager(admin_user,admin_pass,level,reg_time)values('$this->admin_user','$this->admin_pass','$this->level',NOW())";
        return parent::cud($sql);
     }
+    /**
+     * 修改管理员-数据访问层
+     */
+    public function updateManager()
+    {
+       $sql="update cms_manager set admin_pass='$this->admin_pass',level='$this->level' where id='$this->id'";
+       return parent::cud($sql);
+    }
+    
+    public function deleteManager()
+    {
+       $sql="delete from cms_manager where id='$this->id' limit 1;";
+       return parent::cud($sql);
+    }
 
 }

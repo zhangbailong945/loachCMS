@@ -58,12 +58,12 @@ class ManagerAction extends Action{
 	/**
 	 * 新增管理员-控制器
 	 */
-	public function add()
+	private function add()
 	{
 	   if(isset($_POST['submit']))
 	   {
 	      $this->model->admin_user=trim($_POST['admin_user']);
-	      $this->model->admin_pass=trim($_POST['admin_pass']);
+	      $this->model->admin_pass=sha1(trim($_POST['admin_pass']));
 	      $this->model->level=trim($_POST['level']);
 	      if($this->model->addManager()>0)
 	      {
@@ -82,15 +82,34 @@ class ManagerAction extends Action{
 	   $this->tpl->assign('levels',$levelModel->getAllLevel());
 	}
 	
-	public function update()
+	/**
+	 * 修改管理员-控制器
+	 */
+	private function update()
 	{		   
+	   if(isset($_POST['submit']))
+	   {
+	   	  $this->model->id=trim($_POST['id']);
+	      $this->model->admin_pass=sha1(trim($_POST['admin_pass']));
+	      $this->model->level=trim($_POST['admin_level']);
+	      
+	      if($this->model->updateManager()>0)
+	      {
+	         echo 1;
+	         exit();
+	      }
+	      else 
+	      {
+	         echo 0;
+	         exit();
+	      }
+	   }
 	   if(isset($_GET['id']))
 	   {
 		   $this->tpl->assign('update',true);
 		   $this->tpl->assign('title','修改管理员');
 		   $this->model->id=$_GET['id'];
 		   $manager=$this->model->getOneManager();
-		   echo $manager->id;
 		   $levelModel=new LevelModel();
 		   $this->tpl->assign('levels',$levelModel->getAllLevel());
 		   $this->tpl->assign('id',$manager->id);
@@ -98,6 +117,27 @@ class ManagerAction extends Action{
            $this->tpl->assign('admin_pass',$manager->admin_pass);
            $this->tpl->assign('level',$manager->level);
 	   }
+	}
+	/**
+	 * 删除管理员-控制器
+	 */
+	private function delete()
+	{
+	    if(isset($_GET['id']))
+        {
+	         $this->model->id=$_GET['id'];
+	         if($this->model->deleteManager()>0)
+		      {
+		         echo 1;
+		         exit();
+		      }
+		      else 
+		      {
+		         echo 0;
+		         exit();
+		      }
+            
+        }
 	}
 	
 	/**

@@ -334,10 +334,10 @@
                                         <td class="center"><?php echo $value->last_ip; ?></td>
                                         <td class="center"><?php echo $value->last_time; ?></td>
                                         <td>
-										<button id="btnEdit" onclick="editManager(\"<?php echo $value->id; ?>\")" type="button" class="btn btn-warning btn-xs"> 
+										<button id="btnEdit" onclick="editManager(<?php echo $value->id; ?>)" type="button" class="btn btn-warning btn-xs"> 
 										<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>修改 
 										</button> 
-										<button id="btnDel" type="button" onclick="deleteManager(\"<?php echo $value->id; ?>\")" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#DeleteForm" onclick=""> 
+										<button id="btnDel" type="button" onclick="deleteManager(<?php echo $value->id; ?>)" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#DeleteForm" onclick=""> 
 										<span class="glyphicon glyphicon-minus" aria-hidden="true"></span>删除 
 										</button>
                                         </td>
@@ -365,6 +365,7 @@
                         <?php if($this->vars['add']){ ?>
                         <div class="panel-body">
 							<form data-toggle="validator" role="form" id="add" name="add">
+								  <input type="hidden" id="level" value=""/>
 								  <div class="form-group">
 								    <label for="admin_user" class="control-label">管理员名称</label>
 								    <input type="text" class="form-control" id="admin_user" name="admin_user" placeholder="输入管理员名称" required>
@@ -382,7 +383,7 @@
 								  
 								  <div class="form-group">
                                    <label class="control-label">权限</label>
-	                               <select class="form-control" name="level" id="level">
+	                               <select class="form-control" name="admin_level" id="admin_level">
 	                                 <option value="">---请选择管理员等级---</option>
                                      <?php foreach($this->vars['levels'] as $key=>$value) {?>
 						              <option value="<?php echo $value->id; ?>"><?php echo $value->level_name; ?></option>
@@ -403,34 +404,36 @@
                         <!-- update start -->
                         <?php if($this->vars['update']){ ?>
                         <div class="panel-body">
-							<form data-toggle="validator" role="form" id="add" name="add">
+							<form data-toggle="validator" role="form" id="update" name="update">
+								<input type="hidden" id="level" value="<?php echo $this->vars['level']; ?>" />
+								<input type="hidden" name="id" id="id" value="<?php echo $this->vars['id']; ?>" />
 								  <div class="form-group">
-								    <label for="admin_user" class="control-label">管理员名称</label>
-								    <input type="text" value="<?php echo $this->vars['admin_user']; ?>" class="form-control" id="admin_user" name="admin_user" placeholder="输入管理员名称" required>
+								    <label for="admin_user"  class="control-label">管理员名称</label>
+								    <input type="text" readonly="readonly" value="<?php echo $this->vars['admin_user']; ?>" class="form-control" id="admin_user" name="admin_user" placeholder="输入管理员名称" required>
 								  </div>
 								  
 								  <div class="form-group">
 								    <label for="admin_pass1" class="control-label">管理员密码</label>		
-								        <input type="password" value="<?php echo $this->vars['admin_pass']; ?>" data-minlength="6" class="form-control" id="admin_pass1" name="admin_pass1" placeholder="输入管理员密码" required>
+								        <input type="password" value="" data-minlength="6" class="form-control" id="admin_pass1" name="admin_pass1" placeholder="输入管理员密码" required>
 								  </div>
 								  
 								  <div class="form-group">
 								    <label for="admin_pass" class="control-label">确认管理员密码</label>		
-								        <input type="password" value="admin_pass" data-minlength="6" class="form-control" id="admin_pass" name="admin_pass" placeholder="再次输入管理员密码" required>
+								        <input type="password" value="" data-minlength="6" class="form-control" id="admin_pass" name="admin_pass" placeholder="再次输入管理员密码" required>
 								  </div>
-								  
+								  				  
 								  <div class="form-group">
                                    <label class="control-label">权限</label>
-	                               <select class="form-control" name="level" id="level">
+	                               <select class="form-control" name="admin_level" id="admin_level">
 	                                 <option value="">---请选择管理员等级---</option>
                                      <?php foreach($this->vars['levels'] as $key=>$value) {?>
-						              <option value="<?php echo $value->id; ?>"><?php echo $value->level_name; ?></option>
+						               <option value="<?php echo $value->id; ?>"><?php echo $value->level_name; ?></option>
 						             <?php } ?>
 									</select>
 								  </div>
 								  
 								  <div class="form-group">
-								    <button  class="btn btn-primary btn-sm" id="btnSave">新增管理员</button>
+								    <button  class="btn btn-primary btn-sm" id="btnUpdate">修改管理员</button>
 								    <button  class="btn btn-primary btn-sm" id="btnSet">重置</button>
 								    <a href="manager.php?action=list" class="btn btn-primary btn-sm active" role="button">返回列表</a>
 								  </div>
@@ -473,6 +476,8 @@
     <!-- bootstrapValidator js-->
     <script src="<?php echo $this->vars['template_plugins']; ?>/bootstrapValidator/bootstrapValidator.js"></script>
     <!-- Page-Level Demo Scripts - Tables - Use for reference -->
+    <!-- admin_manager js -->
+    <script src="<?php echo $this->vars['template_admin']; ?>/js/admin_manager.js"></script>
     <script>
     $(document).ready(function() {
         $('#dataTables-example').DataTable({
@@ -590,7 +595,7 @@
                                
                            }
         	           },
-        	           level:{
+        	           admin_level:{
                           message:'请选择权限!',
                           validators:{
                               notEmpty:{
@@ -600,14 +605,82 @@
             	       }            
         	      }
 	         });
+
+    	   $('#update').bootstrapValidator({
+  	         message: '表单验证失败!',
+  	         feedbackIcons: {/*input状态样式图片*/
+  	             valid: 'glyphicon glyphicon-ok',
+  	             invalid: 'glyphicon glyphicon-remove',
+  	             validating: 'glyphicon glyphicon-refresh'
+  	         },
+  	         fields:{
+  	               admin_pass1:{
+                         message:'管理员密码无效',
+                         validators:{
+                              notEmpty:{
+                                  message:'管理员密码不能为空!'
+                              },
+                              stringLength:{
+                                  min:6,
+                                  max:30,
+                                  message:'管理员密码长度必须在6-30之间!'
+                              },
+                              different:{
+                                  field:'admin_user',
+                                  message:'密码不能和管理员名称相同!'
+                              },
+                              regexp:{
+                                  regexp:/^[a-zA-Z0-9_]+$/,
+                                  message:'管理员密码由字母数字或下划线组成!'                  
+                              }
+                              
+                          }
+       	           },
+  	               admin_pass:{
+                        message:'管理员密码无效',
+                        validators:{
+                             notEmpty:{
+                                 message:'管理员密码不能为空!'
+                             },
+                             stringLength:{
+                                 min:6,
+                                 max:30,
+                                 message:'管理员密码长度必须在6-30之间!'
+                             },
+                             identical:{
+                                 field:'admin_pass1',
+                                 message:'两次密码不一致!'
+                             },
+                             different:{
+                                 field:'admin_user',
+                                 message:'密码不能和管理员名称相同!'
+                             },
+                             regexp:{
+                                 regexp:/^[a-zA-Z0-9_]+$/,
+                                 message:'管理员密码由字母数字或下划线组成!'                  
+                             }
+                             
+                         }
+      	           },
+      	           admin_level:{
+                        message:'请选择权限!',
+                        validators:{
+                            notEmpty:{
+                               message:'请选择管理员权限!'
+                            }
+                         }
+          	       }            
+      	      }
+	         });
 	         //提交表单
     		$("#btnSave").click(addManager);
     		//重置
     		$("#btnSet").click(resetFrom);
     		//编辑管理员
-    		$("#btnEdit").click(editManager);
-    		//删除管理员
-    		$("#btnDel").click(deleteManager);
+   
+    		$('#btnUpdate').click(updateManager);
+    
+
     });
     
 
@@ -628,7 +701,7 @@
         		  'submit':'true',
   			      'admin_user':$.trim($("#admin_user").val()),
   			      'admin_pass':$.trim($("#admin_pass").val()),
-  			      'level':$.trim($("#level").val()) 			      
+  			      'admin_level':$.trim($("#admin_level").val()) 			      
   	       };
 	  	  $.ajax({
 	  	      url: "manager.php?action=add",
@@ -655,16 +728,81 @@
 	  	  });
         }
      }
-
-     function editManager(id)
+     //修改
+     function updateManager()
      {
-        var url="manager.php?action=update&id="+id;
+    	 $("#update").data('bootstrapValidator').validate();
+         if(!$("#update").data('bootstrapValidator').isValid())
+         {
+              return ;
+         }
+         else
+         {
+         	var jsonData ={
+         		  'submit':'true',
+         		  'id':$.trim($("#id").val()),
+   			      'admin_pass':$.trim($("#admin_pass").val()),
+   			   'admin_level':$.trim($("#admin_level").val()) 			      
+   	       };
+ 	  	  $.ajax({
+ 	  	      url: "manager.php?action=update",
+ 	  	      data: jsonData,
+ 	  	      type: "post",
+ 	  	      beforeSend:function(){
+                    layer.load(2,{
+                         shade:[0.8,'#393D49'],
+                         shadeClose:true
+                     });
+               },
+ 	  	      success: function (backdata) {
+ 	  	          if (backdata == 1) {
+ 	  	              layer.msg('操作成功！', {icon: 1});
+ 	  	              location.href='manager.php?action=list';
+ 	  	          } else if (backdata == 0) {
+ 	  	        	  layer.msg('操作失败！', {icon: 2});
+ 	  	          } else {
+ 	  	        	  layer.msg('防止数据不断增长，会影响速度，请先删掉一些数据再做测试',{icon: 3});
+ 	  	          }
+ 	  	      },error: function (error) {
+ 	  	          console.log(error);
+ 	  	      }
+ 	  	  });
+         }
+     }
+
+     function editManager(mid)
+     {
+        var url="manager.php?action=update&id="+mid;
         location.href=url;
      }
 
-     function deleteManager(id)
+     function deleteManager(mid)
      {
-    	 layer.msg(id);
+          layer.confirm('你确定要删除吗?',{btn:['确定','取消']},function(){
+        	  var url="manager.php?action=delete&id="+mid;
+       	  	  $.ajax({
+       	  	      url: url,
+       	  	      type: "get",
+       	  	      beforeSend:function(){
+                          layer.load(2,{
+                               shade:[0.8,'#393D49'],
+                               shadeClose:true
+                           });
+                     },
+       	  	      success: function (backdata) {
+       	  	          if (backdata == 1) {
+       	  	              layer.msg('操作成功！', {icon: 1});
+       	  	              location.href='manager.php?action=list';
+       	  	          } else if (backdata == 0) {
+       	  	        	  layer.msg('操作失败！', {icon: 2});
+       	  	          } else {
+       	  	        	  layer.msg('防止数据不断增长，会影响速度，请先删掉一些数据再做测试',{icon: 3});
+       	  	          }
+       	  	      },error: function (error) {
+       	  	          console.log(error);
+       	  	      }
+       	  	  });
+           });
      }
 
      /**
