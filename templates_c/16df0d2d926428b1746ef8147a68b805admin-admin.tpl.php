@@ -12,28 +12,28 @@
     <title>loachCMS管理中心</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="{$template_admin}/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="<?php echo $this->vars['template_admin']; ?>/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- MetisMenu CSS -->
-    <link href="{$template_admin}/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+    <link href="<?php echo $this->vars['template_admin']; ?>/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="{$template_admin}/css/sb-admin-2.css" rel="stylesheet">
+    <link href="<?php echo $this->vars['template_admin']; ?>/css/sb-admin-2.css" rel="stylesheet">
 
     <!-- Morris Charts CSS -->
-    <link href="{$template_admin}/vendor/morrisjs/morris.css" rel="stylesheet">
+    <link href="<?php echo $this->vars['template_admin']; ?>/vendor/morrisjs/morris.css" rel="stylesheet">
     
     <!-- MetisMenu CSS -->
-    <link href="{$template_admin}/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+    <link href="<?php echo $this->vars['template_admin']; ?>/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
         
     <!-- DataTables CSS -->
-    <link href="{$template_admin}/vendor/datatables-plugins/dataTables.bootstrap.css" rel="stylesheet">
+    <link href="<?php echo $this->vars['template_admin']; ?>/vendor/datatables-plugins/dataTables.bootstrap.css" rel="stylesheet">
 
     <!-- DataTables Responsive CSS -->
-    <link href="{$template_admin}/vendor/datatables-responsive/dataTables.responsive.css" rel="stylesheet">
+    <link href="<?php echo $this->vars['template_admin']; ?>/vendor/datatables-responsive/dataTables.responsive.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="{$template_admin}/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo $this->vars['template_admin']; ?>/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -728,21 +728,21 @@
     <!-- /#wrapper -->
 
     <!-- jQuery -->
-    <script src="{$template_admin}/vendor/jquery/jquery.min.js"></script>
+    <script src="<?php echo $this->vars['template_admin']; ?>/vendor/jquery/jquery.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="{$template_admin}/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="<?php echo $this->vars['template_admin']; ?>/vendor/bootstrap/js/bootstrap.min.js"></script>
 
     <!-- Metis Menu Plugin JavaScript -->
-    <script src="{$template_admin}/vendor/metisMenu/metisMenu.min.js"></script>
+    <script src="<?php echo $this->vars['template_admin']; ?>/vendor/metisMenu/metisMenu.min.js"></script>
  
     <!-- DataTables JavaScript -->
-    <script src="{$template_admin}/vendor/datatables/js/jquery.dataTables.min.js"></script>
-    <script src="{$template_admin}/vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
-    <script src="{$template_admin}/vendor/datatables-responsive/dataTables.responsive.js"></script>
+    <script src="<?php echo $this->vars['template_admin']; ?>/vendor/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="<?php echo $this->vars['template_admin']; ?>/vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
+    <script src="<?php echo $this->vars['template_admin']; ?>/vendor/datatables-responsive/dataTables.responsive.js"></script>
 
     <!-- Custom Theme JavaScript -->
-    <script src="{$template_admin}/js/sb-admin-2.js"></script>
+    <script src="<?php echo $this->vars['template_admin']; ?>/js/sb-admin-2.js"></script>
     
         <!-- Page-Level Demo Scripts - Tables - Use for reference -->
     <script>

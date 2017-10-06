@@ -244,7 +244,7 @@
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li>
-                            <a href="index.html"><i class="fa fa-home fa-fw"></i>首页</a>
+                            <a href="../admin/index.php"><i class="fa fa-home fa-fw"></i>首页</a>
                         </li>
                         
                         <li class="active">
@@ -258,10 +258,10 @@
                         </li>
                         
                        <li>
-                            <a href="#"><i class="fa fa-user fa-fw"></i>管理员管理<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-user fa-fw"></i>等级管理<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="flot.html">管理员列表</a>
+                                    <a href="../admin/level.php?action=list">等级列表</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->

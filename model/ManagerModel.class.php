@@ -76,7 +76,9 @@ class ManagerModel extends Model{
        $sql="update cms_manager set admin_pass='$this->admin_pass',level='$this->level' where id='$this->id'";
        return parent::cud($sql);
     }
-    
+    /**
+     * 删除管理员-数据访问层
+     */
     public function deleteManager()
     {
        $sql="delete from cms_manager where id='$this->id' limit 1;";

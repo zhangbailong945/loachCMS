@@ -1,7 +1,7 @@
 <?php
 
 /**
- * 管理员数据访问层 模型
+ * 等级数据访问层 模型
  * @author loach
  *
  */
@@ -22,8 +22,8 @@ class LevelModel extends Model{
     }
     
     /**
-     * 获取管理员总记录数
-     * @return int count 管理员总记录
+     * 获取等级总记录数
+     * @return int count 等级总记录
      */
     public function getLevelCount()
     {
@@ -32,22 +32,55 @@ class LevelModel extends Model{
     }
     
     /**
-     * 获取所有的管理员等级-数据访问层
+     * 获取所有的等级等级-数据访问层
      * @return array 等级集合
      */
-    public function getAllLevel()
+    public function getAllLevel($flag)
     {
-      $sql="select id,level_name from cms_level order by id asc";
-      return parent::getAll($sql);
-    }
+      if($flag)
+      {
+         $sql="select id,level_name,level_info from cms_level order by id asc $this->limit";
+         return parent::getAll($sql);
+      }
+      else 
+      {
+         $sql="select id,level_name,level_info from cms_level order by id asc";
+         return parent::getAll($sql);
+      }
+    }   
     
     /**
-     * 查找一个管理员-数据访问层
+     * 查找一个等级-数据访问层
      */
-    public function getOneManager()
+    public function getOneLevel()
     {
-        $sql="select id,admin_user,admin_pass,level from cms_manager where id='$this->id' or admin_user='$this->admin_user' or level='$this->level' limit 1";
+        $sql="select id,level_name,level_info from cms_level where id='$this->id' or level_name='$this->level_name' limit 1";
         return parent::getOne($sql);
+    }   
+    
+    /**
+     * 添加等级-数据访问层
+     */
+    public function addLevel()
+    {
+       $sql="insert into cms_level(level_name,level_info)values('$this->level_name','$this->level_info')";
+       return parent::cud($sql);
     }
-
+    /**
+     * 修改等级-数据访问层
+     */
+    public function updateLevel()
+    {
+       $sql="update cms_level set level_name='$this->level_name',level_info='$this->level_info' where id='$this->id'";
+       return parent::cud($sql);
+    }
+    /**
+     * 删除等级-数据访问层
+     */
+    public function deleteLevel()
+    {
+       $sql="delete from cms_level where id='$this->id' limit 1;";
+       return parent::cud($sql);
+    }
+    
 }

@@ -12,31 +12,31 @@
     <title>loachCMS管理中心</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="{$template_admin}/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="<?php echo $this->vars['template_admin']; ?>/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- MetisMenu CSS -->
-    <link href="{$template_admin}/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+    <link href="<?php echo $this->vars['template_admin']; ?>/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="{$template_admin}/css/sb-admin-2.css" rel="stylesheet">
+    <link href="<?php echo $this->vars['template_admin']; ?>/css/sb-admin-2.css" rel="stylesheet">
 
     <!-- Morris Charts CSS -->
-    <link href="{$template_admin}/vendor/morrisjs/morris.css" rel="stylesheet">
+    <link href="<?php echo $this->vars['template_admin']; ?>/vendor/morrisjs/morris.css" rel="stylesheet">
     
     <!-- MetisMenu CSS -->
-    <link href="{$template_admin}/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+    <link href="<?php echo $this->vars['template_admin']; ?>/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
         
     <!-- DataTables CSS -->
-    <link href="{$template_admin}/vendor/datatables-plugins/dataTables.bootstrap.css" rel="stylesheet">
+    <link href="<?php echo $this->vars['template_admin']; ?>/vendor/datatables-plugins/dataTables.bootstrap.css" rel="stylesheet">
 
     <!-- DataTables Responsive CSS -->
-    <link href="{$template_admin}/vendor/datatables-responsive/dataTables.responsive.css" rel="stylesheet">
+    <link href="<?php echo $this->vars['template_admin']; ?>/vendor/datatables-responsive/dataTables.responsive.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="{$template_admin}/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo $this->vars['template_admin']; ?>/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <!-- layer alert -->
     <!-- bootstrapValidator css -->
-    <link href="{$template_plugins}/bootstrapValidator/bootstrapValidator.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo $this->vars['template_plugins']; ?>/bootstrapValidator/bootstrapValidator.css" rel="stylesheet" type="text/css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -213,7 +213,7 @@
                         <li class="divider"></li>
                         <li>
                             <a class="text-center" href="#">
-                                <strong>S获取更多</strong>
+                                <strong>获取更多</strong>
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         </li>
@@ -251,7 +251,7 @@
                             <a href="#"><i class="fa fa-user fa-fw"></i>管理员管理<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="../admin/manager.php?action=list">管理员列表</a>
+                                    <a href="../admin/Level.php?action=list">管理员列表</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
@@ -289,8 +289,8 @@
             <div class="row">
                 <div class="col-lg-12">
                     <ol class="breadcrumb">
-					  <li><a href="#">管理员管理</a></li>
-					  <li class="active">{$title}</li>
+					  <li><a href="#">等级管理</a></li>
+					  <li class="active"><?php echo $this->vars['title']; ?></li>
 					</ol>
                 </div>
                 <!-- /.col-lg-12 -->
@@ -300,52 +300,46 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-						<a href="manager.php?action=list" class="btn btn-primary btn-sm {if $list}active{/if}" role="button">管理员列表</a>
-						<a href="manager.php?action=add" class="btn btn-primary btn-sm {if $add}active{/if}" role="button">新增管理员</a>
-						{if $update}
-						<a href="mananger.php?action=update&id={id}" class="btn btn-primary btn-sm {if $update}active{/if}" role="button">修改管理员</a>
-						{/if}
+						<a href="Level.php?action=list" class="btn btn-primary btn-sm <?php if($this->vars['list']){ ?>active<?php } ?>" role="button">等级列表</a>
+						<a href="Level.php?action=add" class="btn btn-primary btn-sm <?php if($this->vars['add']){ ?>active<?php } ?>" role="button">新增等级</a>
+						<?php if($this->vars['update']){ ?>
+						<a href="mananger.php?action=update&id={id}" class="btn btn-primary btn-sm <?php if($this->vars['update']){ ?>active<?php } ?>" role="button">修改等级</a>
+						<?php } ?>
                         </div>
                         <!-- /.panel-heading -->
                         
                         <!-- list body start -->
-                        {if $list}
+                        <?php if($this->vars['list']){ ?>
                         <div class="panel-body">
                             <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                                 <thead>
                                     <tr>
                                         <th>编号</th>
-                                        <th>管理员名称</th>
-                                        <th>等级</th>
-                                        <th>登录次数</th>
-                                        <th>IP地址</th>
-                                        <th>最近登录时间</th>
+                                        <th>等级名称</th>
+                                        <th>等级表述</th>
                                         <th>操作</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {if $allManager}
-                                    {foreach $allManager(key,value)}
+                                    <?php if($this->vars['allLevel']){ ?>
+                                    <?php foreach($this->vars['allLevel'] as $key=>$value) {?>
                                     <tr class="odd gradeX">
-                                        <td class="center">{@value->id}</script></td>
-                                        <td class="center">{@value->admin_user}</td>
-                                        <td class="center">{@value->level_name}</td>
-                                        <td class="center">{@value->login_count}</td>
-                                        <td class="center">{@value->last_ip}</td>
-                                        <td class="center">{@value->last_time}</td>
+                                        <td class="center"><?php echo $value->id; ?></script></td>
+                                        <td class="center"><?php echo $value->level_name; ?></td>
+                                        <td class="center"><?php echo $value->level_info; ?></td>
                                         <td>
-										<button id="btnEdit" onclick="editManager({@value->id})" type="button" class="btn btn-warning btn-xs"> 
+										<button id="btnEdit" onclick="editLevel(<?php echo $value->id; ?>)" type="button" class="btn btn-warning btn-xs"> 
 										<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>修改 
 										</button> 
-										<button id="btnDel" type="button" onclick="deleteManager({@value->id})" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#DeleteForm" onclick=""> 
+										<button id="btnDel" type="button" onclick="deleteLevel(<?php echo $value->id; ?>)" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#DeleteForm" onclick=""> 
 										<span class="glyphicon glyphicon-minus" aria-hidden="true"></span>删除 
 										</button>
                                         </td>
                                     </tr>
-                                    {/foreach}
-                                    {else}
-                                    <tr><td colspan="7">对不起，还没有数据!</td></tr>
-                                    {/if}
+                                    <?php } ?>
+                                    <?php }else{ ?>
+                                    <tr><td colspan="4">对不起，还没有数据!</td></tr>
+                                    <?php } ?>
                                     
                                 </tbody>
                             </table>
@@ -357,90 +351,58 @@
 	                    
 	                    </div>
 	                    -->
-	                    {/if}
+	                    <?php } ?>
                         <!-- /.list-body end-->
                         
                         
                         <!-- add start -->
-                        {if $add}
+                        <?php if($this->vars['add']){ ?>
                         <div class="panel-body">
 							<form data-toggle="validator" role="form" id="add" name="add">
 								  <input type="hidden" id="level" value=""/>
 								  <div class="form-group">
-								    <label for="admin_user" class="control-label">管理员名称</label>
-								    <input type="text" class="form-control" id="admin_user" name="admin_user" placeholder="输入管理员名称" required>
+								    <label for="level_name" class="control-label">等级名称</label>
+								    <input type="text" class="form-control" id="level_name" name="level_name" placeholder="输入等级名称" required>
 								  </div>
 								  
 								  <div class="form-group">
-								    <label for="admin_pass1" class="control-label">管理员密码</label>		
-								        <input type="password" data-minlength="6" class="form-control" id="admin_pass1" name="admin_pass1" placeholder="输入管理员密码" required>
+								    <label for="level_info" class="control-label">等级描述</label>		
+								    <textarea class="form-control" id="level_info" name="level_info" rows="3" placeholder="输入等级描述"></textarea>
 								  </div>
-								  
+								  								  
 								  <div class="form-group">
-								    <label for="admin_pass" class="control-label">确认管理员密码</label>		
-								        <input type="password" data-minlength="6" class="form-control" id="admin_pass" name="admin_pass" placeholder="再次输入管理员密码" required>
-								  </div>
-								  
-								  <div class="form-group">
-                                   <label class="control-label">权限</label>
-	                               <select class="form-control" name="admin_level" id="admin_level">
-	                                 <option value="">---请选择管理员等级---</option>
-                                     {foreach $levels(key,value)}
-						              <option value="{@value->id}">{@value->level_name}</option>
-						             {/foreach}
-									</select>
-								  </div>
-								  
-								  <div class="form-group">
-								    <button  class="btn btn-primary btn-sm" id="btnSave">新增管理员</button>
+								    <button  class="btn btn-primary btn-sm" id="btnSave">新增等级</button>
 								    <button  class="btn btn-primary btn-sm" id="btnSet">重置</button>
-								    <a href="manager.php?action=list" class="btn btn-primary btn-sm active" role="button">返回列表</a>
+								    <a href="level.php?action=list" class="btn btn-primary btn-sm active" role="button">返回列表</a>
 								  </div>
 							</form>
                         </div>
                         <!-- add end -->
-                        {/if}
+                        <?php } ?>
                         
-                        <!-- update start -->
-                        {if $update}
+                        <?php if($this->vars['update']){ ?>
                         <div class="panel-body">
 							<form data-toggle="validator" role="form" id="update" name="update">
-								<input type="hidden" id="level" value="{$level}" />
-								<input type="hidden" name="id" id="id" value="{$id}" />
+								  <input type="hidden" id="id" value="<?php echo $this->vars['id']; ?>"/>
 								  <div class="form-group">
-								    <label for="admin_user"  class="control-label">管理员名称</label>
-								    <input type="text" readonly="readonly" value="{$admin_user}" class="form-control" id="admin_user" name="admin_user" placeholder="输入管理员名称" required>
+								    <label for="level_name" class="control-label">等级名称</label>
+								    <input type="text" class="form-control" value="<?php echo $this->vars['level_name']; ?>" id="level_name" name="level_name" placeholder="输入等级名称" required>
 								  </div>
 								  
 								  <div class="form-group">
-								    <label for="admin_pass1" class="control-label">管理员密码</label>		
-								        <input type="password" value="" data-minlength="6" class="form-control" id="admin_pass1" name="admin_pass1" placeholder="输入管理员密码" required>
+								    <label for="level_info" class="control-label">等级描述</label>		
+								    <textarea class="form-control" id="level_info" name="level_info" rows="3" placeholder="输入等级描述"><?php echo $this->vars['level_info']; ?></textarea>
 								  </div>
-								  
+								  								  
 								  <div class="form-group">
-								    <label for="admin_pass" class="control-label">确认管理员密码</label>		
-								        <input type="password" value="" data-minlength="6" class="form-control" id="admin_pass" name="admin_pass" placeholder="再次输入管理员密码" required>
-								  </div>
-								  				  
-								  <div class="form-group">
-                                   <label class="control-label">权限</label>
-	                               <select class="form-control" name="admin_level" id="admin_level">
-	                                 <option value="">---请选择管理员等级---</option>
-                                     {foreach $levels(key,value)}
-						               <option value="{@value->id}">{@value->level_name}</option>
-						             {/foreach}
-									</select>
-								  </div>
-								  
-								  <div class="form-group">
-								    <button  class="btn btn-primary btn-sm" id="btnUpdate">修改管理员</button>
+								    <button  class="btn btn-primary btn-sm" id="btnUpdate">修改等级</button>
 								    <button  class="btn btn-primary btn-sm" id="btnSet">重置</button>
-								    <a href="manager.php?action=list" class="btn btn-primary btn-sm active" role="button">返回列表</a>
+								    <a href="level.php?action=list" class="btn btn-primary btn-sm active" role="button">返回列表</a>
 								  </div>
 							</form>
                         </div>
-                        <!-- update end -->
-                        {/if}
+                        <!-- add end -->
+                        <?php } ?>
                         
                         
                     </div>
@@ -456,28 +418,28 @@
     <!-- /#wrapper -->
 
     <!-- jQuery -->
-    <script src="{$template_admin}/vendor/jquery/jquery.min.js"></script>
+    <script src="<?php echo $this->vars['template_admin']; ?>/vendor/jquery/jquery.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="{$template_admin}/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="<?php echo $this->vars['template_admin']; ?>/vendor/bootstrap/js/bootstrap.min.js"></script>
 
     <!-- Metis Menu Plugin JavaScript -->
-    <script src="{$template_admin}/vendor/metisMenu/metisMenu.min.js"></script>
+    <script src="<?php echo $this->vars['template_admin']; ?>/vendor/metisMenu/metisMenu.min.js"></script>
  
     <!-- DataTables JavaScript -->
-    <script src="{$template_admin}/vendor/datatables/js/jquery.dataTables.min.js"></script>
-    <script src="{$template_admin}/vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
-    <script src="{$template_admin}/vendor/datatables-responsive/dataTables.responsive.js"></script>
+    <script src="<?php echo $this->vars['template_admin']; ?>/vendor/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="<?php echo $this->vars['template_admin']; ?>/vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
+    <script src="<?php echo $this->vars['template_admin']; ?>/vendor/datatables-responsive/dataTables.responsive.js"></script>
 
     <!-- Custom Theme JavaScript -->
-    <script src="{$template_admin}/js/sb-admin-2.js"></script>
+    <script src="<?php echo $this->vars['template_admin']; ?>/js/sb-admin-2.js"></script>
     <!-- layer alert -->
-    <script src="{$template_plugins}/layer/layer.js"></script>
+    <script src="<?php echo $this->vars['template_plugins']; ?>/layer/layer.js"></script>
     <!-- bootstrapValidator js-->
-    <script src="{$template_plugins}/bootstrapValidator/bootstrapValidator.js"></script>
+    <script src="<?php echo $this->vars['template_plugins']; ?>/bootstrapValidator/bootstrapValidator.js"></script>
     <!-- Page-Level Demo Scripts - Tables - Use for reference -->
-    <!-- admin_manager js -->
-    <script src="{$template_admin}/js/admin_manager.js"></script>
+    <!-- admin_Level js -->
+    <script src="<?php echo $this->vars['template_admin']; ?>/js/admin_Level.js"></script>
     <script>
     $(document).ready(function() {
         $('#dataTables-example').DataTable({
@@ -522,87 +484,31 @@
     	             validating: 'glyphicon glyphicon-refresh'
     	         },
     	         fields:{
-        	         admin_user:{
-        	               message:'管理员没有验证!',
+        	         level_name:{
+        	               message:'等级名称没有验证!',
         	               validators:{
 	                       notEmpty:{
-	                           message:'管理员名称不能为空!'
+	                           message:'等级名称不能为空!'
 	                       },
 	                       stringLength:{
 	                            min:3,
 	                            max:30,
-	                            message:'管理员名称长度在3-30位之间!'
+	                            message:'等级名称长度在3-30位之间!'
 	                         },
 	                         threshold:3,
 	                         remote:{    //ajax验证 server result:{"valid",true or false}
-                               url:'manager.php?action=checkManagerName', //验证地址
-                               message:'管理名称已经存在!',//提示信息
+                               url:'level.php?action=checkLevelName', //验证地址
+                               message:'等级名称已经存在!',//提示信息
                                delay:2000,//设置2秒发送一次ajax（每秒发送，服务器压力太大）
                                type:'POST',
                                dataType:'json'
 		                     },
 		                     regexp:{
-                                regexp:/^[a-zA-Z0-9_]+$/,
-                                message:'管理员名称由字母数字下划线组成!'
+                                regexp:/^[a-zA-Z0-9_\u4e00-\u9fa5]+$/,
+                                message:'等级名称由字母数字下划线组成!'
 			                 }   
     	                  } 
-    	               },
-    	               admin_pass1:{
-                           message:'管理员密码无效',
-                           validators:{
-                                notEmpty:{
-                                    message:'管理员密码不能为空!'
-                                },
-                                stringLength:{
-                                    min:6,
-                                    max:30,
-                                    message:'管理员密码长度必须在6-30之间!'
-                                },
-                                different:{
-                                    field:'admin_user',
-                                    message:'密码不能和管理员名称相同!'
-                                },
-                                regexp:{
-                                    regexp:/^[a-zA-Z0-9_]+$/,
-                                    message:'管理员密码由字母数字或下划线组成!'                  
-                                }
-                                
-                            }
-         	           },
-    	               admin_pass:{
-                          message:'管理员密码无效',
-                          validators:{
-                               notEmpty:{
-                                   message:'管理员密码不能为空!'
-                               },
-                               stringLength:{
-                                   min:6,
-                                   max:30,
-                                   message:'管理员密码长度必须在6-30之间!'
-                               },
-                               identical:{
-                                   field:'admin_pass1',
-                                   message:'两次密码不一致!'
-                               },
-                               different:{
-                                   field:'admin_user',
-                                   message:'密码不能和管理员名称相同!'
-                               },
-                               regexp:{
-                                   regexp:/^[a-zA-Z0-9_]+$/,
-                                   message:'管理员密码由字母数字或下划线组成!'                  
-                               }
-                               
-                           }
-        	           },
-        	           admin_level:{
-                          message:'请选择权限!',
-                          validators:{
-                              notEmpty:{
-                                 message:'请选择管理员权限!'
-                              }
-                           }
-            	       }            
+    	               }
         	      }
 	         });
 
@@ -614,71 +520,32 @@
   	             validating: 'glyphicon glyphicon-refresh'
   	         },
   	         fields:{
-  	               admin_pass1:{
-                         message:'管理员密码无效',
-                         validators:{
-                              notEmpty:{
-                                  message:'管理员密码不能为空!'
-                              },
-                              stringLength:{
-                                  min:6,
-                                  max:30,
-                                  message:'管理员密码长度必须在6-30之间!'
-                              },
-                              different:{
-                                  field:'admin_user',
-                                  message:'密码不能和管理员名称相同!'
-                              },
-                              regexp:{
-                                  regexp:/^[a-zA-Z0-9_]+$/,
-                                  message:'管理员密码由字母数字或下划线组成!'                  
-                              }
-                              
-                          }
-       	           },
-  	               admin_pass:{
-                        message:'管理员密码无效',
-                        validators:{
-                             notEmpty:{
-                                 message:'管理员密码不能为空!'
-                             },
-                             stringLength:{
-                                 min:6,
-                                 max:30,
-                                 message:'管理员密码长度必须在6-30之间!'
-                             },
-                             identical:{
-                                 field:'admin_pass1',
-                                 message:'两次密码不一致!'
-                             },
-                             different:{
-                                 field:'admin_user',
-                                 message:'密码不能和管理员名称相同!'
-                             },
-                             regexp:{
-                                 regexp:/^[a-zA-Z0-9_]+$/,
-                                 message:'管理员密码由字母数字或下划线组成!'                  
-                             }
-                             
-                         }
-      	           },
-      	           admin_level:{
-                        message:'请选择权限!',
-                        validators:{
-                            notEmpty:{
-                               message:'请选择管理员权限!'
-                            }
-                         }
-          	       }            
+      	         level_name:{
+      	               message:'等级名称没有验证!',
+      	               validators:{
+	                       notEmpty:{
+	                           message:'等级名称不能为空!'
+	                       },
+	                       stringLength:{
+	                            min:3,
+	                            max:30,
+	                            message:'等级名称长度在3-30位之间!'
+	                         },
+		                     regexp:{
+                              regexp:/^[a-zA-Z0-9_\u4e00-\u9fa5]+$/,
+                              message:'等级名称由字母数字下划线组成!'
+			                 }   
+  	                  } 
+  	               }
       	      }
 	         });
 	         //提交表单
-    		$("#btnSave").click(addManager);
+    		$("#btnSave").click(addLevel);
     		//重置
     		$("#btnSet").click(resetFrom);
     		//编辑管理员
    
-    		$('#btnUpdate').click(updateManager);
+    		$('#btnUpdate').click(updateLevel);
     
 
     });
@@ -688,7 +555,7 @@
      * 添加数据
      * @private
      */
-     function addManager() 
+     function addLevel() 
      {
         $("#add").data('bootstrapValidator').validate();
         if(!$("#add").data('bootstrapValidator').isValid())
@@ -699,12 +566,11 @@
         {
         	var jsonData ={
         		  'submit':'true',
-  			      'admin_user':$.trim($("#admin_user").val()),
-  			      'admin_pass':$.trim($("#admin_pass").val()),
-  			      'admin_level':$.trim($("#admin_level").val()) 			      
+  			      'level_name':$.trim($("#level_name").val()),
+  			      'level_info':$.trim($("#level_info").val()) 			      
   	       };
 	  	  $.ajax({
-	  	      url: "manager.php?action=add",
+	  	      url: "level.php?action=add",
 	  	      data: jsonData,
 	  	      type: "post",
 	  	      beforeSend:function(){
@@ -716,7 +582,7 @@
 	  	      success: function (backdata) {
 	  	          if (backdata == 1) {
 	  	              layer.msg('操作成功！', {icon: 1});
-	  	              location.href='manager.php?action=list';
+	  	              location.href='level.php?action=list';
 	  	          } else if (backdata == 0) {
 	  	        	  layer.msg('操作失败！', {icon: 2});
 	  	          } else {
@@ -729,7 +595,7 @@
         }
      }
      //修改
-     function updateManager()
+     function updateLevel()
      {
     	 $("#update").data('bootstrapValidator').validate();
          if(!$("#update").data('bootstrapValidator').isValid())
@@ -741,11 +607,11 @@
          	var jsonData ={
          		  'submit':'true',
          		  'id':$.trim($("#id").val()),
-   			      'admin_pass':$.trim($("#admin_pass").val()),
-   			   'admin_level':$.trim($("#admin_level").val()) 			      
+   			      'level_name':$.trim($("#level_name").val()),
+   			      'level_info':$.trim($("#level_info").val()) 			      
    	       };
  	  	  $.ajax({
- 	  	      url: "manager.php?action=update",
+ 	  	      url: "level.php?action=update",
  	  	      data: jsonData,
  	  	      type: "post",
  	  	      beforeSend:function(){
@@ -757,7 +623,7 @@
  	  	      success: function (backdata) {
  	  	          if (backdata == 1) {
  	  	              layer.msg('操作成功！', {icon: 1});
- 	  	              location.href='manager.php?action=list';
+ 	  	              location.href='level.php?action=list';
  	  	          } else if (backdata == 0) {
  	  	        	  layer.msg('操作失败！', {icon: 2});
  	  	          } else {
@@ -770,16 +636,16 @@
          }
      }
 
-     function editManager(mid)
+     function editLevel(mid)
      {
-        var url="manager.php?action=update&id="+mid;
+        var url="level.php?action=update&id="+mid;
         location.href=url;
      }
 
-     function deleteManager(mid)
+     function deleteLevel(mid)
      {
           layer.confirm('你确定要删除吗?',{btn:['确定','取消']},function(){
-        	  var url="manager.php?action=delete&id="+mid;
+        	  var url="level.php?action=delete&id="+mid;
        	  	  $.ajax({
        	  	      url: url,
        	  	      type: "get",
@@ -792,7 +658,7 @@
        	  	      success: function (backdata) {
        	  	          if (backdata == 1) {
        	  	              layer.msg('操作成功！', {icon: 1});
-       	  	              location.href='manager.php?action=list';
+       	  	              location.href='Level.php?action=list';
        	  	          } else if (backdata == 0) {
        	  	        	  layer.msg('操作失败！', {icon: 2});
        	  	          } else {
