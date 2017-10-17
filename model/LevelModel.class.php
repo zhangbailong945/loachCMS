@@ -39,12 +39,12 @@ class LevelModel extends Model{
     {
       if($flag)
       {
-         $sql="select id,level_name,level_info from cms_level order by id asc $this->limit";
+         $sql="select id,level,level_name,level_info from cms_level order by id asc $this->limit";
          return parent::getAll($sql);
       }
       else 
       {
-         $sql="select id,level_name,level_info from cms_level order by id asc";
+         $sql="select id,level,level_name,level_info from cms_level order by id asc";
          return parent::getAll($sql);
       }
     }   

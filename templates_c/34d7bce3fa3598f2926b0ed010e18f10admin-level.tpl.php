@@ -268,10 +268,10 @@
                         </li>
                         
                         <li>
-                            <a href="#"><i class="fa fa-user fa-fw"></i>管理员管理<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-user fa-fw"></i>导航管理<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="flot.html">管理员列表</a>
+                                    <a href="../admin/nav.php?action=list">导航列表</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->

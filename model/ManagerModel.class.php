@@ -47,7 +47,7 @@ class ManagerModel extends Model{
       else 
       {
       	$sql="select m.id,m.admin_user,m.login_count,m.last_ip,m.last_time,l.level_name from cms_manager m,cms_level l where l.id=m.level order by m.id desc";
-        return parent::getAll($sql);
+      	return parent::getAll($sql);
       }
     }
     

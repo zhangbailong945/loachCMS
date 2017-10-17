@@ -268,10 +268,10 @@
                         </li>
                         
                         <li>
-                            <a href="#"><i class="fa fa-user fa-fw"></i>管理员管理<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-user fa-fw"></i>导航管理<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="flot.html">管理员列表</a>
+                                    <a href="../admin/nav.php?action=list">导航列表</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
@@ -386,7 +386,7 @@
 	                               <select class="form-control" name="admin_level" id="admin_level">
 	                                 <option value="">---请选择管理员等级---</option>
                                      <?php foreach($this->vars['levels'] as $key=>$value) {?>
-						              <option value="<?php echo $value->id; ?>"><?php echo $value->level_name; ?></option>
+						              <option value="<?php echo $value->level; ?>"><?php echo $value->level_name; ?></option>
 						             <?php } ?>
 									</select>
 								  </div>
@@ -427,7 +427,7 @@
 	                               <select class="form-control" name="admin_level" id="admin_level">
 	                                 <option value="">---请选择管理员等级---</option>
                                      <?php foreach($this->vars['levels'] as $key=>$value) {?>
-						               <option value="<?php echo $value->id; ?>"><?php echo $value->level_name; ?></option>
+						               <option value="<?php echo $value->level; ?>"><?php echo $value->level_name; ?></option>
 						             <?php } ?>
 									</select>
 								  </div>

@@ -5,7 +5,7 @@
  * @author loach
  *
  */
-class ManagerAction extends Action{
+class NavAction extends Action{
    
 	/**
 	 * 构造函数,初始化数据访问层
@@ -13,7 +13,7 @@ class ManagerAction extends Action{
 	 */
 	public function __construct(&$tpl)
 	{
-	   parent::__construct($tpl,new ManagerModel());
+	   parent::__construct($tpl,new NavModel());
 	}
 	
 	/**
@@ -29,8 +29,8 @@ class ManagerAction extends Action{
 	   	case 'add':
 	   		$this->add();
 	   		break;
-	   	case 'checkManagerName':
-	   	    $this->checkManagerName();
+	   	case 'checkNavName':
+	   	    $this->checkNavName();
 	   	    break;
 	   	case 'update':
 	   		$this->update();
@@ -49,10 +49,10 @@ class ManagerAction extends Action{
 	 */
 	private function getList()
 	{
-	   //parent::page(SITE_URL.'/admin/manager.php?action=list',$this->model->getManagerCount());
+	   //parent::page(SITE_URL.'/admin/Nav.php?action=list',$this->model->getNavCount());
 	   $this->tpl->assign('list',true);
-	   $this->tpl->assign('title','管理员列表');
-	   $this->tpl->assign('allManager',$this->model->getAllManager(0));
+	   $this->tpl->assign('title','导航列表');
+	   $this->tpl->assign('allNav',$this->model->getAllNav(0));
 	}
 	
 	/**
@@ -65,7 +65,7 @@ class ManagerAction extends Action{
 	      $this->model->admin_user=trim($_POST['admin_user']);
 	      $this->model->admin_pass=sha1(trim($_POST['admin_pass']));
 	      $this->model->level=trim($_POST['admin_level']);
-	      if($this->model->addManager()>0)
+	      if($this->model->addNav()>0)
 	      {
 	         echo 1;
 	         exit();
@@ -93,7 +93,7 @@ class ManagerAction extends Action{
 	      $this->model->admin_pass=sha1(trim($_POST['admin_pass']));
 	      $this->model->level=trim($_POST['admin_level']);
 	      
-	      if($this->model->updateManager()>0)
+	      if($this->model->updateNav()>0)
 	      {
 	         echo 1;
 	         exit();
@@ -109,13 +109,13 @@ class ManagerAction extends Action{
 		   $this->tpl->assign('update',true);
 		   $this->tpl->assign('title','修改管理员');
 		   $this->model->id=$_GET['id'];
-		   $manager=$this->model->getOneManager();
+		   $Nav=$this->model->getOneNav();
 		   $levelModel=new LevelModel();
 		   $this->tpl->assign('levels',$levelModel->getAllLevel(0));
-		   $this->tpl->assign('id',$manager->id);
-           $this->tpl->assign('admin_user',$manager->admin_user);
-           $this->tpl->assign('admin_pass',$manager->admin_pass);
-           $this->tpl->assign('level',$manager->level);
+		   $this->tpl->assign('id',$Nav->id);
+           $this->tpl->assign('admin_user',$Nav->admin_user);
+           $this->tpl->assign('admin_pass',$Nav->admin_pass);
+           $this->tpl->assign('level',$Nav->level);
 	   }
 	}
 	/**
@@ -126,7 +126,7 @@ class ManagerAction extends Action{
 	    if(isset($_GET['id']))
         {
 	         $this->model->id=$_GET['id'];
-	         if($this->model->deleteManager()>0)
+	         if($this->model->deleteNav()>0)
 		      {
 		         echo 1;
 		         exit();
@@ -143,12 +143,12 @@ class ManagerAction extends Action{
 	/**
 	 * 检查管理员名称是否存在-控制器
 	 */
-	public function checkManagerName()
+	public function checkNavName()
 	{
        if(isset($_POST['admin_user']))
        {
        	   $this->model->admin_user=$_POST['admin_user'];
-		   if(!is_object($this->model->getOneManager()))
+		   if(!is_object($this->model->getOneNav()))
 		   {
 		      Tool::jsonType();
 		      echo json_encode(array('valid'=>true));
