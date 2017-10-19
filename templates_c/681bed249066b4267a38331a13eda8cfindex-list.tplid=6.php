@@ -9,6 +9,7 @@
 						  <li><a href="./">首页</a></li>
 						  <?php echo $this->vars['nav_name']; ?>
 						</ol>
+						<input type="text" id="sort" value="<?php echo $this->vars['sort']; ?>">
 	             </div>
             </div>
             <!-- nav path end -->
@@ -58,19 +59,16 @@
 				<!-- end tag cloud widget -->	
 				
 				<!-- start tag cloud widget -->
+				<?php if($this->vars['child_nav']){ ?>
 				<div class="widget">
 					<h4 class="title">子栏目列表</h4>
-					<div class="content tag-cloud">
-			        
-			          <?php if($this->vars['child_nav']){ ?>
+					<div class="content tag-cloud">			        			          
 			          <?php foreach($this->vars['child_nav'] as $key=>$value) {?>
 			          <a href="list.php?id=<?php echo $value->id; ?>"><?php echo $value->nav_name; ?>(<font color="blue">20</font>)</a>
-			          <?php } ?>
-			          <?php }else{ ?>
-			          <span>该导航还没有子栏目!</span>
-			          <?php } ?>
+			          <?php } ?>			          
 					</div>
 				</div>
+				<?php } ?>
 				<!-- end tag cloud widget -->		
 				
 				<!-- start tag cloud widget -->
@@ -134,4 +132,5 @@
             </div>
         </div>
     </section>
+    <script type="text/javascript" src="<?php echo $this->vars['templates']; ?>/js/indexNav.js"></script>
  <?php $tpl->noParse('index/footer.tpl'); ?>

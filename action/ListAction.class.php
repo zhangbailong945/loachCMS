@@ -29,6 +29,7 @@ class ListAction extends Action{
                $nav->cname?$cname='<li><a href="list.php?id='.$nav->cid.'">'.$nav->cname.'</a></li>':$cname='';
                $nav_name='<li><a href="list.php?id='.$nav->id.'">'.$nav->nav_name.'</a></li>';
                $this->tpl->assign('nav_name',$cname.$nav_name);
+               is_object($navModel->isParentNav())?$this->tpl->assign('sort',$nav->sort):$this->tpl->assign('sort',$nav->csort);
                $this->tpl->assign('child_nav',$childNav);
             }
             else 

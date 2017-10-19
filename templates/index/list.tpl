@@ -9,6 +9,7 @@
 						  <li><a href="./">首页</a></li>
 						  {$nav_name}
 						</ol>
+						<input type="text" id="sort" value="{$sort}">
 	             </div>
             </div>
             <!-- nav path end -->
@@ -58,19 +59,16 @@
 				<!-- end tag cloud widget -->	
 				
 				<!-- start tag cloud widget -->
+				{if $child_nav}
 				<div class="widget">
 					<h4 class="title">子栏目列表</h4>
-					<div class="content tag-cloud">
-			        
-			          {if $child_nav}
+					<div class="content tag-cloud">			        			          
 			          {foreach $child_nav(key,value)}
 			          <a href="list.php?id={@value->id}">{@value->nav_name}(<font color="blue">20</font>)</a>
-			          {/foreach}
-			          {else}
-			          <span>该导航还没有子栏目!</span>
-			          {/if}
+			          {/foreach}			          
 					</div>
 				</div>
+				{/if}
 				<!-- end tag cloud widget -->		
 				
 				<!-- start tag cloud widget -->
@@ -134,4 +132,5 @@
             </div>
         </div>
     </section>
+    <script type="text/javascript" src="{$templates}/js/indexNav.js"></script>
  {include file='index/footer.tpl'}

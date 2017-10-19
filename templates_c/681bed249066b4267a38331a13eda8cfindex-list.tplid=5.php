@@ -9,7 +9,7 @@
 						  <li><a href="./">首页</a></li>
 						  <?php echo $this->vars['nav_name']; ?>
 						</ol>
-						<input type="text" id="sort" value="<?php echo $this->vars['sort']; ?>">
+						<input type="text" id="pid" value="<?php echo $this->vars['pid']; ?>">
 	             </div>
             </div>
             <!-- nav path end -->

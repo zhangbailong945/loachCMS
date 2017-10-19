@@ -20,8 +20,6 @@
     <script type="text/javascript" src="{$templates}/js/jquery.more.js"></script>
     <script type="text/javascript" src="{$templates}/js/md5.js"></script>
     <script type="text/javascript" src="{$templates}/js/data.js"></script>
-    
-
     <link rel="canonical" href="<?php echo $submit_Path;?>LoachBlog/LoachBlog/index">
     
 </head>
@@ -56,11 +54,11 @@
                         </span>
                     </div>
                     <div class="navbar-collapse collapse" id="main-menu" aria-expanded="false" style="height: 1px;">
-                        <ul class="menu">
-					        <li class="nav-current" role="presentation"><a href="./">首页</a></li>
+                        <ul class="menu" id="menu">
+					        <li class="nav-current" id="nav0" role="presentation"><a href="./">首页</a></li>
 					        {if $navList}
 					        {foreach $navList(key,value)}
-					        <li role="presentation"><a href="list.php?id={@value->id}">{@value->nav_name}</a></li>
+					        <li role="presentation" id="nav{@value->sort}"><a href="list.php?id={@value->id}">{@value->nav_name}</a></li>
 					        {/foreach}
 					        {/if}
 					     </ul>   

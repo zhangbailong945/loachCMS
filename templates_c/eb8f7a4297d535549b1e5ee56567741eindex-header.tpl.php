@@ -20,8 +20,6 @@
     <script type="text/javascript" src="<?php echo $this->vars['templates']; ?>/js/jquery.more.js"></script>
     <script type="text/javascript" src="<?php echo $this->vars['templates']; ?>/js/md5.js"></script>
     <script type="text/javascript" src="<?php echo $this->vars['templates']; ?>/js/data.js"></script>
-    
-
     <link rel="canonical" href="<?php echo $submit_Path;?>LoachBlog/LoachBlog/index">
     
 </head>
@@ -56,11 +54,11 @@
                         </span>
                     </div>
                     <div class="navbar-collapse collapse" id="main-menu" aria-expanded="false" style="height: 1px;">
-                        <ul class="menu">
-					        <li class="nav-current" role="presentation"><a href="./">首页</a></li>
+                        <ul class="menu" id="menu">
+					        <li class="nav-current" id="nav0" role="presentation"><a href="./">首页</a></li>
 					        <?php if($this->vars['navList']){ ?>
 					        <?php foreach($this->vars['navList'] as $key=>$value) {?>
-					        <li role="presentation"><a href="list.php?id=<?php echo $value->id; ?>"><?php echo $value->nav_name; ?></a></li>
+					        <li role="presentation" id="nav<?php echo $value->sort; ?>"><a href="list.php?id=<?php echo $value->id; ?>"><?php echo $value->nav_name; ?></a></li>
 					        <?php } ?>
 					        <?php } ?>
 					     </ul>   
