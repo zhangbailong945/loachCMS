@@ -100,26 +100,21 @@ class Parser{
          }
       }
       
-      /**
-       * 解析include语句
-       * =格式:{include "index.php"}
-       */
-      private function parseInclude()
-      {
-         $pattern='/\{include \"(.*)\"\}/';
-         //判断模板变量是否存在
-         if(preg_match($pattern,$this->tpl,$file))
-         {
-         	//判断文件为空或者不存在
-         	if(empty($file[1])||!file_exists($file[1]))
-         	{
-         	   exit('Parse Include Error:文件导入出错!');
-         	}
-         	//否则，存在就替换
-         	$this->tpl=preg_replace($pattern,"<?php include '{$file[1]}'; ?>",$this->tpl);
-         	
-         }
-      }
+	      //解析include语句
+	    private function parseInclude(){
+	      $patternInclude='/\{include\s+file=(\"|\')([\w\.\-\/]+)(\"|\')\}/';
+	      if(preg_match_all($patternInclude,$this->tpl,$file)){
+	        foreach ($file[2] as $value)
+	        {
+	            if(!file_exists('templates/'.$value))
+	            {
+	                exit('Error:包含文件出错！');
+	            }
+	            $this->tpl=preg_replace($patternInclude,"<?php \$tpl->noParse('$2'); ?>",$this->tpl);
+	        }
+	
+	      }
+	    }
       
       /**
        * 解析注释变量

@@ -51,6 +51,15 @@ class NavModel extends Model{
       }
     }
     
+     /**
+      * 获取导航到前台显示
+      */
+     public function getNavToIndex()
+     {
+         $sql="select id,nav_name from cms_nav where pid=0 order by sort desc limit 0,".NAV_SIZE;
+         return parent::getAll($sql);
+     }
+    
     /**
      * 获取所有的子导航-数据访问层
      * @return array 子导航集合
@@ -69,6 +78,24 @@ class NavModel extends Model{
       }
     }
     
+    /**
+     * 通过导航id，获取导航信息
+     */
+    public function getNavById()
+    {
+       $sql="select n1.id,n1.nav_name,n1.nav_info,n2.id as cid,n2.nav_name as cname from cms_nav as n1 left join cms_nav n2 on n1.pid=n2.id where n1.id='$this->id';";
+      return parent::getTableById($sql);
+    }
+    
+     /**
+      * 根据首页导航获取所有子导航
+      */
+     public function getChildNavIndex()
+     {
+         $sql="select id,nav_name,nav_info,sort from cms_nav where pid='$this->id' order by sort asc";
+         return parent::getAll($sql);
+     }
+     
     /**
      * 查找一个导航-数据访问层
      */

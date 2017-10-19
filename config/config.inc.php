@@ -31,6 +31,8 @@ define('DB_CHAR','utf8');
 
 //分页配置
 define('PAGE_SIZE',10);
+//导航配置
+define('NAV_SIZE',10);  //前台显示主导航个数
 
 
 ?>

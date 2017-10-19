@@ -5,21 +5,21 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>{%sitename%}</title>
+    <title><?php echo $this->config['sitename'];?></title>
     <meta name="description" content="LoachBlog个人笔记,程序笔记,php笔记">
     <meta name="keywords" content="首页,LoachBlog,LoachBlog个人笔记">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="favicon.ico">
-    <link rel="stylesheet" href="{$templates}/css/bootstrap.min.css">
-    <link rel="stylesheet" href="{$templates}/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="{$templates}/css/screen.css">
-    <script type="text/javascript" src="{$templates}/js/jquery.min.js"></script>
-    <script type="text/javascript" src="{$templates}/js/bootstrap.min.js"></script>
-     <script type="text/javascript" src="{$templates}/js/jquery-1.7.2.min.js"></script>
-    <script type="text/javascript" src="{$templates}/js/jquery.more.js"></script>
-    <script type="text/javascript" src="{$templates}/js/md5.js"></script>
-    <script type="text/javascript" src="{$templates}/js/data.js"></script>
+    <link rel="stylesheet" href="<?php echo $this->vars['templates']; ?>/css/bootstrap.min.css">
+    <link rel="stylesheet" href="<?php echo $this->vars['templates']; ?>/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo $this->vars['templates']; ?>/css/screen.css">
+    <script type="text/javascript" src="<?php echo $this->vars['templates']; ?>/js/jquery.min.js"></script>
+    <script type="text/javascript" src="<?php echo $this->vars['templates']; ?>/js/bootstrap.min.js"></script>
+     <script type="text/javascript" src="<?php echo $this->vars['templates']; ?>/js/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="<?php echo $this->vars['templates']; ?>/js/jquery.more.js"></script>
+    <script type="text/javascript" src="<?php echo $this->vars['templates']; ?>/js/md5.js"></script>
+    <script type="text/javascript" src="<?php echo $this->vars['templates']; ?>/js/data.js"></script>
     
 
     <link rel="canonical" href="<?php echo $submit_Path;?>LoachBlog/LoachBlog/index">
@@ -30,12 +30,12 @@
 <body class="home-template">
 
     <!-- start header -->
-    <header class="main-header" style="background-image: url({$templates}/img/headerbg.jpg);" "="">
+    <header class="main-header" style="background-image: url(<?php echo $this->vars['templates']; ?>/img/headerbg.jpg);" "="">
         <div class="container">
             <div class="row">
                 <div class="col-sm-12">
                     <!-- start logo -->
-                    <a class="branding" href="#" title="LoachBlog个人笔记"><img src="{$templates}/img/logo.png" alt="LoachBlog"></a>
+                    <a class="branding" href="#" title="LoachBlog个人笔记"><img src="<?php echo $this->vars['templates']; ?>/img/logo.png" alt="LoachBlog"></a>
                     <h1><font color="#ffffff">LoachBlog</font> 个人笔记</h1>
                     <!-- end logo -->
                 </div>
@@ -58,11 +58,11 @@
                     <div class="navbar-collapse collapse" id="main-menu" aria-expanded="false" style="height: 1px;">
                         <ul class="menu">
 					        <li class="nav-current" role="presentation"><a href="./">首页</a></li>
-					        {if $navList}
-					        {foreach $navList(key,value)}
-					        <li role="presentation"><a href="list.php?id={@value->id}">{@value->nav_name}</a></li>
-					        {/foreach}
-					        {/if}
+					        <?php if($this->vars['navList']){ ?>
+					        <?php foreach($this->vars['navList'] as $key=>$value) {?>
+					        <li role="presentation"><a href="list.php?id=<?php echo $value->id; ?>"><?php echo $value->nav_name; ?></a></li>
+					        <?php } ?>
+					        <?php } ?>
 					     </ul>   
 		            </div>
                 </div>

@@ -51,6 +51,14 @@ class NavAction extends Action{
 	}
 	
 	/**
+	 * 前台显示主导航
+	 */
+    public function showIndexNav()
+    {
+        $this->tpl->assign('navList',$this->model->getNavToIndex());
+    }
+	
+	/**
 	 * 显示导航列表-控制器
 	 */
 	private function getList()

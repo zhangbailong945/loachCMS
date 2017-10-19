@@ -403,7 +403,7 @@
 								  <input type="hidden" id="id" value="{$id}"/>
 								   <div class="form-group">
 								    <label for="nav_name" class="control-label">父导航</label>
-								    <h3>{$parent_nav}</h3>
+								    <h3><font color="green">{$parent_nav}</font></h3>
 								  </div>								  
 								  <div class="form-group">
 								    <label for="nav_name" class="control-label">导航名称</label>

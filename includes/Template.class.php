@@ -57,7 +57,7 @@ class Template{
 	   $file=str_replace('index/','index-',$file);
 	   $file=str_replace('admin/','admin-',$file);
        //设置编译文件的文件名
-       $parFile=TPL_C_DIR.md5($file).$file.'.php';
+       $parFile=TPL_C_DIR.md5($file).$file.$file_query.'.php';
        //缓存文件
        $cacheFile=CACHE_DIR.md5($file).$file.$file_query.'.html';
        //判断文件是否存在,模板文件是否修改过

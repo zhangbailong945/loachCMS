@@ -77,5 +77,19 @@ class Model{
 	   Db::closeDB($result, $db);
 	   return $affected_rows;
 	}	
+	
+/**
+     * 根据某个表的id 返回一条数据
+     * @param string $sql
+     * @return object
+     */
+    protected  function getTableById($sql)
+    {
+        $db=DB::getDB();
+        $result=$db->query($sql);
+        $object=$result->fetch_object();
+        DB::closeDB($result, $db);
+        return Tool::htmlString($object);
+    }
 
 }
