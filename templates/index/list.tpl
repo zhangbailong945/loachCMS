@@ -6,10 +6,10 @@
            <div class="row">
 	             <div class="col-md-12">
 		                <ol class="breadcrumb">
-						  <li><a href="./">首页</a></li>
+		                  <li>当前位置:</li>
 						  {$nav_name}
 						</ol>
-						<input type="text" id="sort" value="{$sort}">
+						<input type="hidden" id="sort" value="{$sort}">
 	             </div>
             </div>
             <!-- nav path end -->

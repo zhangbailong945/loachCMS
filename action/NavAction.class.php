@@ -44,6 +44,9 @@ class NavAction extends Action{
    		case 'addSubNav':
    		    $this->addSubNav();
    		    break;
+   		case 'sort':
+   			$this->sortNav();
+   			break;
 	   	default:
 	   		Tool::alertLocation('警告：','非法操作!',SITE_ADMIN_URL);
 	   		break;
@@ -56,6 +59,26 @@ class NavAction extends Action{
     public function showIndexNav()
     {
         $this->tpl->assign('navList',$this->model->getNavToIndex());
+    }
+    
+    /**
+     * 导航排序
+     */
+    public function sortNav()
+    {
+       if(isset($_POST['send']))
+       {
+          $this->model->sort=$_POST['sort'];
+          if($this->model->setNavSort())
+          {
+          	
+            Tool::alertLocation('提示','排序成功!',PREV_URL);
+          }
+          else 
+          {
+            Tool::alertLocation('提示','排序失败!',PREV_URL);
+          }
+       }
     }
 	
 	/**

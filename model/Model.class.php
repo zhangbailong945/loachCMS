@@ -91,5 +91,17 @@ class Model{
         DB::closeDB($result, $db);
         return Tool::htmlString($object);
     }
+    
+    /**
+     * 执行多条sql
+     * @param string $sql
+     */
+    protected function updateMulti($sql)
+    {
+       $db=DB::getDB();
+       $db->multi_query($sql);
+       Db::closeDB($result=null,$db);
+       return true;
+    }
 
 }

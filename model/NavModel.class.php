@@ -87,6 +87,25 @@ class NavModel extends Model{
       return parent::getTableById($sql);
     }
     
+    /**
+     *设置导航排序
+     */
+    public function setNavSort()
+    {
+          foreach ($this->sort as $key=>$value)
+          {
+          	 if(!is_int(intval($value))) 
+          	 {
+          	    continue;
+          	 }
+          	 else
+          	 {
+                $sql.="update cms_nav set sort='$value' where id='$key';";
+          	 }
+          }
+          return parent::updateMulti($sql);
+    }
+    
      /**
       * 判断是否是父导航
       */

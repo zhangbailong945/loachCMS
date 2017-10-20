@@ -12,31 +12,31 @@
     <title>loachCMS管理中心</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="{$template_admin}/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="<?php echo $this->vars['template_admin']; ?>/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- MetisMenu CSS -->
-    <link href="{$template_admin}/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+    <link href="<?php echo $this->vars['template_admin']; ?>/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="{$template_admin}/css/sb-admin-2.css" rel="stylesheet">
+    <link href="<?php echo $this->vars['template_admin']; ?>/css/sb-admin-2.css" rel="stylesheet">
 
     <!-- Morris Charts CSS -->
-    <link href="{$template_admin}/vendor/morrisjs/morris.css" rel="stylesheet">
+    <link href="<?php echo $this->vars['template_admin']; ?>/vendor/morrisjs/morris.css" rel="stylesheet">
     
     <!-- MetisMenu CSS -->
-    <link href="{$template_admin}/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+    <link href="<?php echo $this->vars['template_admin']; ?>/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
         
     <!-- DataTables CSS -->
-    <link href="{$template_admin}/vendor/datatables-plugins/dataTables.bootstrap.css" rel="stylesheet">
+    <link href="<?php echo $this->vars['template_admin']; ?>/vendor/datatables-plugins/dataTables.bootstrap.css" rel="stylesheet">
 
     <!-- DataTables Responsive CSS -->
-    <link href="{$template_admin}/vendor/datatables-responsive/dataTables.responsive.css" rel="stylesheet">
+    <link href="<?php echo $this->vars['template_admin']; ?>/vendor/datatables-responsive/dataTables.responsive.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="{$template_admin}/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo $this->vars['template_admin']; ?>/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <!-- layer alert -->
     <!-- bootstrapValidator css -->
-    <link href="{$template_plugins}/bootstrapValidator/bootstrapValidator.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo $this->vars['template_plugins']; ?>/bootstrapValidator/bootstrapValidator.css" rel="stylesheet" type="text/css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -290,8 +290,8 @@
                 <div class="col-lg-12">
                     <ol class="breadcrumb">
 					  <li><a href="#">导航管理</a></li>
-					  <li><a href="#">{$parent_nav}</a></li>
-					  <li class="active">{$title}</li>
+					  <li><a href="#"><?php echo $this->vars['parent_nav']; ?></a></li>
+					  <li class="active"><?php echo $this->vars['title']; ?></li>
 					</ol>
                 </div>
                 <!-- /.col-lg-12 -->
@@ -301,24 +301,24 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-						<a href="nav.php?action=list" class="btn btn-primary btn-sm {if $list}active{/if}" role="button">父导航列表</a>
-						{if $sublist}
-						<a href="nav.php?action=lookSubNav&id={$id}" class="btn btn-primary btn-sm {if $sublist}active{/if}" role="button">子导航列表</a>
-						{/if}
-						{if $update}
-						<a href="nav.php?action=update&id={$id}" class="btn btn-primary btn-sm {if $update}active{/if}" role="button">修改导航</a>
-						{/if}
-						{if $list}
-						<a href="nav.php?action=add" class="btn btn-primary btn-sm {if $add}active{/if}" role="button">新增父导航</a>
-						{/if}
-						{if $sub}
-						<a href="nav.php?action=addSubNav&id={$id}" class="btn btn-primary btn-sm {if $addSub}active{/if}" role="button">新增子导航</a>
-						{/if}
+						<a href="nav.php?action=list" class="btn btn-primary btn-sm <?php if($this->vars['list']){ ?>active<?php } ?>" role="button">父导航列表</a>
+						<?php if($this->vars['sublist']){ ?>
+						<a href="nav.php?action=lookSubNav&id=<?php echo $this->vars['id']; ?>" class="btn btn-primary btn-sm <?php if($this->vars['sublist']){ ?>active<?php } ?>" role="button">子导航列表</a>
+						<?php } ?>
+						<?php if($this->vars['update']){ ?>
+						<a href="nav.php?action=update&id=<?php echo $this->vars['id']; ?>" class="btn btn-primary btn-sm <?php if($this->vars['update']){ ?>active<?php } ?>" role="button">修改导航</a>
+						<?php } ?>
+						<?php if($this->vars['list']){ ?>
+						<a href="nav.php?action=add" class="btn btn-primary btn-sm <?php if($this->vars['add']){ ?>active<?php } ?>" role="button">新增父导航</a>
+						<?php } ?>
+						<?php if($this->vars['sub']){ ?>
+						<a href="nav.php?action=addSubNav&id=<?php echo $this->vars['id']; ?>" class="btn btn-primary btn-sm <?php if($this->vars['addSub']){ ?>active<?php } ?>" role="button">新增子导航</a>
+						<?php } ?>
                         </div>
                         <!-- /.panel-heading -->
                         
                         <!-- list body start -->
-                        {if $list}
+                        <?php if($this->vars['list']){ ?>
                         <div class="panel-body">
                         
                             <form method="post" action="nav.php?action=sort">
@@ -337,31 +337,31 @@
                                 
                                 <tbody>
                                     
-                                    {if $allNav}
-                                    {foreach $allNav(key,value)}
+                                    <?php if($this->vars['allNav']){ ?>
+                                    <?php foreach($this->vars['allNav'] as $key=>$value) {?>
                                     
                                     <tr class="odd gradeX">
-                                        <td class="center">{@value->id}</script></td>
-                                        <td class="center">{@value->nav_name}</td>
-                                        <td class="center">{@value->nav_info}</td>
+                                        <td class="center"><?php echo $value->id; ?></script></td>
+                                        <td class="center"><?php echo $value->nav_name; ?></td>
+                                        <td class="center"><?php echo $value->nav_info; ?></td>
                                         <td>
-										<button onclick="lookSubNav({@value->id})" type="button" class="btn btn-info btn-xs"> 
+										<button onclick="lookSubNav(<?php echo $value->id; ?>)" type="button" class="btn btn-info btn-xs"> 
 										<span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>查看子类
 										</button> 
                                         </td>
                                         <td>
-										<button id="btnEdit" onclick="editNav({@value->id})" type="button" class="btn btn-warning btn-xs"> 
+										<button id="btnEdit" onclick="editNav(<?php echo $value->id; ?>)" type="button" class="btn btn-warning btn-xs"> 
 										<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>修改 
 										</button> 
-										<button id="btnDel" type="button" onclick="deleteNav({@value->id})" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#DeleteForm" onclick=""> 
+										<button id="btnDel" type="button" onclick="deleteNav(<?php echo $value->id; ?>)" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#DeleteForm" onclick=""> 
 										<span class="glyphicon glyphicon-minus" aria-hidden="true"></span>删除 
 										</button>
                                         </td>
                                         <td>
-                                          <input type="text" name="sort[{@value->id}]" value="{@value->sort}" style="width:30px;" />
+                                          <input type="text" name="sort[<?php echo $value->id; ?>]" value="<?php echo $value->sort; ?>" style="width:30px;" />
                                          </td>
                                     </tr>                                 
-                                    {/foreach}
+                                    <?php } ?>
                                     <tr>  
                                     <td></td><td></td><td></td><td></td><td></td>
                                     <td>
@@ -372,9 +372,9 @@
 									</center>
                                     </td>
                                     </tr>
-                                    {else}
+                                    <?php }else{ ?>
                                     <tr><td colspan="6">对不起，还没有数据!</td></tr>
-                                    {/if}
+                                    <?php } ?>
                                     
                                     
                                     
@@ -390,12 +390,12 @@
 	                    
 	                    </div>
 	                    -->
-	                    {/if}
+	                    <?php } ?>
                         <!-- /.list-body end-->
                         
                         
                         <!-- add start -->
-                        {if $add}
+                        <?php if($this->vars['add']){ ?>
                         <div class="panel-body">
 							<form data-toggle="validator" role="form" id="add" name="add">
 								  <input type="hidden" id="id" value="0"/>								  
@@ -417,15 +417,15 @@
 							</form>
                         </div>
                         <!-- add end -->
-                        {/if}
+                        <?php } ?>
                         <!-- add sub start -->
-                        {if $addSub}
+                        <?php if($this->vars['addSub']){ ?>
                         <div class="panel-body">
 							<form data-toggle="validator" role="form" id="add" name="add">
-								  <input type="hidden" id="id" value="{$id}"/>
+								  <input type="hidden" id="id" value="<?php echo $this->vars['id']; ?>"/>
 								   <div class="form-group">
 								    <label for="nav_name" class="control-label">父导航</label>
-								    <h3><font color="green">{$parent_nav}</font></h3>
+								    <h3><font color="green"><?php echo $this->vars['parent_nav']; ?></font></h3>
 								  </div>								  
 								  <div class="form-group">
 								    <label for="nav_name" class="control-label">导航名称</label>
@@ -445,21 +445,21 @@
 							</form>
                         </div>
                         <!-- add sub end -->
-                        {/if}
+                        <?php } ?>
                         
                         <!-- update start -->
-                        {if $update}
+                        <?php if($this->vars['update']){ ?>
                         <div class="panel-body">
 							<form data-toggle="validator" role="form" id="update" name="update">
-								  <input type="hidden" id="id" value="{$id}"/>								  
+								  <input type="hidden" id="id" value="<?php echo $this->vars['id']; ?>"/>								  
 								  <div class="form-group">
 								    <label for="nav_name" class="control-label">导航名称</label>
-								    <input type="text" class="form-control" id="nav_name" name="nav_name" value="{$nav_name}" placeholder="输入导航名称" required>
+								    <input type="text" class="form-control" id="nav_name" name="nav_name" value="<?php echo $this->vars['nav_name']; ?>" placeholder="输入导航名称" required>
 								  </div>
 								  
 								  <div class="form-group">
 								    <label for="nav_info" class="control-label">等级描述</label>		
-								    <textarea class="form-control" id="nav_info" name="nav_info" rows="3" placeholder="输入导航描述">{$nav_info}</textarea>
+								    <textarea class="form-control" id="nav_info" name="nav_info" rows="3" placeholder="输入导航描述"><?php echo $this->vars['nav_info']; ?></textarea>
 								  </div>							  
 								  
 								  <div class="form-group">
@@ -470,10 +470,10 @@
 							</form>
                         </div>
                         <!-- add update -->
-                        {/if}
+                        <?php } ?>
                         
                         <!-- sublist body start -->
-                        {if $sublist}
+                        <?php if($this->vars['sublist']){ ?>
                         <div class="panel-body">
                             <form method="post" action="nav.php?action=sort">
                             <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
@@ -487,25 +487,25 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {if $allSubNav}
-                                    {foreach $allSubNav(key,value)}
+                                    <?php if($this->vars['allSubNav']){ ?>
+                                    <?php foreach($this->vars['allSubNav'] as $key=>$value) {?>
                                     <tr class="odd gradeX">
-                                        <td class="center">{@value->id}</script></td>
-                                        <td class="center">{@value->nav_name}</td>
-                                        <td class="center">{@value->nav_info}</td>
+                                        <td class="center"><?php echo $value->id; ?></script></td>
+                                        <td class="center"><?php echo $value->nav_name; ?></td>
+                                        <td class="center"><?php echo $value->nav_info; ?></td>
                                         <td>
-										<button id="btnEdit" onclick="editNav({@value->id})" type="button" class="btn btn-warning btn-xs"> 
+										<button id="btnEdit" onclick="editNav(<?php echo $value->id; ?>)" type="button" class="btn btn-warning btn-xs"> 
 										<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>修改 
 										</button> 
-										<button id="btnDel" type="button" onclick="deleteNav({@value->id})" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#DeleteForm" onclick=""> 
+										<button id="btnDel" type="button" onclick="deleteNav(<?php echo $value->id; ?>)" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#DeleteForm" onclick=""> 
 										<span class="glyphicon glyphicon-minus" aria-hidden="true"></span>删除 
 										</button>
                                         </td>
                                          <td>
-                                          <input type="text" name="sort[{@value->id}]" value="{@value->sort}" style="width:30px;" />
+                                          <input type="text" name="sort[<?php echo $value->id; ?>]" value="<?php echo $value->sort; ?>" style="width:30px;" />
                                          </td>
                                     </tr>
-                                    {/foreach}
+                                    <?php } ?>
                                     <tr>  
                                     <td></td><td></td><td></td><td></td>
                                     <td>
@@ -516,9 +516,9 @@
 									</center>
                                     </td>
                                     </tr>
-                                    {else}
+                                    <?php }else{ ?>
                                     <tr><td colspan="5">对不起，还没有数据!</td></tr>
-                                    {/if}
+                                    <?php } ?>
                                     
                                 </tbody>
                             </table>
@@ -531,7 +531,7 @@
 	                    
 	                    </div>
 	                    -->
-	                    {/if}
+	                    <?php } ?>
                         <!-- /.sublist-body end-->
                         
                         
@@ -548,28 +548,28 @@
     <!-- /#wrapper -->
 
     <!-- jQuery -->
-    <script src="{$template_admin}/vendor/jquery/jquery.min.js"></script>
+    <script src="<?php echo $this->vars['template_admin']; ?>/vendor/jquery/jquery.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="{$template_admin}/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="<?php echo $this->vars['template_admin']; ?>/vendor/bootstrap/js/bootstrap.min.js"></script>
 
     <!-- Metis Menu Plugin JavaScript -->
-    <script src="{$template_admin}/vendor/metisMenu/metisMenu.min.js"></script>
+    <script src="<?php echo $this->vars['template_admin']; ?>/vendor/metisMenu/metisMenu.min.js"></script>
  
     <!-- DataTables JavaScript -->
-    <script src="{$template_admin}/vendor/datatables/js/jquery.dataTables.min.js"></script>
-    <script src="{$template_admin}/vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
-    <script src="{$template_admin}/vendor/datatables-responsive/dataTables.responsive.js"></script>
+    <script src="<?php echo $this->vars['template_admin']; ?>/vendor/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="<?php echo $this->vars['template_admin']; ?>/vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
+    <script src="<?php echo $this->vars['template_admin']; ?>/vendor/datatables-responsive/dataTables.responsive.js"></script>
 
     <!-- Custom Theme JavaScript -->
-    <script src="{$template_admin}/js/sb-admin-2.js"></script>
+    <script src="<?php echo $this->vars['template_admin']; ?>/js/sb-admin-2.js"></script>
     <!-- layer alert -->
-    <script src="{$template_plugins}/layer/layer.js"></script>
+    <script src="<?php echo $this->vars['template_plugins']; ?>/layer/layer.js"></script>
     <!-- bootstrapValidator js-->
-    <script src="{$template_plugins}/bootstrapValidator/bootstrapValidator.js"></script>
+    <script src="<?php echo $this->vars['template_plugins']; ?>/bootstrapValidator/bootstrapValidator.js"></script>
     <!-- Page-Level Demo Scripts - Tables - Use for reference -->
     <!-- admin_manager js -->
-    <script src="{$template_admin}/js/admin_manager.js"></script>
+    <script src="<?php echo $this->vars['template_admin']; ?>/js/admin_manager.js"></script>
     <script>
     $(document).ready(function() {
         $('#dataTables-example').DataTable({

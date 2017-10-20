@@ -6,10 +6,11 @@
            <div class="row">
 	             <div class="col-md-12">
 		                <ol class="breadcrumb">
+		                  <li>当前位置:</li>
 						  <li><a href="./">首页</a></li>
 						  <?php echo $this->vars['nav_name']; ?>
 						</ol>
-						<input type="text" id="sort" value="<?php echo $this->vars['sort']; ?>">
+						<input type="hidden" id="sort" value="<?php echo $this->vars['sort']; ?>">
 	             </div>
             </div>
             <!-- nav path end -->

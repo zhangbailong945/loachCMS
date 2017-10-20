@@ -1,6 +1,17 @@
 <!-- start site's main content area -->
     <section class="content-wrap">
         <div class="container">
+                   <!-- nav path start -->
+           <div class="row">
+	             <div class="col-md-12">
+		                <ol class="breadcrumb">
+		                  <li>当前位置：</li>
+						  <li><a href="./">首页</a></li>
+						</ol>
+						<input type="hidden" id="sort" value="{$sort}">
+	             </div>
+            </div>
+            <!-- nav path end -->
             <div class="row">
 
               <main class="col-md-8 main-content">

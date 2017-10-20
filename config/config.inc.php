@@ -33,6 +33,8 @@ define('DB_CHAR','utf8');
 define('PAGE_SIZE',10);
 //导航配置
 define('NAV_SIZE',10);  //前台显示主导航个数
+//上一页地址
+define('PREV_URL',@$_SERVER["HTTP_REFERER"]);
 
 
 ?>

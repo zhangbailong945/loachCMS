@@ -2,7 +2,7 @@ $(function(){
 
 	//list 隐藏域pid
 	var sort=$('#sort').val();
-	for(i=0;i<10;i++)
+	for(i=0;i<30;i++)
     {
 		if(sort==i)
 		{
