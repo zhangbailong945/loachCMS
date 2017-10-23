@@ -47,10 +47,16 @@
                         <form role="form" id="loginForm">
                             <fieldset>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="请输入管理员账号" id="admin_user" name="admin_user" type="text" autofocus>
+                                    <input class="form-control" placeholder="请输入管理员账号" id="admin_user" name="admin_user" type="text" autofocus />
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="请输入管理员密码" id="admin_pass" name="admin_pass" type="password" value="">
+                                    <input class="form-control" placeholder="请输入管理员密码" id="admin_pass" name="admin_pass" type="password"/>
+                                </div>
+                                <div class="form-group">
+                                    <input class="form-control" placeholder="验证码" id="authcode" name="authcode" type="text"  />
+                                </div>
+                                <div class="form-group">
+                                    <img src="../config/code.php" alt="验证码" onclick="javascript:this.src='../config/code.php?h='+Math.random();" />
                                 </div>
                                 <div class="checkbox">
                                     <label>
@@ -131,11 +137,37 @@
                             regexp:{
                                 regexp:/^[a-zA-Z0-9_]+$/,
                                 message:'管理员密码由字母数字或下划线组成!'                  
-                            }
+                            } 
                             
                         }
-     	           }
-          }
+     	           },
+     	           authcode:{
+     	        	  message:'验证码密码无效',
+                      validators:{
+                           notEmpty:{
+                               message:'验证码不能为空!'
+                           },
+                           stringLength:{
+                               min:4,
+                               max:4,
+                               message:'验证码长度必须4位!'
+                           },
+                           regexp:{
+                               regexp:/^[a-zA-Z0-9]+$/,
+                               message:'验证码由子母和数字组成!'                  
+                           },
+                           threshold:3,
+                           remote:{    //ajax验证 server result:{"valid",true or false}
+                             url:'login.php?action=adminCode', //验证地址
+                             message:'验证码不正确!',//提示信息
+                             delay:2000,//设置2秒发送一次ajax（每秒发送，服务器压力太大）
+                             type:'POST',
+                             dataType:'json'
+     	                     } 
+                           
+                       }
+         	       }
+           }
         });
     	$("#login").click(doLogin);
     });
@@ -167,9 +199,7 @@
                     });
               },
 	  	      success: function(backdata) {
-    	  	      alert(backdata);
 	  	          if (backdata == 1) {
-	  	              layer.msg('操作成功！', {icon: 1});
 	  	              location.href='manager.php?action=list';
 	  	          } else if (backdata == 0) {
 	  	        	  layer.msg('操作失败！', {icon: 2});

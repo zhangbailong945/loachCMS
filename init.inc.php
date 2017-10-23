@@ -1,4 +1,6 @@
 <?php
+//开启session
+session_start();
 //设置编码为UTF-8
 header("Content-Type:text/html;charset=utf-8;");
 //设置中国时区

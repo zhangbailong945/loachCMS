@@ -42,9 +42,9 @@ class Model{
 	{
 	   $db=Db::getDB();
 	   $result=$db->query($sql);
-	   $objects=$result->fetch_object();
+	   $object=$result->fetch_object();
 	   Db::closeDB($result, $db);
-	   return Tool::htmlString($objects);
+	   return Tool::htmlString($object);
 	}
 	
 	/**
