@@ -1,257 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
 
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml" >
 <head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="pragma" content="no-cache">
-    <meta http-equiv="cache-control" content="no-cache">
-    <meta http-equiv="expires" content="0"> 
-	<title>登录界面</title>
-    <link href="css/default.css" rel="stylesheet" type="text/css" />
-	<!--必要样式-->
-    <link href="{$template_admin}/css/styles.css" rel="stylesheet" type="text/css" />
-    <link href="{$template_admin}/css/demo.css" rel="stylesheet" type="text/css" />
-    <link href="{$template_admin}/css/loaders.css" rel="stylesheet" type="text/css" />
-</head>
-<body>
-	<div class='login'>
-	  <div class='login_title'>
-	    <span>管理员登录</span>
-	  </div>
-	  <div class='login_fields'>
-	    <div class='login_fields__user'>
-	      <div class='icon'>
-	        <img alt="" src='img/user_icon_copy.png'>
-	      </div>
-	      <input name="login" placeholder='用户名' maxlength="16" type='text' autocomplete="off" value="kbcxy"/>
-	        <div class='validation'>
-	          <img alt="" src='img/tick.png'>
-	        </div>
-	    </div>
-	    <div class='login_fields__password'>
-	      <div class='icon'>
-	        <img alt="" src='img/lock_icon_copy.png'>
-	      </div>
-	      <input name="pwd" placeholder='密码' maxlength="16" type='text' autocomplete="off">
-	      <div class='validation'>
-	        <img alt="" src='img/tick.png'>
-	      </div>
-	    </div>
-	    <div class='login_fields__password'>
-	      <div class='icon'>
-	        <img alt="" src='img/key.png'>
-	      </div>
-	      <input name="code" placeholder='验证码' maxlength="4" type='text' name="ValidateNum" autocomplete="off">
-	      <div class='validation' style="opacity: 1; right: -5px;top: -3px;">
-          <canvas class="J_codeimg" id="myCanvas" onclick="Code();">对不起，您的浏览器不支持canvas，请下载最新版浏览器!</canvas>
-	      </div>
-	    </div>
-	    <div class='login_fields__submit'>
-	      <input type='button' value='登录'>
-	    </div>
-	  </div>
-	  <div class='success'>
-	  </div>
-	  <div class='disclaimer'>
-	    <p>欢迎登陆后台管理系统</p>
-	  </div>
-	</div>
-	<div class='authent'>
-	  <div class="loader" style="height: 44px;width: 44px;margin-left: 28px;">
-        <div class="loader-inner ball-clip-rotate-multiple">
-            <div></div>
-            <div></div>
-            <div></div>
-        </div>
-        </div>
-	  <p>认证中...</p>
-	</div>
-	<div class="OverWindows"></div>
-    <link href="layui/css/layui.css" rel="stylesheet" type="text/css" />
-	<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
-	<script type="text/javascript" src="{$template_admin}/js/jquery-ui.min.js"></script>
-	<script type="text/javascript" src='{$template_admin}/js/stopExecutionOnTimeout.js?t=1'></script>
-    <script src="layui/layui.js" type="text/javascript"></script>
-    <script src="{$template_admin}/js/Particleground.js" type="text/javascript"></script>
-    <script src="{$template_admin}/Js/Treatment.js" type="text/javascript"></script>
-    <script src="{$template_admin}/js/jquery.mockjax.js" type="text/javascript"></script>
-	<script type="text/javascript">
-		var canGetCookie = 0;//是否支持存储Cookie 0 不支持 1 支持
-		var ajaxmockjax = 1;//是否启用虚拟Ajax的请求响 0 不启用  1 启用
-		//默认账号密码
-		
-		var truelogin = "kbcxy";
-		var truepwd = "mcwjs";
-		
-		var CodeVal = 0;
-	    Code();
-	    function Code() {
-			if(canGetCookie == 1){
-				createCode("AdminCode");
-				var AdminCode = getCookieValue("AdminCode");
-				showCheck(AdminCode);
-			}else{
-				showCheck(createCode(""));
-			}
-	    }
-	    function showCheck(a) {
-			CodeVal = a;
-	        var c = document.getElementById("myCanvas");
-	        var ctx = c.getContext("2d");
-	        ctx.clearRect(0, 0, 1000, 1000);
-	        ctx.font = "80px 'Hiragino Sans GB'";
-	        ctx.fillStyle = "#E8DFE8";
-	        ctx.fillText(a, 0, 100);
-	    }
-	    $(document).keypress(function (e) {
-	        // 回车键事件  
-	        if (e.which == 13) {
-	            $('input[type="button"]').click();
-	        }
-	    });
-	    //粒子背景特效
-	    $('body').particleground({
-	        dotColor: '#E8DFE8',
-	        lineColor: '#133b88'
-	    });
-	    $('input[name="pwd"]').focus(function () {
-	        $(this).attr('type', 'password');
-	    });
-	    $('input[type="text"]').focus(function () {
-	        $(this).prev().animate({ 'opacity': '1' }, 200);
-	    });
-	    $('input[type="text"],input[type="password"]').blur(function () {
-	        $(this).prev().animate({ 'opacity': '.5' }, 200);
-	    });
-	    $('input[name="login"],input[name="pwd"]').keyup(function () {
-	        var Len = $(this).val().length;
-	        if (!$(this).val() == '' && Len >= 5) {
-	            $(this).next().animate({
-	                'opacity': '1',
-	                'right': '30'
-	            }, 200);
-	        } else {
-	            $(this).next().animate({
-	                'opacity': '0',
-	                'right': '20'
-	            }, 200);
-	        }
-	    });
-	    var open = 0;
-	    layui.use('layer', function () {
-			var msgalert = '默认账号:' + truelogin + '<br/> 默认密码:' + truepwd;
-    		var index = layer.alert(msgalert, { icon: 6, time: 4000, offset: 't', closeBtn: 0, title: '友情提示', btn: [], anim: 2, shade: 0 });  
-			layer.style(index, {
-				color: '#777'
-			}); 
-	        //非空验证
-	        $('input[type="button"]').click(function () {
-	            var login = $('input[name="login"]').val();
-	            var pwd = $('input[name="pwd"]').val();
-	            var code = $('input[name="code"]').val();
-	            if (login == '') {
-	                ErroAlert('请输入您的账号');
-	            } else if (pwd == '') {
-	                ErroAlert('请输入密码');
-	            } else if (code == '' || code.length != 4) {
-	                ErroAlert('输入验证码');
-	            } else {
-	                //认证中..
-	                fullscreen();
-	                $('.login').addClass('test'); //倾斜特效
-	                setTimeout(function () {
-	                    $('.login').addClass('testtwo'); //平移特效
-	                }, 300);
-	                setTimeout(function () {
-	                    $('.authent').show().animate({ right: -320 }, {
-	                        easing: 'easeOutQuint',
-	                        duration: 600,
-	                        queue: false
-	                    });
-	                    $('.authent').animate({ opacity: 1 }, {
-	                        duration: 200,
-	                        queue: false
-	                    }).addClass('visible');
-	                }, 500);
 
-	                //登陆
-	                var JsonData = { login: login, pwd: pwd, code: code };
-					//此处做为ajax内部判断
-					var url = "";
-					if(JsonData.login == truelogin && JsonData.pwd == truepwd && JsonData.code.toUpperCase() == CodeVal.toUpperCase()){
-						url = "Ajax/Login";
-					}else{
-						url = "Ajax/LoginFalse";
-					}
-					
-					
-	                AjaxPost(url, JsonData,
-	                                function () {
-	                                    //ajax加载中
-	                                },
-	                                function (data) {
-	                                    //ajax返回 
-	                                    //认证完成
-	                                    setTimeout(function () {
-	                                        $('.authent').show().animate({ right: 90 }, {
-	                                            easing: 'easeOutQuint',
-	                                            duration: 600,
-	                                            queue: false
-	                                        });
-	                                        $('.authent').animate({ opacity: 0 }, {
-	                                            duration: 200,
-	                                            queue: false
-	                                        }).addClass('visible');
-	                                        $('.login').removeClass('testtwo'); //平移特效
-	                                    }, 2000);
-	                                    setTimeout(function () {
-	                                        $('.authent').hide();
-	                                        $('.login').removeClass('test');
-	                                        if (data.Status == 'ok') {
-	                                            //登录成功
-	                                            $('.login div').fadeOut(100);
-	                                            $('.success').fadeIn(1000);
-	                                            $('.success').html(data.Text);
-												//跳转操作
-												
-	                                        } else {
-	                                            AjaxErro(data);
-	                                        }
-	                                    }, 2400);
-	                                })
-	            }
-	        })
-	    })
-	    var fullscreen = function () {
-	        elem = document.body;
-	        if (elem.webkitRequestFullScreen) {
-	            elem.webkitRequestFullScreen();
-	        } else if (elem.mozRequestFullScreen) {
-	            elem.mozRequestFullScreen();
-	        } else if (elem.requestFullScreen) {
-	            elem.requestFullscreen();
-	        } else {
-	            //浏览器不支持全屏API或已被禁用  
-	        }
-	    }  
-		if(ajaxmockjax == 1){
-			$.mockjax({  
-				url: 'Ajax/Login',  
-				status: 200,  
-				responseTime: 50,          
-				responseText: {"Status":"ok","Text":"登陆成功<br /><br />欢迎回来"}  
-			}); 
-			$.mockjax({  
-				url: 'Ajax/LoginFalse',  
-				status: 200,  
-				responseTime: 50,          
-				responseText: {"Status":"Erro","Erro":"账号名或密码或验证码有误"}
-			});   
-		}
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>LoachCMS后台管理中心</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="{$template_admin}/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- MetisMenu CSS -->
+    <link href="{$template_admin}/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="{$template_admin}/css/sb-admin-2.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="{$template_admin}/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <!-- bootstrapValidator css -->
+    <link href="{$template_plugins}/bootstrapValidator/bootstrapValidator.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-md-offset-4">
+                <div class="login-panel panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">loachCMS管理员登录中心</h3>
+                    </div>
+                    <div class="panel-body">
+                        <form role="form" id="loginForm">
+                            <fieldset>
+                                <div class="form-group">
+                                    <input class="form-control" placeholder="请输入管理员账号" id="admin_user" name="admin_user" type="text" autofocus>
+                                </div>
+                                <div class="form-group">
+                                    <input class="form-control" placeholder="请输入管理员密码" id="admin_pass" name="admin_pass" type="password" value="">
+                                </div>
+                                <div class="checkbox">
+                                    <label>
+                                        <input name="remember" type="checkbox" value="Remember Me">记住我
+                                    </label>
+                                </div>
+                                <!-- Change this to a button or input when using this as a form -->
+                                <a id="login" class="btn btn-lg btn-success btn-block">登录</a>
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="{$template_admin}/vendor/jquery/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="{$template_admin}/vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="{$template_admin}/vendor/metisMenu/metisMenu.min.js"></script>
+
+    <!-- bootstrapValidator js-->
+    <script src="{$template_plugins}/bootstrapValidator/bootstrapValidator.js"></script>
+    <!-- Custom Theme JavaScript -->
+    <script src="{$template_admin}/js/sb-admin-2.js"></script>
+    <!-- layer js -->
+    <script src="{$template_plugins}/layer/layer.js"></script>
+    <script type="text/javascript">
+    $(function(){
+        $("#loginForm").bootstrapValidator({
+        	message: '表单验证失败!',
+	        feedbackIcons: {/*input状态样式图片*/
+	             valid: 'glyphicon glyphicon-ok',
+	             invalid: 'glyphicon glyphicon-remove',
+	             validating: 'glyphicon glyphicon-refresh'
+          },
+          fields:{
+ 	         admin_user:{
+ 	               message:'管理员没有验证!',
+ 	               validators:{
+                    notEmpty:{
+                        message:'管理员名称不能为空!'
+                    },
+                    stringLength:{
+                         min:3,
+                         max:30,
+                         message:'管理员名称长度在3-30位之间!'
+                      },
+                      threshold:3,
+                      remote:{    //ajax验证 server result:{"valid",true or false}
+                        url:'manager.php?action=checkLoginManagerName', //验证地址
+                        message:'管理名称不存在!',//提示信息
+                        delay:2000,//设置2秒发送一次ajax（每秒发送，服务器压力太大）
+                        type:'POST',
+                        dataType:'json'
+	                     },
+	                     regexp:{
+                         regexp:/^[a-zA-Z0-9_]+$/,
+                         message:'管理员名称由字母数字下划线组成!'
+		                 }   
+	                  } 
+	               },
+	               admin_pass:{
+                       message:'管理员密码无效',
+                       validators:{
+                            notEmpty:{
+                                message:'管理员密码不能为空!'
+                            },
+                            stringLength:{
+                                min:6,
+                                max:30,
+                                message:'管理员密码长度必须在6-30之间!'
+                            },
+                            regexp:{
+                                regexp:/^[a-zA-Z0-9_]+$/,
+                                message:'管理员密码由字母数字或下划线组成!'                  
+                            }
+                            
+                        }
+     	           }
+          }
+        });
+    	$("#login").click(doLogin);
+    });
+    //登录
+    function doLogin()
+    {
+    	$("#loginForm").data('bootstrapValidator').validate();
+        if(!$("#loginForm").data('bootstrapValidator').isValid())
+        {
+             return ;
+        }
+        else
+        {
+            
+            
+        	var jsonData ={
+        		  'submit':'true',
+  			      'admin_user':$.trim($("#admin_user").val()),
+  			      'admin_pass':$.trim($("#admin_pass").val())			      
+  	       };
+	  	  $.ajax({
+	  	      url: "login.php?action=login",
+	  	      data: jsonData,
+	  	      type: "post",
+	  	      beforeSend:function(){
+                   layer.load(2,{
+                        shade:[0.8,'#393D49'],
+                        shadeClose:true
+                    });
+              },
+	  	      success: function(backdata) {
+    	  	      alert(backdata);
+	  	          if (backdata == 1) {
+	  	              layer.msg('操作成功！', {icon: 1});
+	  	              location.href='manager.php?action=list';
+	  	          } else if (backdata == 0) {
+	  	        	  layer.msg('操作失败！', {icon: 2});
+	  	          } else {
+	  	        	  layer.msg('防止数据不断增长，会影响速度，请先删掉一些数据再做测试',{icon: 3});
+	  	          }
+	  	      },error: function (error) {
+	  	          console.log(error);
+	  	      }
+	  	  });
+        }
+    }
     </script>
 </body>
+
 </html>

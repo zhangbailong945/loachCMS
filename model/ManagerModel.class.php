@@ -61,6 +61,15 @@ class ManagerModel extends Model{
     }   
     
     /**
+     * 后台管理员登录--数据访问层
+     */
+    public function adminLogin()
+    {
+       $sql="select m.admin_user as admin_user,l.level_name as level_name from cms_manager as m cms_level as l where admin_user='$this->admin_user' and admin_pass='$this->admin_pass' and m.level=l.level limit 1";
+       return parent::cud($sql);
+    }
+    
+    /**
      * 添加管理员-数据访问层
      */
     public function addManager()

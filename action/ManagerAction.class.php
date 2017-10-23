@@ -32,6 +32,9 @@ class ManagerAction extends Action{
 	   	case 'checkManagerName':
 	   	    $this->checkManagerName();
 	   	    break;
+	   	case 'checkLoginManagerName':
+	   		$this->checkLoginManagerName();
+	   		break;
 	   	case 'update':
 	   		$this->update();
 	   		break;
@@ -143,7 +146,7 @@ class ManagerAction extends Action{
 	/**
 	 * 检查管理员名称是否存在-控制器
 	 */
-	public function checkManagerName()
+	private function checkManagerName()
 	{
        if(isset($_POST['admin_user']))
        {
@@ -162,6 +165,29 @@ class ManagerAction extends Action{
 		   }
        }
 
+	}
+	
+	/**
+	 *检查管理员登录账号是否存在
+	 */
+	public function checkLoginManagerName()
+	{
+		  if(isset($_POST['admin_user']))
+	       {
+	       	   $this->model->admin_user=$_POST['admin_user'];
+			   if(!is_object($this->model->getOneManager()))
+			   {
+			      Tool::jsonType();
+			      echo json_encode(array('valid'=>false));
+			      exit();
+			   }
+			   else
+			   {
+			   	  Tool::jsonType();			     
+			      echo json_encode(array('valid'=>true));
+			      exit();
+			   }
+	       }
 	}
 	
 
