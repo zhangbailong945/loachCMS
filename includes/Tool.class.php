@@ -119,4 +119,15 @@ class Tool{
             session_destroy();
         }
     }
+    
+    /**
+     * 检查session
+     */
+    public static function checkSession()
+    {
+        if(!isset($_SESSION['admin']))
+        {
+           Tool::alertLocation(null,null,'login.php');
+        }
+    }
 }

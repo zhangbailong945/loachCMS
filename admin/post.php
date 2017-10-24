@@ -7,6 +7,9 @@ global $tpl;
 $tpl->assign('template_admin',TEMP_ADMIN_URL);
 $tpl->assign('admin_user',$_SESSION['admin']['admin_user']);
 $tpl->assign('level_name',$_SESSION['admin']['level_name']);
-$tpl->display('admin/admin.tpl');
+//控制器入口
+$post=new PostAction($tpl);
+$post->action();
+$tpl->display('admin/post.tpl');
 
 

@@ -16,7 +16,7 @@ class LoginAction extends Action{
 	 * 后台登录--控制器
 	 */
 	public function action()
-	{
+	{   
 	    switch($_GET['action'])
 	    {
 	    	case 'login':

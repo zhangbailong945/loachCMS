@@ -277,6 +277,16 @@
                             <!-- /.nav-second-level -->
                         </li>
                         
+                        <li>
+                            <a href="#"><i class="fa fa-user fa-fw"></i>文章管理<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="../admin/post.php?action=list">文章列表</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        
                        
                     </ul>
                 </div>
