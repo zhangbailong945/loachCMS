@@ -37,6 +37,11 @@
     <!-- layer alert -->
     <!-- bootstrapValidator css -->
     <link href="{$template_plugins}/bootstrapValidator/bootstrapValidator.css" rel="stylesheet" type="text/css">
+    
+    
+    <!-- jQuery -->
+    <script src="{$template_admin}/vendor/jquery/jquery.min.js"></script>
+    <script src="{$template_admin}/js/uploadThumbnail.js"></script>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -416,7 +421,10 @@
 								  
 								  <div class="form-group">
 								    <label for="thumbnail" class="control-label">缩略图</label>
-								    <input type="text" class="form-control" id="thumbnail" name="thumbnail" placeholder="请输入关键字" required>
+								    <div class="form-group">
+								    <label><input type="text" class="form-control" id="thumbnail" name="thumbnail" placeholder="请输入关键字" required></label>
+								    <label><input class="btn btn-primary btn-sm" onclick="uploadWindow('../templates/admin/uploadThumbnail.html','uploadThumbnail','400','200');" type="button" value="上传缩略图"/></label>
+								    </div>
 								  </div>
 								  
 								  <div class="form-group">
@@ -438,9 +446,27 @@
 								  
 								  <div class="form-group">
 								    <label for="content" class="control-label">内容</label>
-								    <textarea class="form-control" rows="4" name="content" id="content">
-								    
-								    </textarea>
+								      <!-- 加载编辑器的容器 -->
+								    <script id="container" name="content" type="text/plain">
+
+    			                    </script>
+								    <!-- 配置文件 -->
+								    <script type="text/javascript" src="{$template_plugins}/ueditor/ueditor.config.js"></script>
+								    <!-- 编辑器源码文件 -->
+								    <script type="text/javascript" src="{$template_plugins}/ueditor/ueditor.all.js"></script>
+								    <!-- 实例化编辑器 -->
+								    <script type="text/javascript">
+							            var ue = UE.getEditor('container');
+							            ue.ready(function() {
+							        	ue.setHeight(300);
+							        	//设置编辑器的内容
+							        	// ue.setContent('hello');
+							        	// //获取html内容，返回: <p>hello</p>
+							        	// var html = ue.getContent();
+							        	// //获取纯文本内容，返回: hello
+							        	// var txt = ue.getContentTxt();
+							           });
+								    </script>
 								  </div>
 								  
 								  <div class="form-group">
@@ -566,8 +592,6 @@
     </div>
     <!-- /#wrapper -->
 
-    <!-- jQuery -->
-    <script src="{$template_admin}/vendor/jquery/jquery.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="{$template_admin}/vendor/bootstrap/js/bootstrap.min.js"></script>
