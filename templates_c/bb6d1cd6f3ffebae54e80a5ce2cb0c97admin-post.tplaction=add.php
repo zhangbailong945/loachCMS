@@ -422,7 +422,7 @@
 								  <div class="form-group">
 								    <label for="thumbnail" class="control-label">缩略图</label>
 								    <div class="form-group">
-								    <label><input type="text" class="form-control" id="thumbnail" name="thumbnail" placeholder="请输入关键字" required></label>
+								    <label><input type="text" readonly="readlony" class="form-control" id="thumbnail" name="thumbnail" placeholder="请输入关键字" required></label>
 								    <label><input class="btn btn-primary btn-sm" onclick="uploadWindow('../templates/admin/uploadThumbnail.html','uploadThumbnail','400','200');" type="button" value="上传缩略图"/></label>
 								    </div>
 								  </div>

@@ -35,6 +35,8 @@ define('PAGE_SIZE',10);
 define('NAV_SIZE',10);  //前台显示主导航个数
 //上一页地址
 define('PREV_URL',@$_SERVER["HTTP_REFERER"]);
+//文件上传路径
+define('UPLOAD_DIR','/uploads/');
 
 
 ?>

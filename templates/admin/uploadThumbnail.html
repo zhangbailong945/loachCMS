@@ -9,10 +9,10 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>LoachCMS后台管理中心</title>
+    <title>上传文章缩略图</title>
     <!-- Bootstrap Core CSS -->
     <link href="./vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
+ 
 
 
 </head>
@@ -27,15 +27,14 @@
                         <h3 class="panel-title">上传缩略图</h3>
                     </div>
                     <div class="panel-body">
-                        <form role="form" id="uploadForm" enctype="multipart/form-data">
+                        <form role="form" method="post" action="../../config/upload.php" id="uploadForm" enctype="multipart/form-data">
                           <div class="form-group">
 						    <label for="exampleInputFile">File input</label>
 						    <input type="hidden" name="MAX_FILE_SIZE" value="204800"/>
-                             <input type="file" id="exampleInputFile" name="pic" />
+                             <input type="file" id="exampleInputFile" name="thumbnail" />
 						    <p class="help-block">Example block-level help text here.</p>
-						    </div>
-           
-                           <a id="login" class="btn btn-lg btn-success btn-block">上传</a>
+						    </div>          
+                           <input type="submit" name="send" class="btn btn-lg btn-success btn-block" value="上传"/>
                         </form>
                     </div>
                 </div>

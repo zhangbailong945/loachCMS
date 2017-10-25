@@ -27,7 +27,18 @@ class Tool{
      */
     public static function alertBack($title,$message)
     {
-        echo "<script src='".TEMP_ADMIN_URL."/vendor/jquery/jquery.min.js'></script><script src='".TEMP_PLUGINS_URL."/layer/layer.js'></script><script type='text/javascript'>layer.open({title:'$title',content:'$message',btn:['确定'],yes:function(index,layero){history.back()}});";
+        echo "<script src='".TEMP_ADMIN_URL."/vendor/jquery/jquery.min.js'></script><script src='".TEMP_PLUGINS_URL."/layer/layer.js'></script><script type='text/javascript'>layer.open({title:'$title',content:'$message',btn:['确定'],yes:function(index,layero){history.back()}});</script>";
+        exit();
+    }
+    
+     /**
+     * 操作失败
+     * @param string $message
+     */
+    public static function alertUploadBack($path)
+    {
+        echo "<script type='text/javascript'>opener.document.add.thumbnail.value='$path';</script>";
+        echo "<script type='text/javascript'>window.close();</script>";
         exit();
     }
     
