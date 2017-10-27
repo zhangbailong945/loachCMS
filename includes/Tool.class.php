@@ -38,6 +38,8 @@ class Tool{
     public static function alertUploadBack($path)
     {
         echo "<script type='text/javascript'>opener.document.add.thumbnail.value='$path';</script>";
+        echo "<script type='text/javascript'>opener.document.add.pic.style.display='block';</script>";
+        echo "<script type='text/javascript'>opener.document.add.pic.src='$path';</script>";
         echo "<script type='text/javascript'>window.close();</script>";
         exit();
     }
