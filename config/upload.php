@@ -6,7 +6,7 @@ if(isset($_POST['send']))
   $fileUpload=new FileUpload('thumbnail',$_POST['MAX_FILE_SIZE']);
   $file_link=$fileUpload->getPath();
   $image=new Image($file_link);
-  $image->thumb_width_height(150,50);
+  $image->thumb_width_height(150,'试试');
   $image->saveImage();
   Tool::alertUploadBack(''.$file_link.'');
 }

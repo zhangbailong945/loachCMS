@@ -39,8 +39,20 @@ class Image{
 	/**
 	 * 等比例缩放,填充，裁剪
 	 */
-	public function thumb_width_height($new_width,$new_height)
+	public function thumb_width_height($new_width=0,$new_height=0)
 	{
+		if(empty($new_width)&&empty($new_height))
+		{
+		    $new_width=$this->width;
+		    $new_height=$this->height;
+		}
+		
+		if(!is_numeric($new_width)&&!is_numeric($new_height))
+		{
+		    $new_width=$this->width;
+		    $new_height=$this->height;
+		}
+		
 		//创建一个容器
 		$new_width_1=$new_width;
 		$new_height_1=$new_height;
